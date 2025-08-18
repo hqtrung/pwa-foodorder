@@ -1,0 +1,52 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Public read access to specific cache collections only
+    match /foodorder_cache_categories/{document} {
+      allow read: if true;
+      allow write: if false; // Only backend can write
+    }
+
+    match /foodorder_cache_products/{document} {
+      allow read: if true;
+      allow write: if false; // Only backend can write
+    }
+
+    // Orders collection - Allow read/write for order management system
+    // In production, you would want to implement proper authentication
+    match /foodorder_orders/{orderId} {
+      allow read, write: if true;
+      
+      // Allow creation of new orders
+      allow create: if resource == null;
+      
+      // Allow updating existing orders (status changes, etc.)
+      allow update: if resource != null;
+      
+      // Allow deleting orders (for cleanup operations)
+      allow delete: if true;
+    }
+    
+    // Order statistics collection for staff dashboard
+    match /foodorder_order_stats/{statsId} {
+      allow read, write: if true;
+    }
+    
+    // Notifications collection for staff dashboard
+    match /foodorder_notifications/{notificationId} {
+      allow read, write: if true;
+    }
+    
+    // System configuration collection (read-only for most users)
+    match /config/{configId} {
+      allow read: if true;
+      allow write: if true; // For demo - in production, restrict to admin users
+    }
+
+    // Default deny for everything else
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

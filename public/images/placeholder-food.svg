@@ -1,0 +1,32 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="400" height="300" fill="#f3f4f6"/>
+  
+  <!-- Food Bowl -->
+  <ellipse cx="200" cy="220" rx="120" ry="15" fill="#e5e7eb"/>
+  <path d="M80 220 Q80 180 120 160 Q160 140 200 140 Q240 140 280 160 Q320 180 320 220 L320 240 Q320 260 280 270 Q240 280 200 280 Q160 280 120 270 Q80 260 80 240 Z" fill="#ffffff" stroke="#d1d5db" stroke-width="2"/>
+  
+  <!-- Food Items -->
+  <!-- Rice/Noodles -->
+  <ellipse cx="180" cy="200" rx="25" ry="8" fill="#f9fafb"/>
+  <ellipse cx="220" cy="195" rx="30" ry="10" fill="#f9fafb"/>
+  <ellipse cx="200" cy="210" rx="20" ry="6" fill="#f9fafb"/>
+  
+  <!-- Vegetables -->
+  <circle cx="160" cy="185" r="8" fill="#22c55e"/>
+  <circle cx="240" cy="185" r="6" fill="#ef4444"/>
+  <circle cx="190" cy="175" r="5" fill="#f59e0b"/>
+  <circle cx="210" cy="190" r="7" fill="#22c55e"/>
+  
+  <!-- Meat pieces -->
+  <ellipse cx="150" cy="200" rx="12" ry="8" fill="#dc2626"/>
+  <ellipse cx="250" cy="205" rx="10" ry="6" fill="#dc2626"/>
+  
+  <!-- Chopsticks -->
+  <rect x="320" y="120" width="2" height="80" fill="#8b5cf6" transform="rotate(25 320 120)"/>
+  <rect x="325" y="125" width="2" height="75" fill="#8b5cf6" transform="rotate(25 325 125)"/>
+  
+  <!-- Text -->
+  <text x="200" y="80" text-anchor="middle" fill="#6b7280" font-family="system-ui" font-size="18" font-weight="500">Vietnamese Food</text>
+  <text x="200" y="50" text-anchor="middle" fill="#9ca3af" font-family="system-ui" font-size="14">Image placeholder</text>
+</svg>

@@ -1,0 +1,707 @@
+{
+  "common": {
+    "navigation": {
+      "home": "Home",
+      "menu": "Menu",
+      "cart": "Carrello",
+      "orders": "Ordini",
+      "staff": "Staff"
+    },
+    "orderTypes": {
+      "table": "Servizio al tavolo",
+      "delivery": "Consegna a domicilio"
+    },
+    "actions": {
+      "addToCart": "Aggiungi al carrello",
+      "checkout": "Ordina",
+      "placeOrder": "Effettua ordine",
+      "viewOrder": "Visualizza ordine",
+      "goBack": "Torna indietro",
+      "close": "Chiudi",
+      "edit": "Modifica",
+      "remove": "Rimuovi",
+      "confirm": "Conferma",
+      "cancel": "Annulla",
+      "save": "Salva"
+    },
+    "currency": "₫",
+    "loading": "Caricamento...",
+    "error": "Si è verificato un errore",
+    "success": "Successo",
+    "cancel": "Annulla"
+  },
+  "landing": {
+    "welcome": {
+      "title": "Bánh Mì PateDeli",
+      "subtitle": "Gustati l'autentica cucina vietnamita",
+      "description": "Bánh Mì tradizionale, riso appiccicoso, spaghetti e stufato di manzo con vari caffè e bevande."
+    },
+    "status": {
+      "open": "Aperto ora",
+      "closed": "Chiuso",
+      "until": "fino a"
+    },
+    "info": {
+      "address": "Indirizzo",
+      "phone": "Telefono",
+      "hours": "Orari di apertura",
+      "dailyHours": "06:00 - 19:00 tutti i giorni"
+    },
+    "orderType": {
+      "title": "Scegli il tipo di ordine",
+      "table": {
+        "title": "Servizio al tavolo",
+        "description": "Cena nel nostro ristorante con servizio attento",
+        "benefit1": "Nessuna tassa di consegna",
+        "benefit2": "Servizio al tavolo incluso"
+      },
+      "delivery": {
+        "title": "Consegna a domicilio",
+        "description": "Consegna veloce direttamente alla tua porta",
+        "benefit1": "Consegna in 30-45 minuti",
+        "fee": "Tassa di consegna: {fee}₫"
+      }
+    },
+    "tableNumber": {
+      "title": "Inserisci il numero del tuo tavolo",
+      "placeholder": "Numero tavolo",
+      "hint": "Inserisci il numero del tavolo 1-50",
+      "confirm": "Conferma numero tavolo"
+    },
+    "delivery": {
+      "title": "Conferma consegna",
+      "radius": "Raggio di consegna",
+      "minimum": "Ordine minimo",
+      "confirm": "Continua con l'ordine"
+    },
+    "actions": {
+      "browseMenu": "Sfoglia menu"
+    },
+    "errors": {
+      "tableNumberRequired": "Inserisci il numero del tavolo",
+      "invalidTableNumber": "Numero tavolo non valido (1-50)"
+    },
+    "success": {
+      "tableSet": "Tavolo {number} selezionato",
+      "deliverySelected": "Consegna a domicilio selezionata"
+    },
+    "footer": {
+      "copyright": "© 2025 Bánh Mì PateDeli. Tutti i diritti riservati.",
+      "poweredBy": "Sviluppato da FoodOrder PWA"
+    }
+  },
+  "menu": {
+    "title": "Menu",
+    "orderTypeRequired": {
+      "title": "Seleziona tipo di ordine",
+      "description": "Torna alla home page per selezionare un tipo di ordine prima di visualizzare il menu",
+      "backToHome": "Torna alla home"
+    },
+    "orderInfo": {
+      "table": "Tavolo {number}",
+      "delivery": "Consegna a domicilio"
+    },
+    "search": {
+      "placeholder": "Cerca cibo...",
+      "results": {
+        "title": "Risultati di ricerca",
+        "searching": "Ricerca per \"{query}\"...",
+        "found": "{count} articoli trovati per \"{query}\"",
+        "clear": "Cancella ricerca"
+      },
+      "noResults": {
+        "title": "Nessun piatto trovato",
+        "description": "Nessun risultato per \"{query}\"",
+        "browseAll": "Sfoglia tutti i piatti"
+      }
+    },
+    "categories": {
+      "title": "Categorie",
+      "viewAll": "Visualizza tutto"
+    },
+    "products": {
+      "featured": "Articoli in evidenza",
+      "all": "Tutti i prodotti",
+      "viewAll": "Visualizza tutti i {count} articoli",
+      "showFeatured": "Mostra solo in evidenza",
+      "noFeatured": "Nessun articolo in evidenza attualmente disponibile"
+    },
+    "filters": {
+      "sortBy": "Ordina per",
+      "sort": {
+        "popularity": "Popolarità",
+        "name": "Nome",
+        "price": "Prezzo",
+        "newest": "Più recente"
+      },
+      "ascending": "Crescente",
+      "descending": "Decrescente",
+      "availableOnly": "Mostra solo disponibili",
+      "reset": "Ripristina",
+      "showing": "Mostrando",
+      "includingUnavailable": "Inclusi non disponibili"
+    },
+    "badges": {
+      "promotion": "Promozione",
+      "bestSeller": "Più venduto",
+      "new": "Nuovo"
+    },
+    "product": {
+      "outOfStock": "Esaurito",
+      "minutes": "min",
+      "customizable": "Personalizzabile",
+      "viewDetails": "Visualizza dettagli",
+      "addedToCart": "{name} aggiunto al carrello",
+      "addToCart": "Aggiungi al carrello"
+    },
+    "empty": {
+      "title": "Nessun piatto disponibile",
+      "description": "Attualmente nessun piatto corrisponde ai tuoi filtri"
+    },
+    "errors": {
+      "loadFailed": "Caricamento menu fallito"
+    }
+  },
+  "product": {
+    "toppings": {
+      "title": "Aggiunte"
+    },
+    "instructions": {
+      "title": "Istruzioni speciali",
+      "placeholder": "Richieste speciali per questo piatto..."
+    },
+    "quantity": {
+      "label": "Quantità"
+    },
+    "addToCart": {
+      "button": "Aggiungi al carrello - {price}₫"
+    },
+    "allergens": {
+      "title": "Informazioni allergeni",
+      "gluten": "Glutine",
+      "dairy": "Latticini",
+      "eggs": "Uova",
+      "fish": "Pesce",
+      "soy": "Soia",
+      "nuts": "Noci"
+    },
+    "nutrition": {
+      "title": "Informazioni nutrizionali",
+      "calories": "Calorie",
+      "protein": "Proteine",
+      "carbs": "Carboidrati",
+      "fat": "Grassi"
+    },
+    "success": {
+      "addedToCart": "{quantity} {name} aggiunto al carrello"
+    },
+    "errors": {
+      "toppingsLoadFailed": "Caricamento aggiunte fallito",
+      "addToCartFailed": "Aggiunta al carrello fallita"
+    }
+  },
+  "cart": {
+    "title": "Carrello",
+    "viewCart": "Visualizza carrello",
+    "itemCount": "{count} articoli nel carrello",
+    "empty": {
+      "title": "Il carrello è vuoto",
+      "description": "Aggiungi articoli al carrello per continuare",
+      "browseMenu": "Sfoglia menu",
+      "backToHome": "Torna alla home",
+      "suggestions": {
+        "title": "Articoli suggeriti",
+        "promotions": "Promozioni",
+        "promotionsDesc": "Ottime offerte",
+        "banhMi": "Bánh Mì",
+        "banhMiDesc": "Panini freschi",
+        "bestsellers": "Più venduti",
+        "bestsellersDesc": "Articoli più popolari"
+      }
+    },
+    "item": {
+      "removed": "{name} rimosso dal carrello",
+      "instructionsUpdated": "Istruzioni aggiornate",
+      "toppings": "Condimenti",
+      "specialInstructions": "Istruzioni speciali",
+      "edit": "Modifica",
+      "instructionsPlaceholder": "Note per questo articolo...",
+      "each": "ciascuno",
+      "quantity": "Quantità",
+      "modify": "Modifica",
+      "remove": "Rimuovi"
+    },
+    "summary": {
+      "title": "Riepilogo ordine",
+      "items": "articoli",
+      "view": "Visualizza",
+      "subtotal": "Subtotale",
+      "delivery": "Tassa di consegna",
+      "deliveryFee": "Tassa di consegna",
+      "tax": "Tassa",
+      "discount": "Sconto",
+      "total": "Totale",
+      "checkout": "Ordina"
+    },
+    "orderInfo": {
+      "title": "Informazioni ordine",
+      "table": "Tavolo {number}",
+      "delivery": "Consegna"
+    },
+    "actions": {
+      "clear": "Cancella tutto",
+      "change": "Cambia",
+      "continueShopping": "Continua shopping"
+    },
+    "items": {
+      "title": "Articoli selezionati"
+    },
+    "specialInstructions": {
+      "title": "Istruzioni speciali",
+      "placeholder": "Richieste speciali per il tuo ordine...",
+      "hint": "Le istruzioni saranno inviate alla cucina"
+    },
+    "warnings": {
+      "minimumOrder": {
+        "title": "Ordine minimo non raggiunto",
+        "description": "Ordine minimo per consegna {minimum}₫, servono altri {needed}₫"
+      }
+    },
+    "checkout": {
+      "button": "Ordina {total}₫"
+    },
+    "estimatedTime": {
+      "delivery": "Consegna stimata in 30-45 minuti",
+      "pickup": "Pronto per il ritiro in 15-20 minuti"
+    },
+    "errors": {
+      "minimumOrder": "Ordine minimo per consegna {minimum}₫",
+      "noOrderType": "Seleziona il tipo di ordine"
+    },
+    "success": {
+      "cleared": "Carrello svuotato"
+    }
+  },
+  "checkout": {
+    "title": "Ordina",
+    "orderSummary": "Riepilogo ordine",
+    "tableInfo": "Informazioni tavolo",
+    "tableNumber": "Numero tavolo",
+    "tableNumberPlaceholder": "Inserisci numero tavolo",
+    "deliveryInfo": "Informazioni consegna",
+    "fullAddress": "Indirizzo completo",
+    "fullAddressPlaceholder": "Inserisci indirizzo di consegna",
+    "phoneNumber": "Numero di telefono",
+    "phoneNumberPlaceholder": "Inserisci numero di telefono",
+    "deliveryNotes": "Note di consegna",
+    "deliveryNotesPlaceholder": "Note per la consegna...",
+    "paymentMethod": "Metodo di pagamento",
+    "cashOnDelivery": "Contrassegno",
+    "confirmOrder": "Confermo che i dettagli del mio ordine sono corretti",
+    "placeOrderWithTotal": "Effettua ordine - {total}",
+    "required": "Obbligatorio",
+    "stepProgress": "Passo {current} di {total}",
+    "steps": {
+      "tableInfo": {
+        "title": "Informazioni tavolo"
+      },
+      "deliveryInfo": {
+        "title": "Informazioni consegna"
+      },
+      "payment": {
+        "title": "Metodo di pagamento"
+      },
+      "review": {
+        "title": "Rivedi ordine"
+      }
+    },
+    "tableInfo": {
+      "title": "Informazioni tavolo",
+      "number": "Tavolo {number}",
+      "instructions": {
+        "title": "Avviso importante",
+        "description": "Rimani al tuo tavolo per ricevere il tuo ordine. Il nostro staff ti porterà il cibo direttamente."
+      }
+    },
+    "deliveryInfo": {
+      "title": "Informazioni consegna",
+      "badge": "Consegna",
+      "notice": {
+        "title": "Orario di consegna",
+        "description": "Il tuo ordine sarà consegnato entro 30-45 minuti. Ti contatteremo se ci sono cambiamenti."
+      }
+    },
+    "customerInfo": {
+      "title": "Informazioni cliente"
+    },
+    "deliveryAddress": {
+      "title": "Indirizzo di consegna"
+    },
+    "specialInstructions": {
+      "title": "Istruzioni speciali",
+      "placeholder": "Aggiungi note per il tuo ordine (es: non piccante, meno zucchero...)",
+      "hint": "Le richieste speciali saranno inoltrate alla cucina"
+    },
+    "form": {
+      "customerName": "Nome cliente",
+      "customerNamePlaceholder": "Inserisci il tuo nome",
+      "phone": "Numero di telefono",
+      "phonePlaceholder": "0xxx xxx xxx",
+      "phoneHint": "Perché il ristorante possa contattarti se necessario",
+      "email": "Email",
+      "emailPlaceholder": "email@esempio.com",
+      "emailHint": "Per ricevere notifiche dell'ordine (opzionale)",
+      "address": "Indirizzo di consegna",
+      "addressPlaceholder": "Numero civico, via, quartiere, distretto, città",
+      "addressHint": "Fornisci un indirizzo preciso per una consegna puntuale",
+      "deliveryInstructions": "Istruzioni per la consegna",
+      "deliveryInstructionsPlaceholder": "es: 3° piano, appartamento 301, campanello blu",
+      "deliveryInstructionsHint": "Aiuta il fattorino a trovare facilmente il tuo indirizzo",
+      "table": "Tavolo"
+    },
+    "payment": {
+      "selectMethod": "Seleziona metodo di pagamento",
+      "methods": {
+        "cash": "Contanti",
+        "card": "Carta di credito",
+        "momo": "Portafoglio MoMo",
+        "zalopay": "ZaloPay"
+      },
+      "descriptions": {
+        "cash": "Paga in contanti alla consegna",
+        "card": "Paga con Visa, Mastercard",
+        "momo": "Paga tramite portafoglio digitale MoMo",
+        "zalopay": "Paga tramite portafoglio digitale ZaloPay"
+      },
+      "comingSoon": "Prossimamente",
+      "cashInfo": {
+        "title": "Pagamento in contanti",
+        "description": "Prepara il resto esatto. Lo staff porterà la ricevuta alla consegna."
+      },
+      "cardInfo": {
+        "title": "Pagamento con carta",
+        "description": "La carta sarà elaborata tramite terminale POS alla consegna."
+      },
+      "digitalWalletInfo": {
+        "title": "Portafoglio digitale",
+        "description": "Scansiona il codice QR {method} per un pagamento veloce e sicuro."
+      },
+      "securityNotice": "Le transazioni sono sicure e crittografate"
+    },
+    "review": {
+      "tableInfo": "Informazioni tavolo",
+      "deliveryInfo": "Informazioni consegna",
+      "paymentMethod": "Metodo di pagamento",
+      "orderSummary": "Riepilogo ordine"
+    },
+    "navigation": {
+      "previous": "Precedente",
+      "next": "Successivo",
+      "placeOrder": "Effettua ordine",
+      "submitting": "Elaborazione..."
+    },
+    "errors": {
+      "customerNameRequired": "Inserisci il nome del cliente",
+      "deliveryInfoRequired": "Compila tutte le informazioni di consegna",
+      "submitFailed": "Impossibile effettuare l'ordine. Riprova."
+    },
+    "success": {
+      "orderPlaced": "Ordine effettuato con successo! ID ordine: {orderId}"
+    }
+  },
+  "order": {
+    "title": "Ordine #{number}",
+    "estimatedTime": "Tempo stimato: {minutes} minuti",
+    "status": {
+      "placed": "Ordine effettuato",
+      "confirmed": "Confermato",
+      "preparing": "In preparazione",
+      "ready": "Pronto",
+      "completed": "Completato"
+    },
+    "orderDetails": "Dettagli ordine",
+    "tableService": "Servizio al tavolo - Tavolo #{tableNumber}",
+    "deliveryService": "Consegna a domicilio",
+    "deliveryAddress": "Indirizzo di consegna",
+    "contactInfo": "Informazioni di contatto",
+    "callRestaurant": "Chiama ristorante",
+    "liveChatSupport": "Supporto chat dal vivo",
+    "totalPaid": "Totale pagato",
+    "cash": "Contanti",
+    "loading": "Caricamento informazioni ordine...",
+    "tracking": {
+      "title": "Tracciamento ordine",
+      "orderId": "ID ordine: {orderId}"
+    },
+    "status": {
+      "title": "Stato dell'ordine",
+      "pending": "In attesa",
+      "confirmed": "Confermato",
+      "preparing": "In preparazione",
+      "ready": "Pronto",
+      "delivering": "In consegna",
+      "completed": "Completato",
+      "cancelled": "Annullato",
+      "preparingActive": "La cucina sta preparando il tuo cibo",
+      "readyTableActive": "Vieni al bancone per ritirare",
+      "deliveringActive": "Il fattorino è in arrivo"
+    },
+    "statusDescriptions": {
+      "pending": "L'ordine è stato ricevuto ed è in attesa di conferma",
+      "confirmed": "Il ristorante ha confermato il tuo ordine e ha iniziato la preparazione",
+      "preparing": "La cucina sta cucinando il tuo cibo secondo le tue esigenze",
+      "ready": "Il cibo è pronto per {type, select, delivery {la consegna} table {il ritiro} other {il servizio}}",
+      "delivering": "Il fattorino è in arrivo al tuo indirizzo",
+      "completed": "L'ordine è stato consegnato con successo",
+      "cancelled": "L'ordine è stato annullato"
+    },
+    "estimatedCompletion": {
+      "title": "Orario stimato",
+      "delivery": "L'ordine sarà consegnato alle {time}",
+      "table": "Il cibo sarà pronto alle {time}"
+    },
+    "summary": {
+      "title": "Informazioni ordine",
+      "orderTime": "Orario ordine",
+      "estimatedTime": "Completamento stimato",
+      "orderType": "Tipo di ordine",
+      "table": "Tavolo",
+      "paymentMethod": "Metodo di pagamento",
+      "total": "Totale"
+    },
+    "details": {
+      "customerInfo": "Informazioni cliente",
+      "name": "Nome cliente",
+      "phone": "Numero di telefono",
+      "email": "Email",
+      "table": "Numero tavolo",
+      "tableNumber": "Tavolo {number}",
+      "deliveryAddress": "Indirizzo di consegna",
+      "items": "Articoli ordinati",
+      "toppings": "Condimenti",
+      "specialInstructions": "Istruzioni speciali",
+      "each": "ciascuno",
+      "summary": "Riepilogo ordine",
+      "subtotal": "Subtotale",
+      "deliveryFee": "Tassa di consegna",
+      "tax": "Tassa",
+      "discount": "Sconto",
+      "total": "Totale",
+      "orderInstructions": "Note ordine"
+    },
+    "actions": {
+      "title": "Azioni",
+      "refresh": "Aggiorna",
+      "callRestaurant": "Chiama ristorante",
+      "cancelOrder": "Annulla ordine",
+      "reorder": "Riordina questi articoli",
+      "orderAgain": "Ordina di nuovo",
+      "contactSupport": "Contatta supporto",
+      "backToMenu": "Torna al menu",
+      "backToHome": "Torna alla home",
+      "callInitiated": "Avvio chiamata...",
+      "itemsAddedToCart": "Articoli aggiunti al carrello",
+      "orderCancelled": "L'ordine è stato annullato",
+      "cannotCancel": "Impossibile annullare l'ordine in questa fase",
+      "supportContacted": "Il team di supporto è stato contattato"
+    },
+    "settings": {
+      "autoRefresh": "Aggiornamento automatico"
+    },
+    "notifications": {
+      "statusUpdated": "Lo stato dell'ordine è stato aggiornato",
+      "autoRefreshEnabled": "Aggiornamento automatico abilitato",
+      "autoRefreshDisabled": "Aggiornamento automatico disabilitato"
+    },
+    "help": {
+      "title": "Hai bisogno di aiuto?",
+      "deliveryInstructions": "Se c'è un problema con la consegna, chiama direttamente il ristorante.",
+      "tableInstructions": "Rimani al tuo tavolo e aspetta che lo staff porti il tuo ordine."
+    },
+    "number": "Ordine",
+    "title": "Ordine #{number}",
+    "completed": {
+      "title": "Ordine completato",
+      "message": "Grazie per il tuo ordine! Lasciaci una recensione."
+    },
+    "errors": {
+      "loadFailed": "Caricamento informazioni ordine fallito",
+      "notFound": {
+        "title": "Ordine non trovato",
+        "description": "L'ordine non esiste o è stato eliminato"
+      }
+    }
+  },
+  "staff": {
+    "loading": "Caricamento dashboard...",
+    "dashboard": {
+      "title": "Dashboard staff",
+      "activeOrders": "Ordini attivi",
+      "averageTime": "Tempo medio",
+      "filters": {
+        "all": "Tutti",
+        "table": "Tavolo",
+        "delivery": "Consegna",
+        "ready": "Pronti"
+      },
+      "orderCard": {
+        "items": "articoli",
+        "confirmButton": "Conferma",
+        "viewButton": "Visualizza",
+        "markReady": "Segna pronto",
+        "complete": "Completa"
+      },
+      "quickActions": {
+        "markAllReady": "Segna tutti pronti",
+        "refresh": "Aggiorna"
+      }
+    },
+    "status": {
+      "live": "Live",
+      "paused": "In pausa"
+    },
+    "stats": {
+      "title": "Statistiche generali",
+      "activeOrders": "Ordini attivi",
+      "activeOrdersDesc": "Ordini da elaborare",
+      "pendingConfirmation": "In attesa",
+      "pendingConfirmationDesc": "Nuovi ordini da confermare",
+      "inPreparation": "In preparazione",
+      "inPreparationDesc": "Ordini in cucina",
+      "readyForDelivery": "Pronti",
+      "readyForDeliveryDesc": "Ordini completati",
+      "averageTime": "Tempo medio",
+      "averageTimeDesc": "Tempo di preparazione",
+      "todayOrders": "Ordini oggi",
+      "todayOrdersDesc": "Totale ordini",
+      "revenue": "Ricavi",
+      "revenueDesc": "Ricavi di oggi"
+    },
+    "insights": {
+      "performance": "Performance",
+      "performanceGood": "Buon tempo di preparazione",
+      "performanceNeedsImprovement": "Necessità di migliorare la velocità",
+      "workload": "Carico di lavoro",
+      "workloadLight": "Leggero",
+      "workloadModerate": "Moderato",
+      "workloadHigh": "Picco alto, concentrazione necessaria",
+      "revenue": "Ricavi",
+      "revenueToday": "Oggi: {amount}₫"
+    },
+    "filters": {
+      "orderType": "Tipo di ordine",
+      "status": "Stato",
+      "all": "Tutto",
+      "table": "Tavolo",
+      "delivery": "Consegna",
+      "urgent": "Urgente",
+      "allStatus": "Tutti gli stati",
+      "pending": "In attesa",
+      "confirmed": "Confermato",
+      "preparing": "In preparazione",
+      "ready": "Pronto",
+      "delivering": "In consegna",
+      "quickActions": "Azioni rapide",
+      "showUrgent": "Ordini urgenti",
+      "showPreparing": "In preparazione",
+      "showReady": "Pronto"
+    },
+    "orders": {
+      "title": "Ordini",
+      "empty": {
+        "title": "Nessun ordine",
+        "description": "Nessun ordine corrisponde ai filtri attuali"
+      }
+    },
+    "orderStatus": {
+      "pending": "In attesa",
+      "confirmed": "Confermato",
+      "preparing": "In preparazione",
+      "ready": "Pronto",
+      "delivering": "In consegna",
+      "completed": "Completato"
+    },
+    "priority": {
+      "normal": "Normale",
+      "high": "Alto",
+      "urgent": "Urgente"
+    },
+    "orderCard": {
+      "table": "Tavolo",
+      "items": "Articoli",
+      "overdue": "In ritardo",
+      "updating": "Aggiornamento...",
+      "completed": "Completato",
+      "call": "Chiama",
+      "view": "Visualizza",
+      "rush": "Urgente",
+      "markAs": {
+        "confirmed": "Conferma ordine",
+        "preparing": "Inizia preparazione",
+        "ready": "Segna pronto",
+        "delivering": "Inizia consegna",
+        "completed": "Completa"
+      }
+    },
+    "actions": {
+      "refresh": "Aggiorna",
+      "sound": "Suono",
+      "markUrgentReady": "Pronto (Urgente)",
+      "bulkMarkReady": "Ordini urgenti aggiornati"
+    },
+    "refreshed": "Dati aggiornati con successo",
+    "orderUpdated": "Stato ordine aggiornato",
+    "autoRefreshEnabled": "Aggiornamento automatico abilitato",
+    "autoRefreshDisabled": "Aggiornamento automatico disabilitato",
+    "soundControls": {
+      "title": "Controlli audio",
+      "status": {
+        "ready": "Pronto",
+        "suspended": "Sospeso",
+        "notReady": "Non pronto"
+      },
+      "initRequired": {
+        "title": "Inizializzazione audio richiesta",
+        "description": "Clicca per abilitare le notifiche sonore",
+        "button": "Inizializza audio"
+      },
+      "suspended": {
+        "title": "Audio sospeso",
+        "description": "Il contesto audio è sospeso",
+        "button": "Riprendi audio"
+      },
+      "masterEnable": {
+        "label": "Abilita suoni",
+        "description": "Interruttore principale per tutte le notifiche sonore"
+      },
+      "volume": {
+        "label": "Volume"
+      },
+      "notifications": {
+        "title": "Notifiche",
+        "newOrder": "Nuovo ordine",
+        "statusChange": "Cambio stato",
+        "urgentOrder": "Ordine urgente"
+      },
+      "test": "Test",
+      "reset": "Reset",
+      "info": "Le impostazioni audio sono salvate localmente"
+    },
+    "notifications": {
+      "newOrder": "Nuovo ordine #{orderNumber} da {customer}",
+      "statusChanged": "Stato ordine #{orderNumber} aggiornato",
+      "urgentOrder": "Ordine urgente #{orderNumber} richiede attenzione immediata"
+    },
+    "errors": {
+      "loadFailed": "Caricamento dati dashboard fallito",
+      "updateFailed": "Aggiornamento ordine fallito",
+      "refreshFailed": "Aggiornamento dati fallito"
+    }
+  },
+  "errors": {
+    "required": "Questo campo è obbligatorio",
+    "invalidPhone": "Numero di telefono non valido",
+    "minLength": "Minimo {min} caratteri",
+    "maxLength": "Massimo {max} caratteri"
+  }
+}

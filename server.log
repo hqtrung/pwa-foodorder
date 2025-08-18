@@ -1,0 +1,461 @@
+
+> foodorder-pwa@0.1.0 dev
+> next dev --port 3001
+
+ ⚠ Warning: Found multiple lockfiles. Selecting /Users/trunghuynh/development/docs/pwa-food/package-lock.json.
+   Consider removing the lockfiles at:
+   * /Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/package-lock.json
+
+   ▲ Next.js 15.4.6
+   - Local:        http://localhost:3001
+   - Network:      http://192.168.3.11:3001
+   - Environments: .env.local
+
+ ✓ Starting...
+ ○ (pwa) PWA support is disabled.
+ ✓ Ready in 3s
+ ○ Compiling /middleware ...
+ ✓ Compiled /middleware in 779ms (140 modules)
+ ○ Compiling /[locale] ...
+ ✓ Compiled /[locale] in 8.9s (1131 modules)
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 2.2s (1105 modules)
+ ⨯ TypeError: Cannot read properties of undefined (reading 'call')
+    at __webpack_exec__ (.next/server/app/_not-found/page.js:237:39)
+    at <unknown> (.next/server/app/_not-found/page.js:238:104)
+    at <unknown> (.next/server/app/_not-found/page.js:238:47)
+    at Object.<anonymous> (.next/server/app/_not-found/page.js:241:3)
+ ⨯ TypeError: Cannot read properties of undefined (reading 'call')
+    at __webpack_exec__ (.next/server/app/_not-found/page.js:237:39)
+    at <unknown> (.next/server/app/_not-found/page.js:238:104)
+    at <unknown> (.next/server/app/_not-found/page.js:238:47)
+    at Object.<anonymous> (.next/server/app/_not-found/page.js:241:3)
+ ○ (pwa) PWA support is disabled.
+ ○ (pwa) PWA support is disabled.
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 1969ms (1419 modules)
+ GET /zh 500 in 14444ms
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/.next/cache/webpack/client-development-fallback/0.pack.gz_' -> '/Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/.next/cache/webpack/client-development-fallback/0.pack.gz'
+ ○ Compiling /[locale]/order/[orderId] ...
+ ✓ Compiled /[locale]/order/[orderId] in 582ms (1429 modules)
+ ✓ Compiled /_not-found in 98ms (907 modules)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /_next/static/webpack/619d267a4fcafb11.webpack.hot-update.json 404 in 390ms
+ ✓ Compiled /[locale] in 158ms (914 modules)
+ GET /zh/order/yswTMtsoPlZ8RA7k4aSg 200 in 1905ms
+ GET /zh 200 in 908ms
+ GET /_next/static/chunks/app/%5Blocale%5D/page.js 404 in 55ms
+ GET /ja/order/yswTMtsoPlZ8RA7k4aSg 200 in 164ms
+ ○ Compiling /[locale]/staff ...
+ ✓ Compiled /[locale]/staff in 724ms (1454 modules)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /zh 200 in 316ms
+ GET /vi/staff 200 in 1413ms
+ ✓ Compiled /_not-found in 236ms (925 modules)
+ GET /_next/static/chunks/app/%5Blocale%5D/page.js 404 in 372ms
+ ✓ Compiled in 868ms (1469 modules)
+ GET /ja/order/yswTMtsoPlZ8RA7k4aSg 200 in 70ms
+ ✓ Compiled in 497ms (1469 modules)
+ GET /ja/order/yswTMtsoPlZ8RA7k4aSg 200 in 78ms
+ ✓ Compiled in 500ms (1469 modules)
+ GET /ja/order/yswTMtsoPlZ8RA7k4aSg 200 in 82ms
+ ✓ Compiled in 735ms (1457 modules)
+ GET /ja/order/yswTMtsoPlZ8RA7k4aSg 200 in 168ms
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/.next/cache/webpack/client-development/0.pack.gz_' -> '/Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/.next/cache/webpack/client-development/0.pack.gz'
+ ✓ Compiled in 1518ms (544 modules)
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 664ms (914 modules)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/.next/server/app/[locale]/page.js'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/.next/server/app/[locale]/page.js',
+  page: '/zh'
+}
+ ⨯ [Error: Cannot find module '/Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/.next/server/pages/_document.js'
+Require stack:
+- /Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/node_modules/next/dist/server/require.js
+- /Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/node_modules/next/dist/server/load-components.js
+- /Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/node_modules/next/dist/build/utils.js
+- /Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/node_modules/next/dist/build/swc/options.js
+- /Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/node_modules/next/dist/build/swc/index.js
+- /Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/node_modules/next/dist/build/next-config-ts/transpile-config.js
+- /Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/node_modules/next/dist/server/config.js
+- /Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/node_modules/next/dist/server/next.js
+- /Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/node_modules/next/dist/server/lib/start-server.js] {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ GET /zh 500 in 1170ms
+ GET /_next/static/webpack/b154cd19b67158ce.webpack.hot-update.json 404 in 1211ms
+ GET /_next/static/chunks/fallback/main.js 404 in 63ms
+ GET /_next/static/chunks/fallback/webpack.js 404 in 65ms
+ GET /_next/static/chunks/fallback/react-refresh.js 404 in 65ms
+ GET /_next/static/chunks/fallback/pages/_error.js 404 in 36ms
+ GET /_next/static/chunks/fallback/pages/_app.js 404 in 36ms
+ ✓ Compiled /[locale]/staff in 241ms (925 modules)
+ GET /vi/staff 200 in 769ms
+ ✓ Compiled in 893ms (1469 modules)
+ ✓ Compiled in 1ms (925 modules)
+ ✓ Compiled in 0ms (925 modules)
+ ✓ Compiled in 1ms (925 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /_next/static/webpack/001f6f4ab47c6169.webpack.hot-update.json 404 in 1263ms
+ GET /vi/staff 200 in 1550ms
+ GET /vi/staff 200 in 497ms
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/.next/server/app/[locale]/order/[orderId]/page.js'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/.next/server/app/[locale]/order/[orderId]/page.js',
+  page: '/vi/order/yswTMtsoPlZ8RA7k4aSg'
+}
+ ⨯ [Error: Cannot find module '/Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/.next/server/pages/_document.js'
+Require stack:
+- /Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/node_modules/next/dist/server/require.js
+- /Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/node_modules/next/dist/server/load-components.js
+- /Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/node_modules/next/dist/build/utils.js
+- /Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/node_modules/next/dist/build/swc/options.js
+- /Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/node_modules/next/dist/build/swc/index.js
+- /Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/node_modules/next/dist/build/next-config-ts/transpile-config.js
+- /Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/node_modules/next/dist/server/config.js
+- /Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/node_modules/next/dist/server/next.js
+- /Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/node_modules/next/dist/server/lib/start-server.js] {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ GET /vi/order/yswTMtsoPlZ8RA7k4aSg 500 in 129ms
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/.next/server/app/[locale]/order/[orderId]/page.js'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/.next/server/app/[locale]/order/[orderId]/page.js',
+  page: '/vi/order/yswTMtsoPlZ8RA7k4aSg'
+}
+ ⨯ [Error: Cannot find module '/Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/.next/server/pages/_document.js'
+Require stack:
+- /Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/node_modules/next/dist/server/require.js
+- /Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/node_modules/next/dist/server/load-components.js
+- /Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/node_modules/next/dist/build/utils.js
+- /Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/node_modules/next/dist/build/swc/options.js
+- /Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/node_modules/next/dist/build/swc/index.js
+- /Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/node_modules/next/dist/build/next-config-ts/transpile-config.js
+- /Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/node_modules/next/dist/server/config.js
+- /Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/node_modules/next/dist/server/next.js
+- /Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/node_modules/next/dist/server/lib/start-server.js] {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ GET /vi/order/yswTMtsoPlZ8RA7k4aSg 500 in 60ms
+ GET /_next/static/chunks/fallback/webpack.js 404 in 144ms
+ GET /_next/static/chunks/fallback/pages/_error.js 404 in 141ms
+ GET /_next/static/chunks/fallback/main.js 404 in 145ms
+ GET /_next/static/chunks/fallback/react-refresh.js 404 in 143ms
+ GET /_next/static/chunks/fallback/pages/_app.js 404 in 143ms
+ ✓ Compiled in 910ms (1469 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/.next/cache/webpack/server-development/0.pack.gz_' -> '/Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/.next/cache/webpack/server-development/0.pack.gz'
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/.next/cache/webpack/client-development/0.pack.gz_' -> '/Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/.next/cache/webpack/client-development/0.pack.gz'
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/.next/server/app/[locale]/order/[orderId]/page.js'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/.next/server/app/[locale]/order/[orderId]/page.js',
+  page: '/vi/order/yswTMtsoPlZ8RA7k4aSg'
+}
+ ⨯ [Error: Cannot find module '/Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/.next/server/pages/_document.js'
+Require stack:
+- /Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/node_modules/next/dist/server/require.js
+- /Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/node_modules/next/dist/server/load-components.js
+- /Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/node_modules/next/dist/build/utils.js
+- /Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/node_modules/next/dist/build/swc/options.js
+- /Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/node_modules/next/dist/build/swc/index.js
+- /Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/node_modules/next/dist/build/next-config-ts/transpile-config.js
+- /Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/node_modules/next/dist/server/config.js
+- /Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/node_modules/next/dist/server/next.js
+- /Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/node_modules/next/dist/server/lib/start-server.js] {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ GET /vi/order/yswTMtsoPlZ8RA7k4aSg 500 in 102ms
+ GET /_next/static/chunks/fallback/pages/_app.js 404 in 174ms
+ GET /_next/static/chunks/fallback/pages/_error.js 404 in 174ms
+ GET /_next/static/chunks/fallback/webpack.js 404 in 177ms
+ GET /_next/static/chunks/fallback/main.js 404 in 176ms
+ GET /_next/static/chunks/fallback/react-refresh.js 404 in 176ms
+ ✓ Compiled in 1767ms (1468 modules)
+ ✓ Compiled /_not-found in 298ms (925 modules)
+ GET /zh 404 in 452ms
+ GET /zh 200 in 426ms
+ GET /vi 200 in 68ms
+ ○ Compiling /[locale]/menu ...
+ ✓ Compiled /[locale]/menu in 860ms (1502 modules)
+ ✓ Compiled /_not-found in 175ms (951 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /_next/static/webpack/3f3184e07320157e.webpack.hot-update.json 404 in 301ms
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /_next/static/webpack/3f3184e07320157e.webpack.hot-update.json 404 in 60ms
+ GET /vi/menu 200 in 1555ms
+ GET /vi 200 in 525ms
+ GET /zh 200 in 543ms
+ GET /vi/menu 200 in 41ms
+ ○ Compiling /[locale]/cart ...
+ ✓ Compiled /[locale]/cart in 617ms (1514 modules)
+ GET /vi/cart 200 in 1193ms
+ ✓ Compiled /[locale]/checkout in 332ms (1528 modules)
+ GET /vi/checkout 200 in 753ms
+ GET /vi/checkout?step=2 200 in 19ms
+ GET /vi/checkout?step=3 200 in 20ms
+ ✓ Compiled /[locale]/order-completed in 305ms (1527 modules)
+ GET /vi/order-completed?orderId=oE7D9QbeQdbstSkxdV2X 200 in 716ms
+ ✓ Compiled /[locale]/order/[orderId] in 206ms (973 modules)
+ GET /vi/order/oE7D9QbeQdbstSkxdV2X 200 in 262ms
+ ✓ Compiled /_not-found in 380ms (974 modules)
+ GET /_next/static/chunks/app/%5Blocale%5D/order/%5BorderId%5D/page.js 404 in 464ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled in 1430ms (1515 modules)
+ ✓ Compiled in 0ms (938 modules)
+ ✓ Compiled in 0ms (938 modules)
+ ✓ Compiled in 0ms (938 modules)
+ ⨯ TypeError: Cannot read properties of undefined (reading 'call')
+    at __webpack_exec__ (.next/server/app/[locale]/order/[orderId]/page.js:890:39)
+    at <unknown> (.next/server/app/[locale]/order/[orderId]/page.js:891:575)
+    at <unknown> (.next/server/app/[locale]/order/[orderId]/page.js:891:47)
+    at Object.<anonymous> (.next/server/app/[locale]/order/[orderId]/page.js:894:3) {
+  page: '/vi/order/oE7D9QbeQdbstSkxdV2X'
+}
+ ✓ Compiled in 318ms (1501 modules)
+ ⨯ [Error: Cannot find module '/Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/.next/server/pages/_document.js'
+Require stack:
+- /Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/node_modules/next/dist/server/require.js
+- /Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/node_modules/next/dist/server/load-components.js
+- /Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/node_modules/next/dist/build/utils.js
+- /Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/node_modules/next/dist/build/swc/options.js
+- /Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/node_modules/next/dist/build/swc/index.js
+- /Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/node_modules/next/dist/build/next-config-ts/transpile-config.js
+- /Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/node_modules/next/dist/server/config.js
+- /Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/node_modules/next/dist/server/next.js
+- /Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/node_modules/next/dist/server/lib/start-server.js] {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ⨯ TypeError: Cannot read properties of undefined (reading 'call')
+    at __webpack_exec__ (.next/server/app/[locale]/page.js:846:39)
+    at <unknown> (.next/server/app/[locale]/page.js:847:575)
+    at <unknown> (.next/server/app/[locale]/page.js:847:47)
+    at Object.<anonymous> (.next/server/app/[locale]/page.js:850:3) {
+  page: '/zh'
+}
+ ⨯ [Error: Cannot find module '/Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/.next/server/pages/_document.js'
+Require stack:
+- /Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/node_modules/next/dist/server/require.js
+- /Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/node_modules/next/dist/server/load-components.js
+- /Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/node_modules/next/dist/build/utils.js
+- /Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/node_modules/next/dist/build/swc/options.js
+- /Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/node_modules/next/dist/build/swc/index.js
+- /Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/node_modules/next/dist/build/next-config-ts/transpile-config.js
+- /Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/node_modules/next/dist/server/config.js
+- /Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/node_modules/next/dist/server/next.js
+- /Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/node_modules/next/dist/server/lib/start-server.js] {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ GET /vi/order/oE7D9QbeQdbstSkxdV2X 500 in 1060ms
+ GET /zh 500 in 918ms
+ ✓ Compiled /_not-found in 268ms (939 modules)
+ GET /_next/static/chunks/fallback/webpack.js 404 in 838ms
+ GET /_next/static/chunks/fallback/react-refresh.js 404 in 838ms
+ GET /_next/static/chunks/fallback/main.js 404 in 840ms
+ GET /zh 200 in 859ms
+ GET /_next/static/chunks/fallback/pages/_app.js 404 in 60ms
+ GET /_next/static/chunks/fallback/pages/_error.js 404 in 60ms
+ ⨯ Failed to generate static paths for /[locale]:
+TypeError: Cannot read properties of undefined (reading 'call')
+    at __webpack_exec__ (.next/server/app/[locale]/page.js:846:39)
+    at <unknown> (.next/server/app/[locale]/page.js:847:575) {
+  type: 'TypeError'
+}
+ ⨯ Failed to generate static paths for /[locale]:
+TypeError: Cannot read properties of undefined (reading 'call')
+    at __webpack_exec__ (.next/server/app/[locale]/page.js:846:39)
+    at <unknown> (.next/server/app/[locale]/page.js:847:575) {
+  type: 'TypeError'
+}
+ ✓ Compiled in 764ms (1516 modules)
+ ✓ Compiled in 1ms (939 modules)
+ ✓ Compiled in 0ms (939 modules)
+ ✓ Compiled in 1ms (939 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /_next/static/webpack/17692c18fb964ea8.webpack.hot-update.json 404 in 1083ms
+ GET /zh 200 in 1907ms
+ GET /zh 200 in 963ms
+ ✓ Compiled in 861ms (1516 modules)
+ GET /zh 200 in 89ms
+ ✓ Compiled in 713ms (1516 modules)
+ GET /zh 200 in 61ms
+ ✓ Compiled in 582ms (1516 modules)
+ GET /zh 200 in 47ms
+ ✓ Compiled in 715ms (1515 modules)
+ ✓ Compiled in 767ms (1515 modules)
+ ✓ Compiled in 775ms (1515 modules)
+ ✓ Compiled in 717ms (1515 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/.next/cache/webpack/client-development/0.pack.gz_' -> '/Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/.next/cache/webpack/client-development/0.pack.gz'
+ ✓ Compiled in 1574ms (1515 modules)
+ ✓ Compiled in 382ms (1515 modules)
+ ✓ Compiled in 740ms (1515 modules)
+ ⨯ ./src/components/LandingPage.tsx
+Error:   [31mx[0m Expected '</', got 'jsx text (
+  [31m|[0m
+  [31m|[0m       )'
+     ,-[[36;1;4m/Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/src/components/LandingPage.tsx[0m:402:1]
+ [2m399[0m |               <summary className="cursor-pointer text-center text-primary-600 font-medium mb-4">
+ [2m400[0m |                 📍 {t('landing.info.address')} • 📞 {storeConfig.phone}
+ [2m401[0m |               </summary>
+ [2m402[0m | [35;1m,[0m[35;1m-[0m[35;1m>[0m       </main>
+ [2m403[0m | [35;1m|[0m   
+ [2m404[0m | [35;1m`[0m[35;1m-[0m[35;1m>[0m       {/* Footer */}
+ [2m405[0m |           <footer className="bg-white border-t border-gray-200 mt-16">
+ [2m406[0m |             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+ [2m407[0m |               <div className="text-center text-gray-600">
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/components/LandingPage.tsx
+./src/app/[locale]/page.tsx
+ ✓ Compiled in 447ms (1515 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/.next/cache/webpack/client-development/0.pack.gz_' -> '/Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/.next/cache/webpack/client-development/0.pack.gz'
+ ✓ Compiled in 717ms (1515 modules)
+ ✓ Compiled in 356ms (1515 modules)
+ ✓ Compiled in 153ms (577 modules)
+ ✓ Compiled in 187ms (577 modules)
+ ✓ Compiled in 173ms (577 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/.next/cache/webpack/client-development/0.pack.gz_' -> '/Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/.next/cache/webpack/client-development/0.pack.gz'
+ ✓ Compiled in 1683ms (577 modules)
+ ✓ Compiled in 2.1s (1515 modules)
+ ✓ Compiled in 1441ms (1515 modules)
+ ✓ Compiled in 826ms (1515 modules)
+ ✓ Compiled in 1140ms (1515 modules)
+ ✓ Compiled in 564ms (577 modules)
+ ✓ Compiled in 4.8s (577 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/.next/cache/webpack/client-development/2.pack.gz_' -> '/Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/.next/cache/webpack/client-development/2.pack.gz'
+ ✓ Compiled in 740ms (577 modules)
+ ✓ Compiled in 431ms (577 modules)
+ ✓ Compiled in 497ms (577 modules)
+ ✓ Compiled in 586ms (577 modules)
+ ✓ Compiled in 609ms (577 modules)
+ ✓ Compiled in 205ms (577 modules)
+ ✓ Compiled in 361ms (577 modules)
+ ✓ Compiled in 725ms (577 modules)
+ ✓ Compiled in 549ms (577 modules)
+ ✓ Compiled in 275ms (577 modules)
+ ✓ Compiled in 858ms (577 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/.next/cache/webpack/client-development/0.pack.gz_' -> '/Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/.next/cache/webpack/client-development/0.pack.gz'
+ ✓ Compiled in 1965ms (1515 modules)
+ ⨯ ./src/components/CartPage.tsx
+Error:   [31mx[0m Unterminated regexp literal
+     ,-[[36;1;4m/Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/src/components/CartPage.tsx[0m:358:1]
+ [2m355[0m |             </div>
+ [2m356[0m |           </div>
+ [2m357[0m |         </div>
+ [2m358[0m |       </main>
+     : [35;1m       ^^^^^^[0m
+ [2m359[0m |     </div>
+ [2m360[0m |   );
+ [2m361[0m | }
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/components/CartPage.tsx
+./src/app/[locale]/cart/page.tsx
+ ✓ Compiled in 835ms (1501 modules)
+ ✓ Compiled in 607ms (1515 modules)
+ ✓ Compiled in 1290ms (1515 modules)
+ ✓ Compiled in 816ms (1515 modules)
+ ✓ Compiled in 907ms (1515 modules)
+ ✓ Compiled in 2s (1515 modules)
+ ✓ Compiled in 1033ms (1515 modules)
+ ✓ Compiled in 1327ms (577 modules)
+ ✓ Compiled in 1511ms (1515 modules)
+ ✓ Compiled in 449ms (1515 modules)
+ ✓ Compiled in 520ms (1515 modules)
+ ✓ Compiled in 522ms (1517 modules)
+ ✓ Compiled in 1107ms (1517 modules)
+ ✓ Compiled in 966ms (1517 modules)
+ ✓ Compiled in 842ms (1517 modules)
+ ✓ Compiled in 743ms (1517 modules)
+ ✓ Compiled in 536ms (1517 modules)
+ ✓ Compiled in 679ms (1517 modules)
+ ✓ Compiled in 2.5s (1517 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/.next/cache/webpack/client-development-fallback/0.pack.gz_' -> '/Users/trunghuynh/development/docs/pwa-food/foodorder-pwa/.next/cache/webpack/client-development-fallback/0.pack.gz'
+ ⚠ Found a change in next.config.ts. Restarting the server to apply the changes...
+   ▲ Next.js 15.4.6
+   - Local:        http://localhost:3001
+   - Network:      http://192.168.3.11:3001
+   - Environments: .env.local
+   - Experiments (use with caution):
+     · optimizePackageImports
+
+ ✓ Starting...
+ ○ (pwa) PWA support is disabled.
+ ✓ Ready in 4.2s
+ ⚠ Found a change in next.config.ts. Restarting the server to apply the changes...
+   ▲ Next.js 15.4.6
+   - Local:        http://localhost:3001
+   - Network:      http://192.168.3.11:3001
+   - Environments: .env.local
+   - Experiments (use with caution):
+     · optimizePackageImports
+
+ ✓ Starting...
+ ○ (pwa) PWA support is disabled.
+ ✓ Ready in 2.8s
+ ⚠ Found a change in next.config.ts. Restarting the server to apply the changes...
+   ▲ Next.js 15.4.6
+   - Local:        http://localhost:3001
+   - Network:      http://192.168.3.11:3001
+   - Environments: .env.local
+   - Experiments (use with caution):
+     · optimizePackageImports
+
+ ✓ Starting...
+ ○ (pwa) PWA support is disabled.
+ ✓ Ready in 3.5s
+ ⚠ Found a change in next.config.ts. Restarting the server to apply the changes...
+   ▲ Next.js 15.4.6
+   - Local:        http://localhost:3001
+   - Network:      http://192.168.3.11:3001
+   - Environments: .env.local
+   - Experiments (use with caution):
+     · optimizePackageImports
+
+ ✓ Starting...
+ ○ (pwa) PWA support is disabled.
+ ✓ Ready in 2.8s
+ ⚠ Found a change in next.config.ts. Restarting the server to apply the changes...
+   ▲ Next.js 15.4.6
+   - Local:        http://localhost:3001
+   - Network:      http://192.168.3.11:3001
+   - Environments: .env.local
+   - Experiments (use with caution):
+     · optimizePackageImports
+
+ ✓ Starting...
+ ○ (pwa) PWA support is disabled.
+ ✓ Ready in 3.7s
+ ⚠ Found a change in next.config.ts. Restarting the server to apply the changes...
+   ▲ Next.js 15.4.6
+   - Local:        http://localhost:3001
+   - Network:      http://192.168.3.11:3001
+   - Environments: .env.local
+   - Experiments (use with caution):
+     · optimizePackageImports
+
+ ✓ Starting...
+ ○ (pwa) PWA support is disabled.
+ ✓ Ready in 3.4s
