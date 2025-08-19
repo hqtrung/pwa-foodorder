@@ -12,12 +12,13 @@
       "1186",
       "2490",
       "1287",
-      "2476"
+      "2476",
+      "1297"
     ],
     "reason": "Products to hide from menu display"
   },
   "settings": {
     "enableExclusions": true,
-    "lastUpdated": "2025-08-17T10:00:00Z"
+    "lastUpdated": "2025-08-19T01:15:00Z"
   }
 }
