@@ -149,7 +149,6 @@ export function MenuPage() {
   const selectedCategoryName = selectedCategoryId && categories
     ? categories.find(c => 
         c.id === selectedCategoryId || 
-        c.id === parseInt(selectedCategoryId) || 
         c.id.toString() === selectedCategoryId
       )?.name
     : null;
@@ -246,7 +245,7 @@ export function MenuPage() {
             {/* Left side - Breadcrumb (only Home icon) */}
             <div className="flex-1">
               <Breadcrumb 
-                categoryName={selectedCategoryName}
+                categoryName={selectedCategoryName || undefined}
                 productName={modalProduct?.name}
                 onClearFilters={clearFilters}
                 simplified={true}
@@ -258,7 +257,7 @@ export function MenuPage() {
               {orderType && (
                 <div className="text-xs sm:text-sm text-gray-600 bg-gray-50 px-2 sm:px-3 py-1 rounded-full">
                   {orderType === 'table' 
-                    ? t('menu.orderInfo.table', { number: tableNumber })
+                    ? t('menu.orderInfo.table', { number: tableNumber || '1' })
                     : t('menu.orderInfo.delivery')
                   }
                 </div>
@@ -295,7 +294,7 @@ export function MenuPage() {
             />
 
             {/* Categories Grid - Hide when searching, no title */}
-            {!selectedCategoryId && searchQuery.trim().length < 2 && (
+            {!selectedCategoryId && searchQuery.trim().length < 2 && categories && (
               <div className="mb-4">
                 <CategoryGrid 
                   categories={categories}

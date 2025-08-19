@@ -1,13 +1,13 @@
 {
-  "name": "FoodOrder - Vietnamese Restaurant",
-  "short_name": "FoodOrder",
+  "name": "Pate Deli - Vietnamese Restaurant",
+  "short_name": "PateDeli",
   "description": "Order delicious Vietnamese food for table service or delivery",
-  "start_url": "/",
+  "start_url": "https://www.patedeli.com/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#F97316",
   "orientation": "portrait",
-  "scope": "/",
+  "scope": "https://www.patedeli.com/",
   "lang": "en",
   "categories": ["food", "restaurant", "delivery"],
   "icons": [

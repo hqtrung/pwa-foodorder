@@ -124,6 +124,12 @@ export function CheckoutPageMobile() {
         specialInstructions: item.specialInstructions
       }));
 
+      // Validate orderType is not null
+      if (!orderType) {
+        showErrorToast('Order type is required');
+        return;
+      }
+
       // Create order data
       const orderData: CreateOrderData = {
         type: orderType,

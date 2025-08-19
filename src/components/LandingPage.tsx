@@ -53,8 +53,8 @@ export function LandingPage() {
     const currentMinute = now.getMinutes();
     const currentTime = currentHour * 100 + currentMinute;
 
-    const todayHours = storeConfig.openingHours[day];
-    if (!todayHours || todayHours.closed) {
+    const todayHours = storeConfig.openingHours[day as keyof typeof storeConfig.openingHours];
+    if (!todayHours || !todayHours.isOpen) {
       return { isOpen: false, status: 'closed' };
     }
 

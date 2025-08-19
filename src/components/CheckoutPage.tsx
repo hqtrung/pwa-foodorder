@@ -6,7 +6,12 @@ import { useRouter } from '@/i18n/navigation';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { LanguageSelector } from '@/components/ui/LanguageSelector';
+import { Breadcrumb } from '@/components/ui/Breadcrumb';
 import { OrderInfoModal } from '@/components/modals/OrderInfoModal';
+import { TableCheckoutForm } from '@/components/checkout/TableCheckoutForm';
+import { DeliveryCheckoutForm } from '@/components/checkout/DeliveryCheckoutForm';
+import { PaymentMethodSelector } from '@/components/checkout/PaymentMethodSelector';
+import { CartSummary } from '@/components/cart/CartSummary';
 import { useCartStore, useUIStore } from '@/stores';
 import { orderFirestoreService } from '@/services/orderFirestoreService';
 import { CreateOrderData, OrderItem } from '@/types/order';
@@ -39,6 +44,7 @@ export function CheckoutPage() {
   const router = useRouter();
   
   // State
+  const [currentStep, setCurrentStep] = useState(1);
   const [orderSubmitted, setOrderSubmitted] = useState(false);
   const [showOrderInfoModal, setShowOrderInfoModal] = useState(false);
   const [formData, setFormData] = useState<CheckoutFormData>({
@@ -95,6 +101,15 @@ export function CheckoutPage() {
     setFormData(prev => ({ ...prev, ...updates }));
   };
 
+  // Step navigation
+  const handleNextStep = () => {
+    setCurrentStep(prev => Math.min(prev + 1, 3));
+  };
+
+  const handlePreviousStep = () => {
+    setCurrentStep(prev => Math.max(prev - 1, 1));
+  };
+
   const handleSubmitOrder = async () => {
     try {
       setIsSubmitting(true);
@@ -128,6 +143,12 @@ export function CheckoutPage() {
         })),
         specialInstructions: item.specialInstructions
       }));
+
+      // Validate orderType is not null
+      if (!orderType) {
+        showErrorToast(t('checkout.errors.orderTypeRequired'));
+        return;
+      }
 
       // Create order data for Firestore
       const orderData: CreateOrderData = {

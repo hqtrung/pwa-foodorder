@@ -24,7 +24,7 @@ export interface OrderDelivery {
 // Order Item with Toppings
 export interface OrderItem {
   id: string;
-  productId: number;
+  productId: string;
   name: string;
   quantity: number;
   unitPrice: number;

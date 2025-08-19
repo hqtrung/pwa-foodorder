@@ -33,8 +33,8 @@ export function ProductDetailModal({ isOpen, onClose, product }: ProductDetailMo
   const showSuccessToast = useUIStore(state => state.showSuccessToast);
   const showErrorToast = useUIStore(state => state.showErrorToast);
 
-  const productName = product.name[locale as keyof typeof product.name];
-  const productDescription = product.description[locale as keyof typeof product.description];
+  const productName = product.name;
+  const productDescription = product.description;
 
   // Load toppings when modal opens
   useEffect(() => {
