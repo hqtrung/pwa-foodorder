@@ -50,16 +50,18 @@
     },
     "orderType": {
       "title": "Chọn loại đặt hàng",
-      "table": "Phục vụ tại bàn",
-      "delivery": "Giao hàng tận nơi",
-      "tableDescription": "Thưởng thức tại nhà hàng với dịch vụ chu đáo",
-      "deliveryDescription": "Giao hàng nhanh chóng đến tận nhà bạn",
-      "tableNumber": "Số bàn",
-      "tableNumberPlaceholder": "Nhập số bàn",
-      "tableNumberHint": "Vui lòng nhập số bàn từ 1-50",
-      "deliveryAddress": "Địa chỉ giao hàng",
-      "deliveryAddressPlaceholder": "Nhập địa chỉ giao hàng của bạn",
-      "deliveryAddressHint": "Vui lòng cung cấp địa chỉ đầy đủ gồm đường, quận, thành phố"
+      "table": {
+        "title": "Phục vụ tại bàn",
+        "description": "Thưởng thức tại nhà hàng với dịch vụ chu đáo",
+        "benefit1": "Tươi & Nóng",
+        "benefit2": "Trải nghiệm cao cấp"
+      },
+      "delivery": {
+        "title": "Giao hàng tận nơi",
+        "description": "Giao hàng nhanh chóng đến tận nhà bạn",
+        "benefit1": "Tiện lợi",
+        "fee": "Phí giao hàng {fee}₫"
+      }
     },
     "tableNumber": {
       "title": "Nhập số bàn của bạn",

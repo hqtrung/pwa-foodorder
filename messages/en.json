@@ -50,16 +50,18 @@
     },
     "orderType": {
       "title": "Choose your order type",
-      "table": "Table Service",
-      "delivery": "Home Delivery",
-      "tableDescription": "Dine in at our restaurant with attentive service",
-      "deliveryDescription": "Fast delivery straight to your door",
-      "tableNumber": "Table Number",
-      "tableNumberPlaceholder": "Enter table number",
-      "tableNumberHint": "Please enter table number 1-50",
-      "deliveryAddress": "Delivery Address",
-      "deliveryAddressPlaceholder": "Enter your delivery address",
-      "deliveryAddressHint": "Please provide complete address with street, district, city"
+      "table": {
+        "title": "Table Service",
+        "description": "Dine in at our restaurant with attentive service",
+        "benefit1": "Fresh & Hot",
+        "benefit2": "Premium experience"
+      },
+      "delivery": {
+        "title": "Home Delivery",
+        "description": "Fast delivery straight to your door",
+        "benefit1": "Convenient",
+        "fee": "Delivery fee {fee}₫"
+      }
     },
     "tableNumber": {
       "title": "Enter your table number",

@@ -50,16 +50,18 @@
     },
     "orderType": {
       "title": "选择订单类型",
-      "table": "堂食服务",
-      "delivery": "外卖配送",
-      "tableDescription": "在我们餐厅享用美食，贴心服务",
-      "deliveryDescription": "快速配送，直达您的门口",
-      "tableNumber": "桌号",
-      "tableNumberPlaceholder": "请输入桌号",
-      "tableNumberHint": "请输入1-50的桌号",
-      "deliveryAddress": "配送地址",
-      "deliveryAddressPlaceholder": "请输入您的配送地址",
-      "deliveryAddressHint": "请提供完整地址，包括街道、区域、城市"
+      "table": {
+        "title": "堂食服务",
+        "description": "在我们餐厅享用美食，贴心服务",
+        "benefit1": "新鲜热辣",
+        "benefit2": "优质体验"
+      },
+      "delivery": {
+        "title": "外卖配送",
+        "description": "快速配送，直达您的门口",
+        "benefit1": "方便快捷",
+        "fee": "配送费 {fee}₫"
+      }
     },
     "tableNumber": {
       "title": "请输入您的桌号",

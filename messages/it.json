@@ -50,16 +50,18 @@
     },
     "orderType": {
       "title": "Scegli il tipo di ordine",
-      "table": "Servizio al tavolo",
-      "delivery": "Consegna a domicilio",
-      "tableDescription": "Cena nel nostro ristorante con servizio attento",
-      "deliveryDescription": "Consegna veloce direttamente alla tua porta",
-      "tableNumber": "Numero tavolo",
-      "tableNumberPlaceholder": "Inserisci numero tavolo",
-      "tableNumberHint": "Inserisci il numero del tavolo 1-50",
-      "deliveryAddress": "Indirizzo di consegna",
-      "deliveryAddressPlaceholder": "Inserisci il tuo indirizzo di consegna",
-      "deliveryAddressHint": "Fornisci l'indirizzo completo con via, quartiere, città"
+      "table": {
+        "title": "Servizio al tavolo",
+        "description": "Cena nel nostro ristorante con servizio attento",
+        "benefit1": "Fresco & Caldo",
+        "benefit2": "Esperienza premium"
+      },
+      "delivery": {
+        "title": "Consegna a domicilio",
+        "description": "Consegna veloce direttamente alla tua porta",
+        "benefit1": "Conveniente",
+        "fee": "Spese di consegna {fee}₫"
+      }
     },
     "tableNumber": {
       "title": "Inserisci il numero del tuo tavolo",

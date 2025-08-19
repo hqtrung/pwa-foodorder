@@ -50,16 +50,18 @@
     },
     "orderType": {
       "title": "注文タイプを選択",
-      "table": "店内サービス",
-      "delivery": "宅配サービス",
-      "tableDescription": "レストランで心のこもったサービスとともにお食事をお楽しみください",
-      "deliveryDescription": "ご自宅まで迅速配送",
-      "tableNumber": "テーブル番号",
-      "tableNumberPlaceholder": "テーブル番号を入力",
-      "tableNumberHint": "1-50のテーブル番号を入力してください",
-      "deliveryAddress": "配送先住所",
-      "deliveryAddressPlaceholder": "配送先住所を入力してください",
-      "deliveryAddressHint": "通り、地区、市を含む完全な住所をご提供ください"
+      "table": {
+        "title": "店内サービス",
+        "description": "レストランで心のこもったサービスとともにお食事をお楽しみください",
+        "benefit1": "新鮮で温かい",
+        "benefit2": "プレミアム体験"
+      },
+      "delivery": {
+        "title": "宅配サービス",
+        "description": "ご自宅まで迅速配送",
+        "benefit1": "便利",
+        "fee": "配送料 {fee}₫"
+      }
     },
     "tableNumber": {
       "title": "テーブル番号を入力",
