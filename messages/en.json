@@ -29,7 +29,9 @@
     "error": "An error occurred",
     "success": "Success",
     "minutes": "minutes",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "item": "item",
+    "items": "items"
   },
   "landing": {
     "welcome": {
@@ -718,6 +720,16 @@
       "loadFailed": "Failed to load dashboard data",
       "updateFailed": "Failed to update order",
       "refreshFailed": "Failed to refresh data"
+    }
+  },
+  "checkout": {
+    "title": "Checkout",
+    "button": "Checkout",
+    "placeOrder": "Place Order",
+    "placingOrder": "Placing Order...",
+    "estimatedTime": {
+      "delivery": "Ready for delivery in 30-45 minutes",
+      "pickup": "Ready for pickup in 15-20 minutes"
     }
   },
   "errors": {

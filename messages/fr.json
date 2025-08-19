@@ -29,7 +29,9 @@
     "error": "Une erreur s'est produite",
     "success": "Succès",
     "minutes": "minutes",
-    "cancel": "Annuler"
+    "cancel": "Annuler",
+    "item": "article",
+    "items": "articles"
   },
   "landing": {
     "welcome": {
@@ -674,6 +676,16 @@
       "loadFailed": "Échec du chargement des données du tableau de bord",
       "updateFailed": "Échec de la mise à jour de la commande",
       "refreshFailed": "Échec de l'actualisation des données"
+    }
+  },
+  "checkout": {
+    "title": "Commande",
+    "button": "Commander",
+    "placeOrder": "Passer commande",
+    "placingOrder": "Commande en cours...",
+    "estimatedTime": {
+      "delivery": "Prêt pour livraison dans 30-45 minutes",
+      "pickup": "Prêt pour retrait dans 15-20 minutes"
     }
   },
   "errors": {

@@ -29,7 +29,9 @@
     "error": "Đã có lỗi xảy ra",
     "success": "Thành công",
     "minutes": "phút",
-    "cancel": "Hủy"
+    "cancel": "Hủy",
+    "item": "món",
+    "items": "món"
   },
   "landing": {
     "welcome": {
@@ -715,6 +717,16 @@
       "loadFailed": "Không thể tải dữ liệu bảng điều khiển",
       "updateFailed": "Không thể cập nhật đơn hàng",
       "refreshFailed": "Không thể làm mới dữ liệu"
+    }
+  },
+  "checkout": {
+    "title": "Thanh toán",
+    "button": "Thanh toán",
+    "placeOrder": "Đặt hàng",
+    "placingOrder": "Đang đặt hàng...",
+    "estimatedTime": {
+      "delivery": "Dự kiến giao hàng trong 30-45 phút",
+      "pickup": "Dự kiến sẵn sàng trong 15-20 phút"
     }
   },
   "errors": {

@@ -29,7 +29,9 @@
     "error": "Si è verificato un errore",
     "success": "Successo",
     "minutes": "minuti",
-    "cancel": "Annulla"
+    "cancel": "Annulla",
+    "item": "articolo",
+    "items": "articoli"
   },
   "landing": {
     "welcome": {
@@ -728,6 +730,16 @@
       "loadFailed": "Caricamento dati dashboard fallito",
       "updateFailed": "Aggiornamento ordine fallito",
       "refreshFailed": "Aggiornamento dati fallito"
+    }
+  },
+  "checkout": {
+    "title": "Checkout",
+    "button": "Checkout",
+    "placeOrder": "Ordina",
+    "placingOrder": "Ordinando...",
+    "estimatedTime": {
+      "delivery": "Pronto per consegna in 30-45 minuti",
+      "pickup": "Pronto per ritiro in 15-20 minuti"
     }
   },
   "errors": {

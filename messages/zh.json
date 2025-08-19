@@ -29,7 +29,9 @@
     "error": "发生错误",
     "success": "成功",
     "minutes": "分钟",
-    "cancel": "取消"
+    "cancel": "取消",
+    "item": "项",
+    "items": "项"
   },
   "landing": {
     "welcome": {
@@ -724,6 +726,16 @@
       "loadFailed": "控制台数据加载失败",
       "updateFailed": "订单更新失败",
       "refreshFailed": "数据刷新失败"
+    }
+  },
+  "checkout": {
+    "title": "结账",
+    "button": "结账",
+    "placeOrder": "下单",
+    "placingOrder": "正在下单...",
+    "estimatedTime": {
+      "delivery": "预计30-45分钟内送达",
+      "pickup": "预计15-20分钟内准备就绪"
     }
   },
   "errors": {

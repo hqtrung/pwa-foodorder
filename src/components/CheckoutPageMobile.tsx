@@ -192,10 +192,10 @@ export function CheckoutPageMobile() {
               </Button>
               <div>
                 <h1 className="text-lg font-semibold text-gray-900">
-                  Checkout
+                  {t('checkout.title')}
                 </h1>
                 <p className="text-xs text-gray-600 md:text-sm">
-                  {itemCount} items • {formatPrice(summary.total)}₫
+{itemCount} {t(itemCount === 1 ? 'common.item' : 'common.items')} • {formatPrice(summary.total)}₫
                 </p>
               </div>
             </div>
@@ -372,7 +372,7 @@ export function CheckoutPageMobile() {
                   {formatPrice(summary.total)}₫
                 </span>
                 <span className="text-xs text-gray-500">
-                  {itemCount} {itemCount === 1 ? 'item' : 'items'}
+                  {itemCount} {t(itemCount === 1 ? 'common.item' : 'common.items')}
                 </span>
               </div>
               {summary.deliveryFee > 0 && (
@@ -397,10 +397,10 @@ export function CheckoutPageMobile() {
             {isSubmitting ? (
               <div className="flex items-center space-x-2">
                 <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                <span>Placing Order...</span>
+                <span>{t('checkout.placingOrder')}</span>
               </div>
             ) : (
-              `Place Order • ${formatPrice(summary.total)}₫`
+`${t('checkout.placeOrder')} • ${formatPrice(summary.total)}₫`
             )}
           </Button>
           
@@ -411,8 +411,8 @@ export function CheckoutPageMobile() {
             </svg>
             <span className="text-xs text-gray-600">
               {orderType === 'delivery' 
-                ? 'Ready for delivery in 30-45 minutes'
-                : 'Ready for pickup in 15-20 minutes'
+                ? t('checkout.estimatedTime.delivery')
+                : t('checkout.estimatedTime.pickup')
               }
             </span>
           </div>

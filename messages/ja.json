@@ -29,7 +29,9 @@
     "error": "エラーが発生しました",
     "success": "成功",
     "minutes": "分",
-    "cancel": "キャンセル"
+    "cancel": "キャンセル",
+    "item": "アイテム",
+    "items": "アイテム"
   },
   "landing": {
     "welcome": {
@@ -724,6 +726,16 @@
       "loadFailed": "ダッシュボードデータの読み込みに失敗しました",
       "updateFailed": "注文の更新に失敗しました",
       "refreshFailed": "データの更新に失敗しました"
+    }
+  },
+  "checkout": {
+    "title": "チェックアウト",
+    "button": "チェックアウト",
+    "placeOrder": "注文する",
+    "placingOrder": "注文中...",
+    "estimatedTime": {
+      "delivery": "30-45分で配達準備完了",
+      "pickup": "15-20分で受け取り準備完了"
     }
   },
   "errors": {

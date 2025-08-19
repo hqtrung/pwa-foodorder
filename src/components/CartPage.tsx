@@ -207,7 +207,7 @@ export function CartPage() {
                   {formatPrice(summary.total)}₫
                 </span>
                 <span className="text-xs text-gray-500">
-                  {itemCount} {itemCount === 1 ? 'item' : 'items'}
+                  {itemCount} {t(itemCount === 1 ? 'common.item' : 'common.items')}
                 </span>
               </div>
               {summary.deliveryFee > 0 && (
@@ -237,7 +237,7 @@ export function CartPage() {
             className="w-full"
             size="lg"
           >
-            Checkout {formatPrice(summary.total)}₫
+{t('checkout.button')} {formatPrice(summary.total)}₫
           </Button>
           
           {/* Estimated Time */}
