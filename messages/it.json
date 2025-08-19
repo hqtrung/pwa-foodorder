@@ -28,6 +28,7 @@
     "loading": "Caricamento...",
     "error": "Si è verificato un errore",
     "success": "Successo",
+    "minutes": "minuti",
     "cancel": "Annulla"
   },
   "landing": {
@@ -49,18 +50,16 @@
     },
     "orderType": {
       "title": "Scegli il tipo di ordine",
-      "table": {
-        "title": "Servizio al tavolo",
-        "description": "Cena nel nostro ristorante con servizio attento",
-        "benefit1": "Nessuna tassa di consegna",
-        "benefit2": "Servizio al tavolo incluso"
-      },
-      "delivery": {
-        "title": "Consegna a domicilio",
-        "description": "Consegna veloce direttamente alla tua porta",
-        "benefit1": "Consegna in 30-45 minuti",
-        "fee": "Tassa di consegna: {fee}₫"
-      }
+      "table": "Servizio al tavolo",
+      "delivery": "Consegna a domicilio",
+      "tableDescription": "Cena nel nostro ristorante con servizio attento",
+      "deliveryDescription": "Consegna veloce direttamente alla tua porta",
+      "tableNumber": "Numero tavolo",
+      "tableNumberPlaceholder": "Inserisci numero tavolo",
+      "tableNumberHint": "Inserisci il numero del tavolo 1-50",
+      "deliveryAddress": "Indirizzo di consegna",
+      "deliveryAddressPlaceholder": "Inserisci il tuo indirizzo di consegna",
+      "deliveryAddressHint": "Fornisci l'indirizzo completo con via, quartiere, città"
     },
     "tableNumber": {
       "title": "Inserisci il numero del tuo tavolo",
@@ -246,7 +245,8 @@
     "orderInfo": {
       "title": "Informazioni ordine",
       "table": "Tavolo {number}",
-      "delivery": "Consegna"
+      "delivery": "Consegna",
+      "edit": "Modifica informazioni ordine"
     },
     "actions": {
       "clear": "Cancella tutto",
@@ -410,8 +410,11 @@
     }
   },
   "order": {
-    "title": "Ordine #{number}",
-    "estimatedTime": "Tempo stimato: {minutes} minuti",
+    "loading": "Caricamento informazioni ordine...",
+    "tracking": {
+      "title": "Tracciamento ordine",
+      "orderId": "ID ordine: {orderId}"
+    },
     "status": {
       "placed": "Ordine effettuato",
       "confirmed": "Confermato",
@@ -491,6 +494,8 @@
     },
     "actions": {
       "title": "Azioni",
+      "trackOrder": "Traccia ordine",
+      "viewDetails": "Visualizza dettagli",
       "refresh": "Aggiorna",
       "callRestaurant": "Chiama ristorante",
       "cancelOrder": "Annulla ordine",
@@ -518,12 +523,21 @@
       "deliveryInstructions": "Se c'è un problema con la consegna, chiama direttamente il ristorante.",
       "tableInstructions": "Rimani al tuo tavolo e aspetta che lo staff porti il tuo ordine."
     },
-    "number": "Ordine",
-    "title": "Ordine #{number}",
     "completed": {
       "title": "Ordine completato",
       "message": "Grazie per il tuo ordine! Lasciaci una recensione."
     },
+    "customer": {
+      "info": "Informazioni cliente"
+    },
+    "number": "Ordine",
+    "title": "Ordine #{number}",
+    "table": "Tavolo",
+    "items": {
+      "title": "Articoli dell'ordine"
+    },
+    "ready": "Pronto ora",
+    "estimatedTime": "{minutes} minuti",
     "errors": {
       "loadFailed": "Caricamento informazioni ordine fallito",
       "notFound": {
@@ -646,6 +660,7 @@
     "actions": {
       "refresh": "Aggiorna",
       "sound": "Suono",
+      "testSound": "Test suono",
       "markUrgentReady": "Pronto (Urgente)",
       "bulkMarkReady": "Ordini urgenti aggiornati"
     },
@@ -653,6 +668,11 @@
     "orderUpdated": "Stato ordine aggiornato",
     "autoRefreshEnabled": "Aggiornamento automatico abilitato",
     "autoRefreshDisabled": "Aggiornamento automatico disabilitato",
+    "soundTest": {
+      "success": "Il suono funziona correttamente",
+      "failed": "Impossibile riprodurre il suono",
+      "error": "Errore durante il test del suono"
+    },
     "soundControls": {
       "title": "Controlli audio",
       "status": {
@@ -691,6 +711,16 @@
       "newOrder": "Nuovo ordine #{orderNumber} da {customer}",
       "statusChanged": "Stato ordine #{orderNumber} aggiornato",
       "urgentOrder": "Ordine urgente #{orderNumber} richiede attenzione immediata"
+    },
+    "sidebar": {
+      "quickActions": "Azioni rapide",
+      "settings": "Impostazioni",
+      "filters": "Filtri"
+    },
+    "settings": {
+      "autoRefresh": "Aggiornamento automatico",
+      "autoRefreshDesc": "Aggiorna automaticamente i dati degli ordini",
+      "language": "Lingua"
     },
     "errors": {
       "loadFailed": "Caricamento dati dashboard fallito",

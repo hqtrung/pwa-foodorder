@@ -28,6 +28,7 @@
     "loading": "加载中...",
     "error": "发生错误",
     "success": "成功",
+    "minutes": "分钟",
     "cancel": "取消"
   },
   "landing": {
@@ -49,18 +50,16 @@
     },
     "orderType": {
       "title": "选择订单类型",
-      "table": {
-        "title": "堂食服务",
-        "description": "在我们餐厅享用美食，贴心服务",
-        "benefit1": "无配送费",
-        "benefit2": "包含桌边服务"
-      },
-      "delivery": {
-        "title": "外卖配送",
-        "description": "快速配送，直达您的门口",
-        "benefit1": "30-45分钟送达",
-        "fee": "配送费：{fee}₫"
-      }
+      "table": "堂食服务",
+      "delivery": "外卖配送",
+      "tableDescription": "在我们餐厅享用美食，贴心服务",
+      "deliveryDescription": "快速配送，直达您的门口",
+      "tableNumber": "桌号",
+      "tableNumberPlaceholder": "请输入桌号",
+      "tableNumberHint": "请输入1-50的桌号",
+      "deliveryAddress": "配送地址",
+      "deliveryAddressPlaceholder": "请输入您的配送地址",
+      "deliveryAddressHint": "请提供完整地址，包括街道、区域、城市"
     },
     "tableNumber": {
       "title": "请输入您的桌号",
@@ -117,8 +116,7 @@
     },
     "categories": {
       "title": "分类",
-      "viewAll": "查看全部",
-      "all": "所有分类"
+      "viewAll": "查看全部"
     },
     "products": {
       "featured": "推荐菜品",
@@ -247,7 +245,8 @@
     "orderInfo": {
       "title": "订单信息",
       "table": "{number}号桌",
-      "delivery": "配送"
+      "delivery": "配送",
+      "edit": "编辑订单信息"
     },
     "actions": {
       "clear": "清空全部",
@@ -542,6 +541,15 @@
       "title": "订单完成",
       "message": "感谢您的订购！请为我们留下评价。"
     },
+    "customer": {
+      "info": "客户信息"
+    },
+    "table": "桌号",
+    "items": {
+      "title": "订购商品"
+    },
+    "ready": "立即准备好",
+    "estimatedTime": "{minutes} 分钟",
     "number": "订单",
     "title": "订单 #{number}",
     "errors": {
@@ -646,6 +654,8 @@
     },
     "actions": {
       "refresh": "刷新",
+      "sound": "声音",
+      "testSound": "测试声音",
       "markUrgentReady": "完成（紧急）",
       "bulkMarkReady": "紧急订单已更新"
     },
@@ -653,8 +663,65 @@
     "orderUpdated": "订单状态已更新",
     "autoRefreshEnabled": "已开启自动刷新",
     "autoRefreshDisabled": "已关闭自动刷新",
+    "soundTest": {
+      "success": "声音工作正常",
+      "failed": "无法播放声音",
+      "error": "声音测试出错"
+    },
+    "soundControls": {
+      "title": "声音控制",
+      "status": {
+        "ready": "就绪",
+        "suspended": "暂停",
+        "notReady": "未就绪"
+      },
+      "initRequired": {
+        "title": "需要音频初始化",
+        "description": "点击启用声音通知",
+        "button": "初始化音频"
+      },
+      "suspended": {
+        "title": "音频暂停",
+        "description": "音频上下文被暂停",
+        "button": "恢复音频"
+      },
+      "masterEnable": {
+        "label": "启用声音",
+        "description": "所有声音通知的主开关"
+      },
+      "volume": {
+        "label": "音量"
+      },
+      "notifications": {
+        "title": "通知",
+        "newOrder": "新订单",
+        "statusChange": "状态变更",
+        "urgentOrder": "紧急订单"
+      },
+      "test": "测试",
+      "reset": "重置",
+      "info": "声音设置保存在本地"
+    },
+    "notifications": {
+      "newOrder": "来自{customer}的新订单#{orderNumber}",
+      "statusChanged": "订单#{orderNumber}状态已更新",
+      "urgentOrder": "紧急订单#{orderNumber}需要立即处理"
+    },
+    "sidebar": {
+      "quickActions": "快捷操作",
+      "settings": "设置",
+      "filters": "筛选"
+    },
+    "settings": {
+      "autoRefresh": "自动刷新",
+      "autoRefreshDesc": "自动刷新订单数据",
+      "language": "语言"
+    },
+    "minutes": "分钟",
     "errors": {
-      "loadFailed": "控制台数据加载失败"
+      "loadFailed": "控制台数据加载失败",
+      "updateFailed": "订单更新失败",
+      "refreshFailed": "数据刷新失败"
     }
   },
   "errors": {

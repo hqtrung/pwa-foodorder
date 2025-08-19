@@ -28,6 +28,7 @@
     "loading": "読み込み中...",
     "error": "エラーが発生しました",
     "success": "成功",
+    "minutes": "分",
     "cancel": "キャンセル"
   },
   "landing": {
@@ -49,18 +50,16 @@
     },
     "orderType": {
       "title": "注文タイプを選択",
-      "table": {
-        "title": "店内サービス",
-        "description": "レストランで心のこもったサービスとともにお食事をお楽しみください",
-        "benefit1": "配送料無料",
-        "benefit2": "テーブルサービス付き"
-      },
-      "delivery": {
-        "title": "宅配サービス",
-        "description": "ご自宅まで迅速配送",
-        "benefit1": "30-45分で配達",
-        "fee": "配送料：{fee}₫"
-      }
+      "table": "店内サービス",
+      "delivery": "宅配サービス",
+      "tableDescription": "レストランで心のこもったサービスとともにお食事をお楽しみください",
+      "deliveryDescription": "ご自宅まで迅速配送",
+      "tableNumber": "テーブル番号",
+      "tableNumberPlaceholder": "テーブル番号を入力",
+      "tableNumberHint": "1-50のテーブル番号を入力してください",
+      "deliveryAddress": "配送先住所",
+      "deliveryAddressPlaceholder": "配送先住所を入力してください",
+      "deliveryAddressHint": "通り、地区、市を含む完全な住所をご提供ください"
     },
     "tableNumber": {
       "title": "テーブル番号を入力",
@@ -246,7 +245,8 @@
     "orderInfo": {
       "title": "注文情報",
       "table": "テーブル{number}",
-      "delivery": "配送"
+      "delivery": "配送",
+      "edit": "注文情報を編集"
     },
     "actions": {
       "clear": "すべてクリア",
@@ -541,6 +541,15 @@
       "title": "注文完了",
       "message": "ご注文ありがとうございました！レビューをお書きください。"
     },
+    "customer": {
+      "info": "お客様情報"
+    },
+    "table": "テーブル",
+    "items": {
+      "title": "注文商品"
+    },
+    "ready": "準備完了",
+    "estimatedTime": "{minutes}分",
     "number": "注文",
     "title": "注文 #{number}",
     "errors": {
@@ -645,6 +654,8 @@
     },
     "actions": {
       "refresh": "更新",
+      "sound": "音声",
+      "testSound": "音声テスト",
       "markUrgentReady": "完成（緊急）",
       "bulkMarkReady": "緊急注文を更新しました"
     },
@@ -652,8 +663,65 @@
     "orderUpdated": "注文ステータスを更新しました",
     "autoRefreshEnabled": "自動更新を有効にしました",
     "autoRefreshDisabled": "自動更新を無効にしました",
+    "soundTest": {
+      "success": "音声が正常に動作しています",
+      "failed": "音声を再生できませんでした",
+      "error": "音声テストでエラーが発生しました"
+    },
+    "soundControls": {
+      "title": "音声コントロール",
+      "status": {
+        "ready": "準備完了",
+        "suspended": "一時停止",
+        "notReady": "準備未完了"
+      },
+      "initRequired": {
+        "title": "音声初期化が必要",
+        "description": "クリックして音声通知を有効にする",
+        "button": "音声を初期化"
+      },
+      "suspended": {
+        "title": "音声一時停止",
+        "description": "音声コンテキストが一時停止されています",
+        "button": "音声を再開"
+      },
+      "masterEnable": {
+        "label": "音声を有効化",
+        "description": "すべての音声通知のマスタースイッチ"
+      },
+      "volume": {
+        "label": "音量"
+      },
+      "notifications": {
+        "title": "通知",
+        "newOrder": "新しい注文",
+        "statusChange": "ステータス変更",
+        "urgentOrder": "緊急注文"
+      },
+      "test": "テスト",
+      "reset": "リセット",
+      "info": "音声設定はローカルに保存されます"
+    },
+    "notifications": {
+      "newOrder": "{customer}からの新しい注文#{orderNumber}",
+      "statusChanged": "注文#{orderNumber}のステータスが更新されました",
+      "urgentOrder": "緊急注文#{orderNumber}が即座の対応が必要です"
+    },
+    "sidebar": {
+      "quickActions": "クイックアクション",
+      "settings": "設定",
+      "filters": "フィルター"
+    },
+    "settings": {
+      "autoRefresh": "自動更新",
+      "autoRefreshDesc": "注文データを自動的に更新",
+      "language": "言語"
+    },
+    "minutes": "分",
     "errors": {
-      "loadFailed": "ダッシュボードデータの読み込みに失敗しました"
+      "loadFailed": "ダッシュボードデータの読み込みに失敗しました",
+      "updateFailed": "注文の更新に失敗しました",
+      "refreshFailed": "データの更新に失敗しました"
     }
   },
   "errors": {

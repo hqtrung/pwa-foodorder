@@ -28,6 +28,7 @@
     "loading": "Chargement...",
     "error": "Une erreur s'est produite",
     "success": "Succès",
+    "minutes": "minutes",
     "cancel": "Annuler"
   },
   "landing": {
@@ -49,18 +50,16 @@
     },
     "orderType": {
       "title": "Choisissez votre type de commande",
-      "table": {
-        "title": "Service à table",
-        "description": "Dînez dans notre restaurant avec un service attentionné",
-        "benefit1": "Pas de frais de livraison",
-        "benefit2": "Service à table inclus"
-      },
-      "delivery": {
-        "title": "Livraison à domicile",
-        "description": "Livraison rapide directement à votre porte",
-        "benefit1": "Livraison en 30-45 minutes",
-        "fee": "Frais de livraison : {fee}₫"
-      }
+      "table": "Service à table",
+      "delivery": "Livraison à domicile",
+      "tableDescription": "Dînez dans notre restaurant avec un service attentionné",
+      "deliveryDescription": "Livraison rapide directement à votre porte",
+      "tableNumber": "Numéro de table",
+      "tableNumberPlaceholder": "Entrez le numéro de table",
+      "tableNumberHint": "Veuillez entrer le numéro de table 1-50",
+      "deliveryAddress": "Adresse de livraison",
+      "deliveryAddressPlaceholder": "Entrez votre adresse de livraison",
+      "deliveryAddressHint": "Veuillez fournir l'adresse complète avec rue, quartier, ville"
     },
     "tableNumber": {
       "title": "Entrez votre numéro de table",
@@ -246,7 +245,8 @@
     "orderInfo": {
       "title": "Informations de commande",
       "table": "Table {number}",
-      "delivery": "Livraison"
+      "delivery": "Livraison",
+      "edit": "Modifier les informations de commande"
     },
     "actions": {
       "clear": "Tout effacer",
@@ -436,6 +436,7 @@
       "total": "Total"
     },
     "details": {
+      "title": "Détails de la commande",
       "customerInfo": "Informations client",
       "name": "Nom du client",
       "phone": "Numéro de téléphone",
@@ -457,6 +458,8 @@
     },
     "actions": {
       "title": "Actions",
+      "trackOrder": "Suivre la commande",
+      "viewDetails": "Voir les détails",
       "refresh": "Actualiser",
       "callRestaurant": "Appeler le restaurant",
       "cancelOrder": "Annuler la commande",
@@ -490,6 +493,15 @@
       "title": "Commande terminée",
       "message": "Merci pour votre commande ! Veuillez nous laisser un avis."
     },
+    "customer": {
+      "info": "Informations client"
+    },
+    "table": "Table",
+    "items": {
+      "title": "Articles de la commande"
+    },
+    "ready": "Prêt maintenant",
+    "estimatedTime": "{minutes} minutes",
     "errors": {
       "loadFailed": "Échec du chargement des informations de commande",
       "notFound": {
@@ -593,6 +605,7 @@
     "actions": {
       "refresh": "Actualiser",
       "sound": "Son",
+      "testSound": "Tester le son",
       "markUrgentReady": "Prêt (Urgent)",
       "bulkMarkReady": "Commandes urgentes mises à jour"
     },
@@ -638,6 +651,22 @@
       "newOrder": "Nouvelle commande #{orderNumber} de {customer}",
       "statusChanged": "Statut de la commande #{orderNumber} mis à jour",
       "urgentOrder": "Commande urgente #{orderNumber} nécessite une attention immédiate"
+    },
+    "sidebar": {
+      "quickActions": "Actions rapides",
+      "settings": "Paramètres",
+      "filters": "Filtres"
+    },
+    "settings": {
+      "autoRefresh": "Actualisation automatique",
+      "autoRefreshDesc": "Actualiser automatiquement les données des commandes",
+      "language": "Langue"
+    },
+    "minutes": "minutes",
+    "soundTest": {
+      "success": "Le son fonctionne correctement",
+      "failed": "Impossible de jouer le son",
+      "error": "Erreur lors du test du son"
     },
     "errors": {
       "loadFailed": "Échec du chargement des données du tableau de bord",
