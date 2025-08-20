@@ -16,6 +16,7 @@ import {
 import { db } from '@/config/firebase';
 import { ApiCategory, ApiProduct } from '@/lib/api';
 import { simpleCache } from './simpleCache';
+import { firestoreTranslationService } from './firestoreTranslationService';
 
 export interface FirestoreProduct extends Omit<ApiProduct, 'id'> {
   id: string;
@@ -449,6 +450,75 @@ export class FirestoreService {
       categoriesAge: null, // Could be implemented by storing timestamps
       productsAge: null
     };
+  }
+
+  /**
+   * Get products with translations applied for a specific locale
+   */
+  async getProductsWithTranslations(categoryId?: number, locale: string = 'en'): Promise<ApiProduct[]> {
+    try {
+      // Get base products from Firestore
+      const baseProducts = await this.getProducts(categoryId);
+      
+      // Get all translations (cached)
+      const translations = await firestoreTranslationService.getAllProductTranslations();
+      
+      // Apply translations to products
+      const translatedProducts = baseProducts.map(product => {
+        const translation = firestoreTranslationService.getProductTranslation(product.id, locale);
+        
+        if (translation) {
+          return {
+            ...product,
+            name: translation.name || product.name,
+            description_sale: translation.description || product.description_sale
+          };
+        }
+        
+        return product;
+      });
+
+      console.log(`Applied ${locale} translations to ${translatedProducts.length} products`);
+      
+      // Debug: Show sample of translated products
+      if (translatedProducts.length > 0) {
+        const sample = translatedProducts[0];
+        console.log(`🔍 Sample translated product:`, {
+          id: sample.id,
+          originalName: baseProducts.find(p => p.id === sample.id)?.name,
+          translatedName: sample.name,
+          locale
+        });
+      }
+      
+      return translatedProducts;
+    } catch (error) {
+      console.error(`Failed to get products with translations for locale ${locale}:`, error);
+      // Fallback to base products without translations
+      return await this.getProducts(categoryId);
+    }
+  }
+
+  /**
+   * Initialize translation service and setup real-time updates
+   */
+  async initializeTranslations(): Promise<void> {
+    try {
+      if (firestoreTranslationService.isAvailable()) {
+        // Load initial translations
+        await firestoreTranslationService.getAllProductTranslations();
+        console.log('Translation service initialized successfully');
+      }
+    } catch (error) {
+      console.error('Failed to initialize translation service:', error);
+    }
+  }
+
+  /**
+   * Get translation service instance
+   */
+  getTranslationService() {
+    return firestoreTranslationService;
   }
 }
 

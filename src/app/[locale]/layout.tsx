@@ -7,6 +7,7 @@ import localFont from 'next/font/local';
 import { ToastProvider } from '@/components/providers/ToastProvider';
 import { ModalProvider } from '@/components/providers/ModalProvider';
 import { CacheProvider } from '@/components/providers/CacheProvider';
+import { TranslationProvider } from '@/components/providers/TranslationProvider';
 import { FloatingOrderStatus } from '@/components/ui/FloatingOrderStatus';
 import "../globals.css";
 
@@ -119,10 +120,12 @@ export default async function LocaleLayout({
       </head>
       <body className="antialiased">
         <NextIntlClientProvider messages={messages}>
-          {children}
-          <FloatingOrderStatus />
-          <ToastProvider />
-          <ModalProvider />
+          <TranslationProvider>
+            {children}
+            <FloatingOrderStatus />
+            <ToastProvider />
+            <ModalProvider />
+          </TranslationProvider>
         </NextIntlClientProvider>
       </body>
     </html>

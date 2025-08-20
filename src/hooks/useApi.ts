@@ -39,7 +39,7 @@ function useApiQuery<T>(
 const useFirestore = process.env.NEXT_PUBLIC_USE_FIRESTORE === 'true';
 
 // Categories hook with caching and Firestore support
-export function useCategories() {
+export function useCategories(locale?: string) {
   return useApiQuery(async () => {
     try {
       // Use Firestore if enabled, otherwise fall back to cached API
@@ -51,7 +51,7 @@ export function useCategories() {
       
       // Get product counts for each category
       for (const apiCategory of apiCategories) {
-        const category = transformCategory(apiCategory);
+        const category = transformCategory(apiCategory, locale);
         
         try {
           const products = useFirestore
@@ -74,20 +74,20 @@ export function useCategories() {
       console.error('Failed to load categories:', error);
       throw error;
     }
-  });
+  }, [locale]);
 }
 
 // Products hook with optional category filter, caching, and Firestore support
-export function useProducts(categoryId?: number) {
+export function useProducts(categoryId?: number, locale?: string) {
   return useApiQuery(async () => {
     try {
       // Use Firestore if enabled, otherwise fall back to cached API
       const apiProducts = useFirestore
-        ? await firestoreAPI.getProducts(categoryId)
+        ? await firestoreAPI.getProducts(categoryId, locale)
         : await cachedAPI.getProductsWithFallback(categoryId);
       
       return apiProducts.map(apiProduct => {
-        const product = transformProduct(apiProduct);
+        const product = transformProduct(apiProduct, locale);
         // Badge is set in transformProduct based on category
         return product;
       });
@@ -95,11 +95,11 @@ export function useProducts(categoryId?: number) {
       console.error('Failed to load products:', error);
       throw error;
     }
-  }, [categoryId]);
+  }, [categoryId, locale]);
 }
 
 // Single product hook with Firestore support
-export function useProduct(productId: number) {
+export function useProduct(productId: number, locale?: string) {
   return useApiQuery(async () => {
     if (!productId) return null;
     
@@ -108,9 +108,9 @@ export function useProduct(productId: number) {
       ? await firestoreAPI.getProduct(productId)
       : await apiClient.getProduct(productId);
     
-    const product = transformProduct(apiProduct);
+    const product = transformProduct(apiProduct, locale);
     return product;
-  }, [productId]);
+  }, [productId, locale]);
 }
 
 // Cache status hook with caching
@@ -126,9 +126,9 @@ export function useCacheStatus() {
 }
 
 // Combined data hook for dashboard/overview
-export function useMenuData() {
-  const { data: categories, loading: categoriesLoading, error: categoriesError } = useCategories();
-  const { data: allProducts, loading: productsLoading, error: productsError } = useProducts();
+export function useMenuData(locale?: string) {
+  const { data: categories, loading: categoriesLoading, error: categoriesError } = useCategories(locale);
+  const { data: allProducts, loading: productsLoading, error: productsError } = useProducts(undefined, locale);
   const { data: cacheStatus, loading: cacheLoading } = useCacheStatus();
 
   return {
@@ -197,7 +197,7 @@ export function useCachedCategories() {
         if (cachedCategories) {
           const cachedData = await cachedAPI.getCategories({ allowStale: true });
           if (isMounted && cachedData) {
-            const transformedData = cachedData.map(transformCategory);
+            const transformedData = cachedData.map(category => transformCategory(category));
             setData(transformedData);
             setFromCache(true);
             setLoading(false);
@@ -207,7 +207,7 @@ export function useCachedCategories() {
         // Fetch fresh data (background)
         const freshData = await cachedAPI.getCategoriesWithFallback();
         if (isMounted) {
-          const transformedData = freshData.map(transformCategory);
+          const transformedData = freshData.map(category => transformCategory(category));
           setData(transformedData);
           setFromCache(false);
           setLoading(false);
@@ -250,7 +250,7 @@ export function useCachedProducts(categoryId?: number) {
         if (cachedProducts) {
           const cachedData = await cachedAPI.getProducts(categoryId, { allowStale: true });
           if (isMounted && cachedData) {
-            const transformedData = cachedData.map(transformProduct);
+            const transformedData = cachedData.map(product => transformProduct(product));
             setData(transformedData);
             setFromCache(true);
             setLoading(false);
@@ -260,7 +260,7 @@ export function useCachedProducts(categoryId?: number) {
         // Fetch fresh data (background)
         const freshData = await cachedAPI.getProductsWithFallback(categoryId);
         if (isMounted) {
-          const transformedData = freshData.map(transformProduct);
+          const transformedData = freshData.map(product => transformProduct(product));
           setData(transformedData);
           setFromCache(false);
           setLoading(false);

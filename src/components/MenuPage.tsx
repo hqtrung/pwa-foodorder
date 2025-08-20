@@ -20,6 +20,7 @@ import { vietnameseIncludes } from '@/lib/vietnamese-utils';
 import { formatPrice, getLocalizedProductName, calculateProductTotal } from '@/lib/common-utils';
 import { filterAndSortProducts } from '@/lib/product-utils';
 import { Category, Product, Topping } from '@/types';
+import { TranslationDebugWrapper } from '@/components/ui/TranslationDebug';
 
 export function MenuPage() {
   const t = useTranslations();
@@ -49,8 +50,8 @@ export function MenuPage() {
   const [showOrderTypeModal, setShowOrderTypeModal] = useState(false);
   
   // API hooks
-  const { data: rawCategories, loading: categoriesLoading, error: categoriesError } = useCategories();
-  const { data: allRawProducts, loading: productsLoading, error: productsError } = useProducts();
+  const { data: rawCategories, loading: categoriesLoading, error: categoriesError } = useCategories(locale);
+  const { data: allRawProducts, loading: productsLoading, error: productsError } = useProducts(undefined, locale);
   
   // Apply exclusion filters (memoized to prevent infinite re-renders)
   const categories = useMemo(() => {
@@ -172,6 +173,7 @@ export function MenuPage() {
 
   return (
     <MenuPageLayout>
+      <TranslationDebugWrapper />
       {/* Sticky Filter Section */}
       <StickyMenuFilter 
         searchQuery={searchQuery}

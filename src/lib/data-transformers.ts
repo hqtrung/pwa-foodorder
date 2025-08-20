@@ -1,12 +1,16 @@
 import { ApiCategory, ApiProduct, ApiTopping, AttributeLine, AttributeValue, apiClient } from './api';
 import { Category, Product, Topping } from '@/types';
+import { getCategoryTranslation } from './category-translations';
+import { getAttributeValueTranslation } from './topping-translations';
 
 // Transform API category to frontend category
-export function transformCategory(apiCategory: ApiCategory): Category {
+export function transformCategory(apiCategory: ApiCategory, locale: string = 'en'): Category {
+  const translatedName = getCategoryTranslation(apiCategory.name, locale) || apiCategory.name;
+  
   return {
     id: apiCategory.id.toString(),
-    name: apiCategory.name,
-    description: getCategoryDescription(apiCategory.name),
+    name: translatedName,
+    description: getCategoryDescription(apiCategory.name, locale),
     image: apiCategory.image_url || `/images/categories/${apiCategory.name.toLowerCase().replace(/\s+/g, '-')}.jpg`,
     productCount: 0, // Will be set separately when loading products
     availableCount: 0, // Will be calculated when loading products
@@ -14,18 +18,109 @@ export function transformCategory(apiCategory: ApiCategory): Category {
 }
 
 // Helper function to generate descriptions for categories
-function getCategoryDescription(categoryName: string): string {
-  const descriptions: Record<string, string> = {
-    'COMBO': 'Value meal combinations',
-    'Mì trộn': 'Mixed noodle dishes',
-    'Bánh Mì Truyền Thống': 'Traditional Vietnamese sandwiches',
-    'Đồ Uống': 'Refreshing beverages',
-    'Salad': 'Fresh and healthy salads',
-    'Topping': 'Extra toppings and add-ons',
-    'Xôi': 'Sticky rice dishes',
-    'Vật Phẩm': 'Other items',
+function getCategoryDescription(categoryName: string, locale: string = 'en'): string {
+  const descriptions: Record<string, Record<string, string>> = {
+    'COMBO': {
+      vi: 'Combo giá trị với nhiều món',
+      en: 'Value meal combinations',
+      fr: 'Combinaisons de repas avantageux',
+      it: 'Combinazioni di pasti convenienti',
+      zh: '超值套餐组合',
+      ja: 'お得なセットメニュー',
+      'zh-TW': '超值套餐組合',
+      es: 'Combinaciones de comidas económicas',
+      th: 'ชุดอาหารคุ้มค่า'
+    },
+    'Mì trộn': {
+      vi: 'Các món mì trộn',
+      en: 'Mixed noodle dishes',
+      fr: 'Plats de nouilles mélangées',
+      it: 'Piatti di noodles misti',
+      zh: '拌面类',
+      ja: '汁なし麺料理',
+      'zh-TW': '拌麵類',
+      es: 'Platos de fideos mezclados',
+      th: 'เส้นผสม'
+    },
+    'Bánh Mì Truyền Thống': {
+      vi: 'Bánh mì Việt Nam truyền thống',
+      en: 'Traditional Vietnamese sandwiches',
+      fr: 'Sandwichs vietnamiens traditionnels',
+      it: 'Panini vietnamiti tradizionali',
+      zh: '传统越南三明治',
+      ja: '伝統的ベトナムサンドイッチ',
+      'zh-TW': '傳統越南三明治',
+      es: 'Sándwiches vietnamitas tradicionales',
+      th: 'แซนด์วิชเวียดนามแบบดั้งเดิม'
+    },
+    'Đồ Uống': {
+      vi: 'Đồ uống tươi mát',
+      en: 'Refreshing beverages',
+      fr: 'Boissons rafraîchissantes',
+      it: 'Bevande rinfrescanti',
+      zh: '清爽饮品',
+      ja: '爽やかな飲み物',
+      'zh-TW': '清爽飲品',
+      es: 'Bebidas refrescantes',
+      th: 'เครื่องดื่มสดชื่น'
+    },
+    'Salad': {
+      vi: 'Salad tươi và lành mạnh',
+      en: 'Fresh and healthy salads',
+      fr: 'Salades fraîches et saines',
+      it: 'Insalate fresche e salutari',
+      zh: '新鲜健康沙拉',
+      ja: '新鮮で健康的なサラダ',
+      'zh-TW': '新鮮健康沙拉',
+      es: 'Ensaladas frescas y saludables',
+      th: 'สลัดสดและเพื่อสุขภาพ'
+    },
+    'Topping': {
+      vi: 'Topping và gia vị thêm',
+      en: 'Extra toppings and add-ons',
+      fr: 'Garnitures et compléments supplémentaires',
+      it: 'Condimenti e aggiunte extra',
+      zh: '额外配菜和添加物',
+      ja: 'エクストラトッピングとアドオン',
+      'zh-TW': '額外配菜和添加物',
+      es: 'Ingredientes adicionales y complementos',
+      th: 'ท็อปปิ้งและส่วนเพิ่มเติม'
+    },
+    'Xôi': {
+      vi: 'Các món xôi',
+      en: 'Sticky rice dishes',
+      fr: 'Plats de riz gluant',
+      it: 'Piatti di riso appiccicoso',
+      zh: '糯米类',
+      ja: 'もち米料理',
+      'zh-TW': '糯米類',
+      es: 'Platos de arroz pegajoso',
+      th: 'ข้าวเหนียว'
+    },
+    'Vật Phẩm': {
+      vi: 'Các món khác',
+      en: 'Other items',
+      fr: 'Autres articles',
+      it: 'Altri articoli',
+      zh: '其他物品',
+      ja: 'その他のアイテム',
+      'zh-TW': '其他物品',
+      es: 'Otros artículos',
+      th: 'รายการอื่นๆ'
+    },
   };
-  return descriptions[categoryName] || `Delicious ${categoryName.toLowerCase()}`;
+  
+  const categoryDescriptions = descriptions[categoryName];
+  if (categoryDescriptions && categoryDescriptions[locale]) {
+    return categoryDescriptions[locale];
+  }
+  
+  // Fallback to English or default
+  if (categoryDescriptions && categoryDescriptions['en']) {
+    return categoryDescriptions['en'];
+  }
+  
+  return `Delicious ${categoryName.toLowerCase()}`;
 }
 
 // Helper function to generate Google Cloud Storage image URLs
@@ -51,14 +146,14 @@ export function getResponsiveImageUrls(productId: string) {
 }
 
 // Transform API product to frontend product
-export function transformProduct(apiProduct: ApiProduct): Product {
+export function transformProduct(apiProduct: ApiProduct, locale?: string): Product {
   // Safe access to pos_categ_id with fallback
   const categoryId = apiProduct.pos_categ_id && Array.isArray(apiProduct.pos_categ_id) && apiProduct.pos_categ_id.length > 0 
     ? apiProduct.pos_categ_id[0] 
     : 1; // Default to category 1 if missing
 
   // Transform attribute lines to toppings
-  const toppings = transformAttributeLinesToToppings(apiProduct.attribute_lines || []);
+  const toppings = transformAttributeLinesToToppings(apiProduct.attribute_lines || [], locale);
 
   // Use price range if available, otherwise use list_price
   const basePrice = apiProduct.list_price || 0;
@@ -148,14 +243,16 @@ function getEstimatedPrepTime(productName: string): number {
 
 
 // Transform attribute lines to toppings array
-export function transformAttributeLinesToToppings(attributeLines: AttributeLine[]): Topping[] {
+export function transformAttributeLinesToToppings(attributeLines: AttributeLine[], locale: string = 'en'): Topping[] {
   const toppings: Topping[] = [];
   
   attributeLines.forEach(line => {
     line.values.forEach(value => {
+      const translatedName = getAttributeValueTranslation(value.name, locale) || value.name;
+      
       toppings.push({
         id: value.id.toString(),
-        name: value.name,
+        name: translatedName,
         price: value.price_extra,
         isAvailable: true, // Assume available if not specified
         attributeId: line.attribute_id,

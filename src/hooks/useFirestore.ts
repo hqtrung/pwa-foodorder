@@ -17,7 +17,7 @@ interface FirestoreState<T> {
 /**
  * Hook for Firestore categories with real-time updates
  */
-export function useFirestoreCategories(): FirestoreState<Category[]> & {
+export function useFirestoreCategories(locale: string = 'en'): FirestoreState<Category[]> & {
   refetch: () => Promise<void>;
 } {
   const [state, setState] = useState<FirestoreState<Category[]>>({
@@ -33,7 +33,7 @@ export function useFirestoreCategories(): FirestoreState<Category[]> & {
       setState(prev => ({ ...prev, loading: true, error: null }));
       
       const apiCategories = await firestoreAPI.getCategories();
-      const categories = apiCategories.map(transformCategory);
+      const categories = apiCategories.map(apiCategory => transformCategory(apiCategory, locale));
       
       setState(prev => ({
         ...prev,
@@ -56,7 +56,7 @@ export function useFirestoreCategories(): FirestoreState<Category[]> & {
 
     // Subscribe to real-time updates if using Firestore
     const unsubscribe = firestoreAPI.subscribeToCategories((apiCategories) => {
-      const categories = apiCategories.map(transformCategory);
+      const categories = apiCategories.map(apiCategory => transformCategory(apiCategory, locale));
       setState(prev => ({
         ...prev,
         data: categories,
@@ -66,7 +66,7 @@ export function useFirestoreCategories(): FirestoreState<Category[]> & {
     });
 
     return unsubscribe;
-  }, []);
+  }, [locale]);
 
   return {
     ...state,
@@ -77,7 +77,7 @@ export function useFirestoreCategories(): FirestoreState<Category[]> & {
 /**
  * Hook for Firestore products with real-time updates
  */
-export function useFirestoreProducts(categoryId?: number): FirestoreState<Product[]> & {
+export function useFirestoreProducts(categoryId?: number, locale: string = 'en'): FirestoreState<Product[]> & {
   refetch: () => Promise<void>;
 } {
   const [state, setState] = useState<FirestoreState<Product[]>>({
@@ -93,7 +93,7 @@ export function useFirestoreProducts(categoryId?: number): FirestoreState<Produc
       setState(prev => ({ ...prev, loading: true, error: null }));
       
       const apiProducts = await firestoreAPI.getProducts(categoryId);
-      const products = apiProducts.map(transformProduct);
+      const products = apiProducts.map(apiProduct => transformProduct(apiProduct, locale));
       
       setState(prev => ({
         ...prev,
@@ -116,7 +116,7 @@ export function useFirestoreProducts(categoryId?: number): FirestoreState<Produc
 
     // Subscribe to real-time updates if using Firestore
     const unsubscribe = firestoreAPI.subscribeToProducts((apiProducts) => {
-      const products = apiProducts.map(transformProduct);
+      const products = apiProducts.map(apiProduct => transformProduct(apiProduct, locale));
       setState(prev => ({
         ...prev,
         data: products,
@@ -126,7 +126,7 @@ export function useFirestoreProducts(categoryId?: number): FirestoreState<Produc
     }, categoryId);
 
     return unsubscribe;
-  }, [categoryId]);
+  }, [categoryId, locale]);
 
   return {
     ...state,
@@ -137,7 +137,7 @@ export function useFirestoreProducts(categoryId?: number): FirestoreState<Produc
 /**
  * Hook for single product from Firestore
  */
-export function useFirestoreProduct(productId: number): FirestoreState<Product> & {
+export function useFirestoreProduct(productId: number, locale: string = 'en'): FirestoreState<Product> & {
   refetch: () => Promise<void>;
 } {
   const [state, setState] = useState<FirestoreState<Product>>({
@@ -155,7 +155,7 @@ export function useFirestoreProduct(productId: number): FirestoreState<Product> 
       setState(prev => ({ ...prev, loading: true, error: null }));
       
       const apiProduct = await firestoreAPI.getProduct(productId);
-      const product = transformProduct(apiProduct);
+      const product = transformProduct(apiProduct, locale);
       
       setState(prev => ({
         ...prev,
@@ -175,7 +175,7 @@ export function useFirestoreProduct(productId: number): FirestoreState<Product> 
 
   useEffect(() => {
     fetchProduct();
-  }, [productId]);
+  }, [productId, locale]);
 
   return {
     ...state,
@@ -247,20 +247,20 @@ export function useFirestoreStatus() {
 /**
  * Hook for combined menu data (categories + products) from Firestore
  */
-export function useFirestoreMenuData() {
+export function useFirestoreMenuData(locale: string = 'en') {
   const { 
     data: categories, 
     loading: categoriesLoading, 
     error: categoriesError,
     fromFirestore: categoriesFromFirestore
-  } = useFirestoreCategories();
+  } = useFirestoreCategories(locale);
   
   const { 
     data: allProducts, 
     loading: productsLoading, 
     error: productsError,
     fromFirestore: productsFromFirestore
-  } = useFirestoreProducts();
+  } = useFirestoreProducts(undefined, locale);
 
   return {
     categories,
@@ -275,8 +275,8 @@ export function useFirestoreMenuData() {
 /**
  * Hook for category-specific data with product counts
  */
-export function useFirestoreCategoryData() {
-  const { data: categories, loading, error, fromFirestore } = useFirestoreCategories();
+export function useFirestoreCategoryData(locale: string = 'en') {
+  const { data: categories, loading, error, fromFirestore } = useFirestoreCategories(locale);
   const [enrichedCategories, setEnrichedCategories] = useState<Category[] | null>(null);
 
   useEffect(() => {

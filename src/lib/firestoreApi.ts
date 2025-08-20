@@ -54,9 +54,13 @@ export class FirestoreAPI {
   /**
    * Get products - preferably from Firestore, fallback to API
    */
-  async getProducts(categoryId?: number): Promise<ApiProduct[]> {
+  async getProducts(categoryId?: number, locale?: string): Promise<ApiProduct[]> {
     if (this.options.useFirestore && firestoreService.isAvailable()) {
       try {
+        // Use translation-aware method if locale is provided
+        if (locale) {
+          return await firestoreService.getProductsWithTranslations(categoryId, locale);
+        }
         return await firestoreService.getProducts(categoryId);
       } catch (error) {
         console.error('Failed to fetch products from Firestore:', error);
