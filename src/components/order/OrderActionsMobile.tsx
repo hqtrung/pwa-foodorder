@@ -30,11 +30,11 @@ export function OrderActionsMobile({
   const handleCallRestaurant = () => {
     const phoneNumber = '+84987654321'; // Mock restaurant phone
     window.open(`tel:${phoneNumber}`);
-    showSuccessToast('Calling restaurant...');
+    showSuccessToast(t('order.actions.callInitiated'));
   };
 
   const handleReorderItems = () => {
-    showSuccessToast('Items added to cart');
+    showSuccessToast(t('order.actions.itemsAddedToCart'));
     router.push('/cart');
   };
 
@@ -44,14 +44,14 @@ export function OrderActionsMobile({
 
   const handleCancelOrder = () => {
     if (order.status === 'pending' || order.status === 'confirmed') {
-      showSuccessToast('Order cancelled successfully');
+      showSuccessToast(t('order.actions.orderCancelled'));
     } else {
-      showErrorToast('Cannot cancel order at this stage');
+      showErrorToast(t('order.actions.cannotCancel'));
     }
   };
 
   const handleContactSupport = () => {
-    showSuccessToast('Support team contacted');
+    showSuccessToast(t('order.actions.supportContacted'));
   };
 
   const canCancel = order.status === 'pending' || order.status === 'confirmed';
@@ -68,6 +68,20 @@ export function OrderActionsMobile({
                 variant="outline"
                 className="w-full text-left justify-start"
                 onClick={() => {
+                  handleCallRestaurant();
+                  setShowMoreActions(false);
+                }}
+              >
+                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+                {t('order.actions.callRestaurant')}
+              </Button>
+
+              <Button
+                variant="outline"
+                className="w-full text-left justify-start"
+                onClick={() => {
                   setShowQRModal(true);
                   setShowMoreActions(false);
                 }}
@@ -75,7 +89,7 @@ export function OrderActionsMobile({
                 <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 16h4.01M12 12h0.01m-4.01 0h4.01M8 16h0.01m0-4h0.01M8 12h4.01M12 8h0.01m-4.01 0h4.01M8 8h0.01" />
                 </svg>
-                Show QR Code
+                {t('order.actions.showQRCode')}
               </Button>
 
               <Button
@@ -89,7 +103,7 @@ export function OrderActionsMobile({
                 <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                 </svg>
-                Refresh Order
+                {t('order.actions.refresh')}
               </Button>
 
               {isCompleted && (
@@ -104,7 +118,7 @@ export function OrderActionsMobile({
                   <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5L17 18" />
                   </svg>
-                  Reorder Items
+                  {t('order.actions.reorder')}
                 </Button>
               )}
 
@@ -119,7 +133,7 @@ export function OrderActionsMobile({
                 <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                 </svg>
-                Order Again
+                {t('order.actions.orderAgain')}
               </Button>
 
               {canCancel && (
@@ -134,7 +148,7 @@ export function OrderActionsMobile({
                   <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                   </svg>
-                  Cancel Order
+                  {t('order.actions.cancelOrder')}
                 </Button>
               )}
 
@@ -149,13 +163,13 @@ export function OrderActionsMobile({
                 <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                 </svg>
-                Contact Support
+                {t('order.actions.contactSupport')}
               </Button>
 
               {/* Auto Refresh Toggle */}
               <div className="flex items-center justify-between pt-2 border-t border-gray-200">
                 <span className="text-sm text-gray-600">
-                  Auto Refresh
+                  {t('order.settings.autoRefresh')}
                 </span>
                 <button
                   onClick={() => {
@@ -182,15 +196,15 @@ export function OrderActionsMobile({
       <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-30">
         <div className="px-4 py-3">
           <div className="flex space-x-3">
-            {/* Primary Action - Call Restaurant */}
+            {/* Primary Action - Order Again */}
             <Button 
               className="flex-1"
-              onClick={handleCallRestaurant}
+              onClick={handleOrderAgain}
             >
               <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
               </svg>
-              Call Restaurant
+              {t('order.actions.orderAgain')}
             </Button>
 
             {/* Secondary Action - Track/More */}
@@ -212,7 +226,7 @@ export function OrderActionsMobile({
                 autoRefresh ? 'bg-green-500 animate-pulse' : 'bg-gray-300'
               }`}></span>
               <span className="text-xs text-gray-500">
-                {autoRefresh ? 'Live updates' : 'Manual refresh'}
+                {autoRefresh ? t('order.notifications.liveUpdates') : t('order.notifications.manualRefresh')}
               </span>
             </div>
             <div className="text-xs text-gray-500">

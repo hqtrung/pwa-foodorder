@@ -179,7 +179,7 @@ export function OrderDetails({ order }: OrderDetailsProps) {
       {/* QR Code */}
       <Card padding="md">
         <h3 className="text-lg font-semibold text-gray-900 mb-4">
-          Share Order
+          {t('order.share.title')}
         </h3>
         <div className="text-center">
           <OrderQRCode 

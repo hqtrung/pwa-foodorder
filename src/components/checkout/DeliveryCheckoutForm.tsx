@@ -1,8 +1,19 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
+import { useEffect } from 'react';
 import { Input } from '@/components/ui/Input';
 import { Card } from '@/components/ui/Card';
+import { useFormState, ValidationRule } from '@/hooks/useFormState';
+
+interface DeliveryFormData {
+  customerName: string;
+  phone: string;
+  email: string;
+  address: string;
+  deliveryInstructions: string;
+  specialInstructions: string;
+}
 
 interface DeliveryCheckoutFormProps {
   data: {
@@ -18,6 +29,70 @@ interface DeliveryCheckoutFormProps {
 
 export function DeliveryCheckoutForm({ data, onChange }: DeliveryCheckoutFormProps) {
   const t = useTranslations();
+
+  // Validation rules
+  const validation = {
+    customerName: [
+      {
+        validate: (value: string) => value.trim().length >= 2,
+        message: t('checkout.validation.customerName.minLength')
+      } as ValidationRule<string>
+    ],
+    phone: [
+      {
+        validate: (value: string) => /^[0-9+\-\s()]{10,}$/.test(value),
+        message: t('checkout.validation.phone.invalid')
+      } as ValidationRule<string>
+    ],
+    email: [
+      {
+        validate: (value: string) => !value || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value),
+        message: t('checkout.validation.email.invalid')
+      } as ValidationRule<string>
+    ],
+    address: [
+      {
+        validate: (value: string) => value.trim().length >= 10,
+        message: t('checkout.validation.address.minLength')
+      } as ValidationRule<string>
+    ]
+  };
+
+  // Form state
+  const {
+    values,
+    errors,
+    touched,
+    setValue,
+    markAsTouched,
+    validateField
+  } = useFormState<DeliveryFormData>({
+    initialValues: {
+      customerName: data.customerName || '',
+      phone: data.phone || '',
+      email: data.email || '',
+      address: data.address || '',
+      deliveryInstructions: data.deliveryInstructions || '',
+      specialInstructions: data.specialInstructions || ''
+    },
+    validation
+  });
+
+  // Sync form state with parent
+  useEffect(() => {
+    onChange(values);
+  }, [values, onChange]);
+
+  // Handle field changes with validation
+  const handleFieldChange = (field: keyof DeliveryFormData, value: string) => {
+    setValue(field, value);
+  };
+
+  // Handle field blur for validation
+  const handleFieldBlur = (field: keyof DeliveryFormData) => {
+    markAsTouched(field);
+    validateField(field);
+  };
 
   return (
     <div className="space-y-6">
@@ -61,41 +136,50 @@ export function DeliveryCheckoutForm({ data, onChange }: DeliveryCheckoutFormPro
         
         <div className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              {t('checkout.form.customerName')} *
-            </label>
             <Input
+              label={`${t('checkout.form.customerName')} *`}
               type="text"
+              inputMode="text"
+              autoComplete="name"
               placeholder={t('checkout.form.customerNamePlaceholder')}
-              value={data.customerName || ''}
-              onChange={(e) => onChange({ customerName: e.target.value })}
+              value={values.customerName}
+              onChange={(e) => handleFieldChange('customerName', e.target.value)}
+              onBlur={() => handleFieldBlur('customerName')}
+              error={touched.customerName ? errors.customerName : undefined}
+              className="touch-manipulation"
               required
             />
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="form-grid-responsive">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                {t('checkout.form.phone')} *
-              </label>
               <Input
+                label={`${t('checkout.form.phone')} *`}
                 type="tel"
+                inputMode="tel"
+                autoComplete="tel"
                 placeholder={t('checkout.form.phonePlaceholder')}
-                value={data.phone || ''}
-                onChange={(e) => onChange({ phone: e.target.value })}
+                value={values.phone}
+                onChange={(e) => handleFieldChange('phone', e.target.value)}
+                onBlur={() => handleFieldBlur('phone')}
+                error={touched.phone ? errors.phone : undefined}
+                className="touch-manipulation"
                 required
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                {t('checkout.form.email')}
-              </label>
               <Input
+                label={t('checkout.form.email')}
                 type="email"
+                inputMode="email"
+                autoComplete="email"
                 placeholder={t('checkout.form.emailPlaceholder')}
-                value={data.email || ''}
-                onChange={(e) => onChange({ email: e.target.value })}
+                value={values.email}
+                onChange={(e) => handleFieldChange('email', e.target.value)}
+                onBlur={() => handleFieldBlur('email')}
+                error={touched.email ? errors.email : undefined}
+                className="touch-manipulation"
               />
             </div>
           </div>
@@ -110,57 +194,50 @@ export function DeliveryCheckoutForm({ data, onChange }: DeliveryCheckoutFormPro
         
         <div className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              {t('checkout.form.address')} *
-            </label>
             <Input
+              label={`${t('checkout.form.address')} *`}
               as="textarea"
+              autoComplete="street-address"
               placeholder={t('checkout.form.addressPlaceholder')}
-              value={data.address || ''}
-              onChange={(e) => onChange({ address: e.target.value })}
+              value={values.address}
+              onChange={(e) => handleFieldChange('address', e.target.value)}
+              onBlur={() => handleFieldBlur('address')}
+              error={touched.address ? errors.address : undefined}
+              helperText={t('checkout.form.addressHint')}
               rows={3}
+              className="touch-manipulation"
               required
             />
-            <p className="text-xs text-gray-500 mt-1">
-              {t('checkout.form.addressHint')}
-            </p>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              {t('checkout.form.deliveryInstructions')}
-            </label>
             <Input
+              label={t('checkout.form.deliveryInstructions')}
               as="textarea"
               placeholder={t('checkout.form.deliveryInstructionsPlaceholder')}
-              value={data.deliveryInstructions || ''}
-              onChange={(e) => onChange({ deliveryInstructions: e.target.value })}
+              value={values.deliveryInstructions}
+              onChange={(e) => handleFieldChange('deliveryInstructions', e.target.value)}
+              helperText={t('checkout.form.deliveryInstructionsHint')}
               rows={2}
+              className="touch-manipulation"
             />
-            <p className="text-xs text-gray-500 mt-1">
-              {t('checkout.form.deliveryInstructionsHint')}
-            </p>
           </div>
         </div>
       </Card>
 
       {/* Special Instructions */}
-      <Card padding="md">
-        <h3 className="font-semibold text-gray-900 mb-4">
-          {t('checkout.specialInstructions.title')}
-        </h3>
-        
+      <Card padding="md">        
         <div>
           <Input
+            label={t('checkout.specialInstructions.title')}
             as="textarea"
             placeholder={t('checkout.specialInstructions.placeholder')}
-            value={data.specialInstructions || ''}
-            onChange={(e) => onChange({ specialInstructions: e.target.value })}
+            value={values.specialInstructions}
+            onChange={(e) => handleFieldChange('specialInstructions', e.target.value)}
+            helperText={t('checkout.specialInstructions.hint')}
             rows={3}
+            className="touch-manipulation"
           />
-          <p className="text-xs text-gray-500 mt-2">
-            {t('checkout.specialInstructions.hint')}
-          </p>
         </div>
       </Card>
     </div>

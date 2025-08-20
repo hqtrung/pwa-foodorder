@@ -36,6 +36,7 @@ interface CartActions {
   // Basic cart operations
   addItem: (product: Product, quantity: number, toppings?: Topping[], specialInstructions?: string) => void;
   removeItem: (itemId: string) => void;
+  updateItem: (itemId: string, updates: { quantity?: number; toppings?: Topping[]; specialInstructions?: string }) => void;
   updateItemQuantity: (itemId: string, quantity: number) => void;
   updateItemToppings: (itemId: string, toppings: Topping[]) => void;
   updateItemInstructions: (itemId: string, instructions: string) => void;
@@ -124,6 +125,30 @@ export const useCartStore = create<CartStore>()(
       removeItem: (itemId) => {
         set((state) => {
           state.items = state.items.filter(item => item.id !== itemId);
+        });
+        setTimeout(() => get().calculateSummary(), 0);
+      },
+
+      updateItem: (itemId, updates) => {
+        set((state) => {
+          const item = state.items.find(item => item.id === itemId);
+          if (item) {
+            if (updates.quantity !== undefined) {
+              if (updates.quantity <= 0) {
+                state.items = state.items.filter(item => item.id !== itemId);
+                return;
+              }
+              item.quantity = updates.quantity;
+            }
+            if (updates.toppings !== undefined) {
+              item.toppings = updates.toppings;
+            }
+            if (updates.specialInstructions !== undefined) {
+              item.specialInstructions = updates.specialInstructions;
+            }
+            // Recalculate total price based on updated values
+            item.totalPrice = get().calculateItemPrice(item.product, item.toppings, item.quantity);
+          }
         });
         setTimeout(() => get().calculateSummary(), 0);
       },
@@ -257,7 +282,7 @@ export const useCartStore = create<CartStore>()(
       getUniqueProductCount: () => {
         return get().items.length;
       }
-    })),
+    }),),
     {
       name: 'cart-storage',
       // Only persist essential data, recalculate summary on hydration

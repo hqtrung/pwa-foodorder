@@ -11,9 +11,16 @@ import { useCartStore } from '@/stores';
 interface OrderInfoModalProps {
   isOpen: boolean;
   onClose: () => void;
+  requireSelection?: boolean;
+  onSave?: (orderType: 'table' | 'delivery', tableNumber?: string) => void;
 }
 
-export function OrderInfoModal({ isOpen, onClose }: OrderInfoModalProps) {
+export function OrderInfoModal({ 
+  isOpen, 
+  onClose, 
+  requireSelection = false,
+  onSave 
+}: OrderInfoModalProps) {
   const t = useTranslations();
   const { 
     orderType, 
@@ -30,12 +37,18 @@ export function OrderInfoModal({ isOpen, onClose }: OrderInfoModalProps) {
 
   const handleSave = () => {
     if (tempOrderType) {
-      setOrderType(tempOrderType);
-      
-      if (tempOrderType === 'table' && tempTableNumber) {
-        setTableNumber(tempTableNumber);
-      } else if (tempOrderType === 'delivery' && tempDeliveryAddress) {
-        setDeliveryAddress(tempDeliveryAddress);
+      if (onSave) {
+        // Use custom save callback
+        onSave(tempOrderType, tempOrderType === 'table' ? tempTableNumber : undefined);
+      } else {
+        // Default behavior - update cart store
+        setOrderType(tempOrderType);
+        
+        if (tempOrderType === 'table' && tempTableNumber) {
+          setTableNumber(tempTableNumber);
+        } else if (tempOrderType === 'delivery' && tempDeliveryAddress) {
+          setDeliveryAddress(tempDeliveryAddress);
+        }
       }
     }
     
@@ -43,6 +56,11 @@ export function OrderInfoModal({ isOpen, onClose }: OrderInfoModalProps) {
   };
 
   const handleCancel = () => {
+    if (requireSelection && !orderType) {
+      // Don't allow closing if selection is required and no order type is set
+      return;
+    }
+    
     // Reset to original values
     setTempOrderType(orderType);
     setTempTableNumber(tableNumber || '');
@@ -51,12 +69,16 @@ export function OrderInfoModal({ isOpen, onClose }: OrderInfoModalProps) {
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={handleCancel} title={t('cart.orderInfo.edit')}>
+    <Modal 
+      isOpen={isOpen} 
+      onClose={requireSelection && !orderType ? () => {} : handleCancel} 
+      title={requireSelection ? t('menu.orderTypeRequired.title') : t('cart.orderInfo.edit')}
+    >
       <div className="space-y-6">
         {/* Order Type Selection */}
         <div className="space-y-4">
           <h3 className="font-semibold text-gray-900">
-            Choose Order Type
+            {t('cart.orderInfo.orderTypeSelection.title')}
           </h3>
           
           <div className="space-y-3">
@@ -74,10 +96,10 @@ export function OrderInfoModal({ isOpen, onClose }: OrderInfoModalProps) {
                 <div className="text-2xl">🍽️</div>
                 <div className="flex-1">
                   <h4 className="font-semibold text-gray-900">
-                    Table Service
+                    {t('cart.orderInfo.orderTypeSelection.tableService.title')}
                   </h4>
                   <p className="text-sm text-gray-600">
-                    Dine in at our restaurant with attentive service
+                    {t('cart.orderInfo.orderTypeSelection.tableService.description')}
                   </p>
                 </div>
                 {tempOrderType === 'table' && (
@@ -100,10 +122,10 @@ export function OrderInfoModal({ isOpen, onClose }: OrderInfoModalProps) {
                 <div className="text-2xl">🚀</div>
                 <div className="flex-1">
                   <h4 className="font-semibold text-gray-900">
-                    Home Delivery
+                    {t('cart.orderInfo.orderTypeSelection.delivery.title')}
                   </h4>
                   <p className="text-sm text-gray-600">
-                    Fast delivery straight to your door
+                    {t('cart.orderInfo.orderTypeSelection.delivery.description')}
                   </p>
                 </div>
                 {tempOrderType === 'delivery' && (
@@ -118,19 +140,19 @@ export function OrderInfoModal({ isOpen, onClose }: OrderInfoModalProps) {
         {tempOrderType === 'table' && (
           <div className="space-y-3">
             <label className="block font-semibold text-gray-900">
-              Table Number
+              {t('cart.orderInfo.orderTypeSelection.tableNumber.label')}
             </label>
             <Input
               type="number"
               value={tempTableNumber}
               onChange={(e) => setTempTableNumber(e.target.value)}
-              placeholder="Enter table number"
+              placeholder={t('cart.orderInfo.orderTypeSelection.tableNumber.placeholder')}
               min="1"
               max="50"
               className="w-full"
             />
             <p className="text-sm text-gray-600">
-              Please enter table number 1-50
+              {t('cart.orderInfo.orderTypeSelection.tableNumber.hint')}
             </p>
           </div>
         )}
@@ -139,31 +161,33 @@ export function OrderInfoModal({ isOpen, onClose }: OrderInfoModalProps) {
         {tempOrderType === 'delivery' && (
           <div className="space-y-3">
             <label className="block font-semibold text-gray-900">
-              Delivery Address
+              {t('cart.orderInfo.orderTypeSelection.deliveryAddress.label')}
             </label>
             <Input
               as="textarea"
               value={tempDeliveryAddress}
               onChange={(e) => setTempDeliveryAddress(e.target.value)}
-              placeholder="Enter your delivery address"
+              placeholder={t('cart.orderInfo.orderTypeSelection.deliveryAddress.placeholder')}
               rows={3}
               className="w-full"
             />
             <p className="text-sm text-gray-600">
-              Please provide complete address with street, district, city
+              {t('cart.orderInfo.orderTypeSelection.deliveryAddress.hint')}
             </p>
           </div>
         )}
 
         {/* Action Buttons */}
         <div className="flex space-x-3 pt-4 border-t border-gray-200">
-          <Button
-            variant="outline"
-            onClick={handleCancel}
-            className="flex-1"
-          >
-            {t('common.actions.cancel')}
-          </Button>
+          {!requireSelection && (
+            <Button
+              variant="outline"
+              onClick={handleCancel}
+              className="flex-1"
+            >
+              {t('common.actions.cancel')}
+            </Button>
+          )}
           <Button
             onClick={handleSave}
             disabled={
@@ -171,9 +195,9 @@ export function OrderInfoModal({ isOpen, onClose }: OrderInfoModalProps) {
               (tempOrderType === 'table' && !tempTableNumber) ||
               (tempOrderType === 'delivery' && !tempDeliveryAddress)
             }
-            className="flex-1"
+            className={requireSelection ? "w-full" : "flex-1"}
           >
-            {t('common.actions.save')}
+            {requireSelection ? t('common.actions.continue') : t('common.actions.save')}
           </Button>
         </div>
       </div>

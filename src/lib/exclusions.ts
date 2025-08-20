@@ -61,7 +61,19 @@ export function filterExcludedCategories(categories: Category[]): Category[] {
 export function filterExcludedProducts(products: Product[]): Product[] {
   if (!areExclusionsEnabled()) return products;
   
-  return products.filter(product => !isProductExcluded(product.id));
+  return products.filter(product => {
+    // Check if product ID is excluded
+    if (isProductExcluded(product.id)) {
+      return false;
+    }
+    
+    // Check if product's category is excluded
+    if (isCategoryExcluded(product.category)) {
+      return false;
+    }
+    
+    return true;
+  });
 }
 
 /**

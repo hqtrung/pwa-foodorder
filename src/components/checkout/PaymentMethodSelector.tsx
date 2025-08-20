@@ -4,43 +4,58 @@ import { useTranslations } from 'next-intl';
 import { Card } from '@/components/ui/Card';
 
 interface PaymentMethodSelectorProps {
-  selected: 'cash' | 'card' | 'momo' | 'zalopay';
+  selected?: 'cash' | 'card' | 'momo' | 'zalopay';
   onChange: (method: 'cash' | 'card' | 'momo' | 'zalopay') => void;
+  orderType?: 'table' | 'delivery';
 }
 
-export function PaymentMethodSelector({ selected, onChange }: PaymentMethodSelectorProps) {
+export function PaymentMethodSelector({ selected, onChange, orderType }: PaymentMethodSelectorProps) {
   const t = useTranslations();
 
-  const paymentMethods = [
+  // Filter payment methods based on order type
+  const allPaymentMethods = [
     {
       id: 'cash' as const,
       name: t('checkout.payment.methods.cash'),
-      description: t('checkout.payment.descriptions.cash'),
+      description: orderType === 'table' 
+        ? 'Thanh toán bằng tiền mặt tại quầy'
+        : t('checkout.payment.descriptions.cash'),
       icon: '💵',
-      available: true
+      available: true,
+      orderTypes: ['table', 'delivery'] as const
     },
     {
       id: 'card' as const,
       name: t('checkout.payment.methods.card'),
-      description: t('checkout.payment.descriptions.card'),
+      description: orderType === 'table'
+        ? 'Thanh toán bằng thẻ Visa, MasterCard tại quầy'
+        : t('checkout.payment.descriptions.card'),
       icon: '💳',
-      available: true
+      available: true,
+      orderTypes: ['table'] as const
     },
     {
       id: 'momo' as const,
       name: t('checkout.payment.methods.momo'),
       description: t('checkout.payment.descriptions.momo'),
       icon: '📱',
-      available: true
+      available: false, // QR pay - to be implemented later
+      orderTypes: ['delivery'] as const
     },
     {
       id: 'zalopay' as const,
       name: t('checkout.payment.methods.zalopay'),
       description: t('checkout.payment.descriptions.zalopay'),
       icon: '💰',
-      available: true
+      available: false, // QR pay - to be implemented later
+      orderTypes: ['delivery'] as const
     }
   ];
+
+  // Filter methods based on order type
+  const paymentMethods = allPaymentMethods.filter(method => 
+    !orderType || method.orderTypes.includes(orderType)
+  );
 
   return (
     <div className="space-y-6">
@@ -100,7 +115,7 @@ export function PaymentMethodSelector({ selected, onChange }: PaymentMethodSelec
       </Card>
 
       {/* Payment Info */}
-      {selected === 'cash' && (
+      {selected && selected === 'cash' && (
         <Card padding="md" className="bg-green-50 border-green-200">
           <div className="flex items-start space-x-3">
             <svg className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
@@ -118,7 +133,7 @@ export function PaymentMethodSelector({ selected, onChange }: PaymentMethodSelec
         </Card>
       )}
 
-      {selected === 'card' && (
+      {selected && selected === 'card' && (
         <Card padding="md" className="bg-blue-50 border-blue-200">
           <div className="flex items-start space-x-3">
             <svg className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
@@ -136,7 +151,7 @@ export function PaymentMethodSelector({ selected, onChange }: PaymentMethodSelec
         </Card>
       )}
 
-      {(selected === 'momo' || selected === 'zalopay') && (
+      {selected && (selected === 'momo' || selected === 'zalopay') && (
         <Card padding="md" className="bg-purple-50 border-purple-200">
           <div className="flex items-start space-x-3">
             <svg className="w-5 h-5 text-purple-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">

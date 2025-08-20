@@ -17,6 +17,7 @@ export function ModalProvider() {
                 isOpen={modal.isOpen}
                 onClose={() => closeModal(modal.id)}
                 product={modal.data?.product}
+                cartItem={modal.data?.cartItem}
               />
             );
           // Add other modal types here as needed

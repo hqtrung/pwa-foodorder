@@ -56,8 +56,8 @@ const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputProps>(
               ref={ref as React.ForwardedRef<HTMLTextAreaElement>}
               rows={rows}
               className={clsx(
-                // Base styles
-                'block w-full rounded-lg border px-3 py-2.5 text-base placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-0 transition-colors resize-vertical',
+                // Base styles - ensure good touch target
+                'block w-full rounded-lg border px-3 py-3 text-base placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-0 transition-colors resize-vertical touch-manipulation',
                 
                 // Default state
                 'border-gray-300 bg-white text-gray-900 focus:border-primary-500 focus:ring-primary-500',
@@ -83,8 +83,8 @@ const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputProps>(
               ref={ref as React.ForwardedRef<HTMLInputElement>}
               type={type}
               className={clsx(
-                // Base styles
-                'block w-full rounded-lg border px-3 py-2.5 text-base placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-0 transition-colors touch-target',
+                // Base styles - ensure minimum 44px touch target
+                'block w-full rounded-lg border px-3 py-3 min-h-[44px] text-base placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-0 transition-colors touch-manipulation',
                 
                 // Default state
                 'border-gray-300 bg-white text-gray-900 focus:border-primary-500 focus:ring-primary-500',

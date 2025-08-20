@@ -12,9 +12,11 @@ export function FloatingCartButton() {
   const cartSubtotal = useCartStore(state => state.summary.subtotal);
   const calculateSummary = useCartStore(state => state.calculateSummary);
   const [showBounce, setShowBounce] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
-  // Ensure summary is calculated when component mounts
+  // Ensure component is mounted on client-side
   useEffect(() => {
+    setIsMounted(true);
     calculateSummary();
   }, [calculateSummary]);
 
@@ -27,8 +29,8 @@ export function FloatingCartButton() {
     }
   }, [cartItemCount]);
 
-  // Don't render if cart is empty
-  if (cartItemCount === 0) {
+  // Don't render if cart is empty or not mounted yet
+  if (!isMounted || cartItemCount === 0) {
     return null;
   }
 
@@ -87,7 +89,7 @@ export function FloatingCartButton() {
                    transition-opacity duration-200 whitespace-nowrap
                    hover:opacity-100"
       >
-        {new Intl.NumberFormat('vi-VN').format(cartSubtotal)}₫
+        {cartSubtotal.toLocaleString()}₫
         <div className="absolute top-full right-4 w-0 h-0 border-l-4 border-r-4 border-t-4 
                         border-transparent border-t-gray-900"></div>
       </div>

@@ -25,8 +25,8 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <button
         className={clsx(
-          // Base styles
-          'inline-flex items-center justify-center rounded-lg font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 touch-target',
+          // Base styles - ensure 44px minimum touch target
+          'inline-flex items-center justify-center rounded-lg font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 touch-manipulation min-h-[44px]',
           
           // Variant styles
           {

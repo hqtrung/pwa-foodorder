@@ -79,11 +79,12 @@ export function LandingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 lg:py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 lg:w-12 lg:h-12 bg-primary-500 rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-lg lg:text-xl">🍜</span>
-              </div>
+              <img 
+                src="/logo-w-brand.png" 
+                alt="Bánh Mì PateDeli" 
+                className="h-8 lg:h-10 w-auto object-contain"
+              />
               <div>
-                <h1 className="text-lg lg:text-xl font-bold text-gray-900">{storeConfig.name}</h1>
                 <div className="flex items-center space-x-2 text-xs lg:text-sm">
                   <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
                     timeInfo.isOpen 

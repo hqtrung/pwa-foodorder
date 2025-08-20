@@ -8,14 +8,16 @@ import { Input } from '@/components/ui/Input';
 import { Card } from '@/components/ui/Card';
 import { useUIStore, useCartStore } from '@/stores';
 import { Product, Topping } from '@/types';
+import { CartItem } from '@/stores/cartStore';
 
 interface ProductDetailModalProps {
   isOpen: boolean;
   onClose: () => void;
   product: Product;
+  cartItem?: CartItem; // Optional: if provided, we're editing an existing item
 }
 
-export function ProductDetailModal({ isOpen, onClose, product }: ProductDetailModalProps) {
+export function ProductDetailModal({ isOpen, onClose, product, cartItem }: ProductDetailModalProps) {
   const t = useTranslations();
   const locale = useLocale();
   
@@ -30,11 +32,13 @@ export function ProductDetailModal({ isOpen, onClose, product }: ProductDetailMo
 
   // Store actions
   const addItem = useCartStore(state => state.addItem);
+  const updateItem = useCartStore(state => state.updateItem);
   const showSuccessToast = useUIStore(state => state.showSuccessToast);
   const showErrorToast = useUIStore(state => state.showErrorToast);
 
   const productName = product.name;
   const productDescription = product.description;
+  const isEditing = !!cartItem;
 
   // Load toppings when modal opens
   useEffect(() => {
@@ -45,15 +49,23 @@ export function ProductDetailModal({ isOpen, onClose, product }: ProductDetailMo
     }
   }, [isOpen, product.id]);
 
-  // Reset state when modal opens
+  // Reset/populate state when modal opens
   useEffect(() => {
     if (isOpen) {
-      setQuantity(1);
-      setSelectedToppings([]);
-      setSpecialInstructions('');
+      if (isEditing && cartItem) {
+        // Pre-populate form with existing cart item data
+        setQuantity(cartItem.quantity);
+        setSelectedToppings(cartItem.toppings);
+        setSpecialInstructions(cartItem.specialInstructions || '');
+      } else {
+        // Reset for new item
+        setQuantity(1);
+        setSelectedToppings([]);
+        setSpecialInstructions('');
+      }
       setCurrentImageIndex(0);
     }
-  }, [isOpen, product.id]);
+  }, [isOpen, product.id, isEditing, cartItem]);
 
   const loadToppings = async () => {
     try {
@@ -95,20 +107,40 @@ export function ProductDetailModal({ isOpen, onClose, product }: ProductDetailMo
     setQuantity(prev => Math.max(1, Math.min(10, prev + delta)));
   };
 
-  const handleAddToCart = async () => {
+  const handleSubmit = async () => {
     try {
       setLoading(true);
-      await addItem(product, quantity, selectedToppings, specialInstructions);
-      showSuccessToast(
-        t('product.success.addedToCart', { 
-          name: productName,
-          quantity 
-        })
-      );
+      
+      if (isEditing && cartItem) {
+        // Update existing cart item
+        await updateItem(cartItem.id, {
+          quantity,
+          toppings: selectedToppings,
+          specialInstructions
+        });
+        showSuccessToast(
+          t('cart.item.updated', { 
+            name: productName
+          })
+        );
+      } else {
+        // Add new item to cart
+        await addItem(product, quantity, selectedToppings, specialInstructions);
+        showSuccessToast(
+          t('product.success.addedToCart', { 
+            name: productName,
+            quantity 
+          })
+        );
+      }
       onClose();
     } catch (error) {
-      console.error('Error adding to cart:', error);
-      showErrorToast(t('product.errors.addToCartFailed'));
+      console.error('Error submitting product:', error);
+      showErrorToast(
+        isEditing 
+          ? t('cart.item.updateFailed')
+          : t('product.errors.addToCartFailed')
+      );
     } finally {
       setLoading(false);
     }
@@ -128,15 +160,11 @@ export function ProductDetailModal({ isOpen, onClose, product }: ProductDetailMo
   const hasMultipleImages = images.length > 1;
 
   return (
-    <Modal
-      isOpen={isOpen}
-      onClose={onClose}
-      size="xl"
-      className="max-h-[90vh] overflow-y-auto"
-    >
-      {/* Product Images */}
-      <div className="relative mb-6">
-        <div className="w-full aspect-square bg-gray-100 rounded-lg overflow-hidden" style={{ aspectRatio: '1/1' }}>
+    <Modal isOpen={isOpen} onClose={onClose} size="lg">
+      {/* Product Image Gallery */}
+      <div className="relative h-64 mb-6 bg-gray-100 rounded-lg overflow-hidden">
+        {/* Main Product Image */}
+        <div className="relative w-full h-full">
           <img
             src={images[currentImageIndex]}
             alt={productName}
@@ -423,16 +451,18 @@ export function ProductDetailModal({ isOpen, onClose, product }: ProductDetailMo
             </div>
           </div>
 
-          {/* Add to Cart Button */}
+          {/* Add to Cart / Update Button */}
           <Button
-            onClick={handleAddToCart}
-            disabled={!product.available || loading}
+            onClick={handleSubmit}
+            disabled={(!product.available && !isEditing) || loading}
             loading={loading}
             className="flex-shrink-0 ml-4"
           >
-            {!product.available 
+            {(!product.available && !isEditing)
               ? t('menu.product.outOfStock')
-              : t('product.addToCart.button', { price: formatPrice(totalPrice) })
+              : isEditing 
+                ? t('common.actions.save')
+                : t('product.addToCart.button', { price: formatPrice(totalPrice) })
             }
           </Button>
         </div>

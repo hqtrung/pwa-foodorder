@@ -1,5 +1,5 @@
 import { setRequestLocale } from 'next-intl/server';
-import { CheckoutPageMobile } from '@/components/CheckoutPageMobile';
+import { UnifiedCheckoutPage } from '@/components/UnifiedCheckoutPage';
 
 interface PageProps {
   params: Promise<{ locale: string }>;
@@ -9,7 +9,7 @@ export default async function Checkout({ params }: PageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
   
-  return <CheckoutPageMobile />;
+  return <UnifiedCheckoutPage />;
 }
 
 export function generateStaticParams() {

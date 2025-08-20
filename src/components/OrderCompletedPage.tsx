@@ -231,15 +231,6 @@ export function OrderCompletedPage({ orderId }: OrderCompletedPageProps) {
     return new Intl.NumberFormat('vi-VN').format(price);
   };
 
-  const getEstimatedTime = () => {
-    if (!order?.estimatedReadyTime) return '';
-    const now = Date.now();
-    const estimatedTime = order.estimatedReadyTime;
-    const diffMinutes = Math.ceil((estimatedTime - now) / (1000 * 60));
-    
-    if (diffMinutes <= 0) return t('order.ready');
-    return t('order.estimatedTime', { minutes: diffMinutes });
-  };
 
   if (loading) {
     return (
@@ -417,17 +408,6 @@ export function OrderCompletedPage({ orderId }: OrderCompletedPageProps) {
               </div>
             </div>
 
-            {/* Estimated Time */}
-            <div className="bg-primary-50 rounded-lg p-4 mb-6">
-              <div className="flex items-center">
-                <svg className="w-5 h-5 text-primary-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <span className="text-primary-900 font-medium">
-                  {getEstimatedTime()}
-                </span>
-              </div>
-            </div>
 
             {/* Order Items */}
             <div className="border-t border-gray-200 pt-6">

@@ -1,738 +1,765 @@
 {
-  "common": {
-    "navigation": {
-      "home": "Trang chủ",
-      "menu": "Thực đơn",
-      "cart": "Giỏ hàng",
-      "orders": "Đơn hàng",
-      "staff": "Nhân viên"
-    },
-    "orderTypes": {
-      "table": "Phục vụ tại bàn",
-      "delivery": "Giao hàng tận nơi"
-    },
-    "actions": {
-      "addToCart": "Thêm vào giỏ",
-      "checkout": "Thanh toán",
-      "placeOrder": "Đặt hàng",
-      "viewOrder": "Xem đơn hàng",
-      "goBack": "Quay lại",
-      "close": "Đóng",
-      "edit": "Chỉnh sửa",
-      "remove": "Xóa",
-      "confirm": "Xác nhận",
-      "cancel": "Hủy",
-      "save": "Lưu"
-    },
-    "currency": "₫",
-    "loading": "Đang tải...",
-    "error": "Đã có lỗi xảy ra",
-    "success": "Thành công",
-    "minutes": "phút",
-    "cancel": "Hủy",
-    "item": "món",
-    "items": "món"
-  },
-  "landing": {
-    "welcome": {
-      "title": "Bánh Mì PateDeli",
-      "subtitle": "Thưởng thức những món ăn Việt Nam đích thực",
-      "description": "Bánh Mì Truyền Thống, Xôi, Mì và Bò Kho cùng các loại cà phê, nước giải khát."
-    },
-    "status": {
-      "open": "Đang mở cửa",
-      "closed": "Đã đóng cửa",
-      "until": "đến"
-    },
-    "info": {
-      "address": "Địa chỉ",
-      "phone": "Điện thoại",
-      "hours": "Giờ mở cửa",
-      "dailyHours": "06:00 - 19:00 hàng ngày"
-    },
-    "orderType": {
-      "title": "Chọn loại đặt hàng",
-      "table": {
-        "title": "Phục vụ tại bàn",
-        "description": "Thưởng thức tại nhà hàng với dịch vụ chu đáo",
-        "benefit1": "Tươi & Nóng",
-        "benefit2": "Trải nghiệm cao cấp"
-      },
-      "delivery": {
-        "title": "Giao hàng tận nơi",
-        "description": "Giao hàng nhanh chóng đến tận nhà bạn",
-        "benefit1": "Tiện lợi",
-        "fee": "Phí giao hàng {fee}₫"
-      }
-    },
-    "tableNumber": {
-      "title": "Nhập số bàn của bạn",
-      "placeholder": "Số bàn",
-      "hint": "Vui lòng nhập số bàn từ 1-50",
-      "confirm": "Xác nhận số bàn"
-    },
-    "delivery": {
-      "title": "Xác nhận giao hàng",
-      "radius": "Bán kính giao hàng",
-      "minimum": "Đơn tối thiểu",
-      "confirm": "Tiếp tục đặt hàng"
-    },
-    "actions": {
-      "browseMenu": "Xem thực đơn"
-    },
-    "errors": {
-      "tableNumberRequired": "Vui lòng nhập số bàn",
-      "invalidTableNumber": "Số bàn không hợp lệ (1-50)"
-    },
-    "success": {
-      "tableSet": "Đã chọn bàn số {number}",
-      "deliverySelected": "Đã chọn giao hàng tận nơi"
-    },
-    "footer": {
-      "copyright": "© 2025 Bánh Mì PateDeli. Tất cả quyền được bảo lưu.",
-      "poweredBy": "Được hỗ trợ bởi FoodOrder PWA"
-    }
-  },
-  "menu": {
-    "title": "Thực đơn",
-    "orderTypeRequired": {
-      "title": "Chọn loại đặt hàng",
-      "description": "Vui lòng quay lại trang chủ để chọn loại đặt hàng trước khi xem thực đơn",
-      "backToHome": "Quay lại trang chủ"
-    },
-    "orderInfo": {
-      "table": "Bàn số {number}",
-      "delivery": "Giao hàng tận nơi"
-    },
-    "search": {
-      "placeholder": "Tìm kiếm món ăn...",
-      "results": {
-        "title": "Kết quả tìm kiếm",
-        "searching": "Đang tìm kiếm \"{query}\"...",
-        "found": "Tìm thấy {count} món cho \"{query}\"",
-        "clear": "Xóa tìm kiếm"
-      },
-      "noResults": {
-        "title": "Không tìm thấy món ăn nào",
-        "description": "Không có kết quả cho \"{query}\"",
-        "browseAll": "Xem tất cả món ăn"
-      }
-    },
-    "categories": {
-      "title": "Danh mục",
-      "viewAll": "Xem tất cả",
-      "all": "Tất cả danh mục"
-    },
-    "products": {
-      "featured": "Món nổi bật",
-      "all": "Tất cả món ăn",
-      "viewAll": "Xem tất cả {count} món",
-      "showFeatured": "Chỉ hiển thị món nổi bật",
-      "noFeatured": "Hiện tại không có món nổi bật nào"
-    },
-    "filters": {
-      "sortBy": "Sắp xếp theo",
-      "sort": {
-        "popularity": "Phổ biến",
-        "name": "Tên món",
-        "price": "Giá",
-        "newest": "Mới nhất"
-      },
-      "ascending": "Tăng dần",
-      "descending": "Giảm dần",
-      "availableOnly": "Chỉ hiện món còn hàng",
-      "reset": "Đặt lại",
-      "showing": "Hiển thị",
-      "includingUnavailable": "Bao gồm món hết hàng"
-    },
-    "badges": {
-      "promotion": "Khuyến mãi",
-      "bestSeller": "Bán chạy",
-      "new": "Mới"
-    },
-    "product": {
-      "outOfStock": "Hết hàng",
-      "minutes": "phút",
-      "customizable": "Tùy chỉnh được",
-      "viewDetails": "Xem chi tiết",
-      "addedToCart": "Đã thêm {name} vào giỏ hàng",
-      "addToCart": "Thêm vào giỏ"
-    },
-    "empty": {
-      "title": "Không có món ăn nào",
-      "description": "Hiện tại không có món ăn nào phù hợp với bộ lọc của bạn"
-    },
-    "errors": {
-      "loadFailed": "Không thể tải thực đơn"
-    }
-  },
-  "product": {
-    "toppings": {
-      "title": "Tùy chọn thêm"
-    },
-    "instructions": {
-      "title": "Ghi chú đặc biệt",
-      "placeholder": "Yêu cầu đặc biệt cho món ăn này..."
-    },
-    "quantity": {
-      "label": "Số lượng"
-    },
-    "addToCart": {
-      "button": "Thêm vào giỏ - {price}₫"
-    },
-    "allergens": {
-      "title": "Thông tin dị ứng",
-      "gluten": "Gluten",
-      "dairy": "Sữa",
-      "eggs": "Trứng",
-      "fish": "Cá",
-      "soy": "Đậu nành",
-      "nuts": "Hạt"
-    },
-    "nutrition": {
-      "title": "Thông tin dinh dưỡng",
-      "calories": "Calo",
-      "protein": "Protein",
-      "carbs": "Carbs",
-      "fat": "Chất béo"
-    },
-    "success": {
-      "addedToCart": "Đã thêm {quantity} {name} vào giỏ hàng"
-    },
-    "errors": {
-      "toppingsLoadFailed": "Không thể tải tùy chọn thêm",
-      "addToCartFailed": "Không thể thêm vào giỏ hàng"
-    }
-  },
   "cart": {
-    "title": "Giỏ hàng",
-    "viewCart": "Xem giỏ hàng",
-    "itemCount": "{count} món trong giỏ hàng",
-    "empty": {
-      "title": "Giỏ hàng trống",
-      "description": "Thêm món ăn vào giỏ hàng để tiếp tục",
-      "browseMenu": "Xem thực đơn",
-      "backToHome": "Về trang chủ",
-      "suggestions": {
-        "title": "Món ăn gợi ý",
-        "promotions": "Khuyến mãi",
-        "promotionsDesc": "Ưu đãi hấp dẫn",
-        "banhMi": "Bánh Mì",
-        "banhMiDesc": "Bánh mì tươi ngon",
-        "bestsellers": "Món bán chạy",
-        "bestsellersDesc": "Được yêu thích nhất"
-      }
-    },
-    "item": {
-      "removed": "Đã xóa {name} khỏi giỏ hàng",
-      "instructionsUpdated": "Đã cập nhật ghi chú",
-      "toppings": "Topping",
-      "specialInstructions": "Ghi chú đặc biệt",
-      "edit": "Sửa",
-      "instructionsPlaceholder": "Ghi chú cho món này...",
-      "each": "mỗi món",
-      "quantity": "Số lượng",
-      "modify": "Chỉnh sửa",
-      "remove": "Xóa"
-    },
-    "summary": {
-      "title": "Tóm tắt đơn hàng",
-      "items": "món",
-      "view": "Xem",
-      "subtotal": "Tạm tính",
-      "delivery": "Phí giao hàng",
-      "deliveryFee": "Phí giao hàng",
-      "tax": "Thuế",
-      "discount": "Giảm giá",
-      "total": "Tổng cộng",
-      "checkout": "Thanh toán"
-    },
-    "orderInfo": {
-      "title": "Thông tin đơn hàng",
-      "table": "Bàn số {number}",
-      "delivery": "Giao hàng tận nơi",
-      "edit": "Sửa thông tin đơn hàng"
-    },
     "actions": {
-      "clear": "Xóa tất cả",
       "change": "Thay đổi",
+      "clear": "Xóa tất cả",
       "continueShopping": "Tiếp tục mua sắm"
-    },
-    "items": {
-      "title": "Món đã chọn"
-    },
-    "specialInstructions": {
-      "title": "Ghi chú đặc biệt",
-      "placeholder": "Yêu cầu đặc biệt cho đơn hàng...",
-      "hint": "Ghi chú sẽ được gửi đến bếp"
-    },
-    "warnings": {
-      "minimumOrder": {
-        "title": "Chưa đủ đơn tối thiểu",
-        "description": "Đơn giao hàng tối thiểu {minimum}₫, cần thêm {needed}₫"
-      }
     },
     "checkout": {
       "button": "Thanh toán {total}₫"
     },
-    "estimatedTime": {
-      "delivery": "Dự kiến giao hàng trong 30-45 phút",
-      "pickup": "Dự kiến sẵn sàng trong 15-20 phút"
+    "empty": {
+      "backToHome": "Về trang chủ",
+      "browseMenu": "Xem thực đơn",
+      "description": "Thêm món ăn vào giỏ hàng để tiếp tục",
+      "suggestions": {
+        "banhMi": "Bánh Mì",
+        "banhMiDesc": "Bánh mì tươi ngon",
+        "bestsellers": "Món bán chạy",
+        "bestsellersDesc": "Được yêu thích nhất",
+        "promotions": "Khuyến mãi",
+        "promotionsDesc": "Ưu đãi hấp dẫn",
+        "title": "Món ăn gợi ý"
+      },
+      "title": "Giỏ hàng trống"
     },
     "errors": {
       "minimumOrder": "Đơn giao hàng tối thiểu {minimum}₫",
       "noOrderType": "Vui lòng chọn loại đặt hàng"
     },
+    "estimatedTime": {
+      "delivery": "Dự kiến giao hàng trong {minutes} phút",
+      "pickup": "Dự kiến sẵn sàng trong {minutes} phút"
+    },
+    "hideDetails": "Ẩn chi tiết",
+    "item": {
+      "each": "mỗi món",
+      "edit": "Sửa",
+      "instructionsPlaceholder": "Ghi chú cho món này...",
+      "instructionsUpdated": "Đã cập nhật ghi chú",
+      "modify": "Chỉnh sửa",
+      "quantity": "Số lượng",
+      "remove": "Xóa",
+      "removed": "Đã xóa {name} khỏi giỏ hàng",
+      "specialInstructions": "Ghi chú đặc biệt",
+      "toppings": "Topping",
+      "updateFailed": "Không thể cập nhật món hàng",
+      "updated": "{name} đã được cập nhật thành công"
+    },
+    "itemCount": "{count} món trong giỏ hàng",
+    "items": {
+      "title": "Món đã chọn"
+    },
+    "orderInfo": {
+      "delivery": "Giao hàng tận nơi",
+      "edit": "Sửa thông tin đơn hàng",
+      "orderTypeSelection": {
+        "delivery": {
+          "description": "Giao hàng nhanh chóng đến tận nhà bạn",
+          "title": "Giao hàng tận nơi"
+        },
+        "deliveryAddress": {
+          "hint": "Vui lòng cung cấp địa chỉ đầy đủ với đường, quận, thành phố",
+          "label": "Địa chỉ giao hàng",
+          "placeholder": "Nhập địa chỉ giao hàng của bạn",
+          "required": "[TRANSLATE] Delivery address is required"
+        },
+        "tableNumber": {
+          "hint": "Vui lòng nhập số bàn từ 1-50",
+          "label": "Số bàn",
+          "placeholder": "Nhập số bàn"
+        },
+        "tableService": {
+          "description": "Thưởng thức tại nhà hàng với dịch vụ chu đáo",
+          "title": "Phục vụ tại bàn"
+        },
+        "title": "Chọn loại đặt hàng"
+      },
+      "table": "Bàn số {number}",
+      "title": "Thông tin đơn hàng"
+    },
+    "reviewItems": "Xem lại món",
+    "showDetails": "Xem chi tiết",
+    "specialInstructions": {
+      "hint": "Ghi chú sẽ được gửi đến bếp",
+      "placeholder": "Yêu cầu đặc biệt cho đơn hàng...",
+      "title": "Ghi chú đặc biệt"
+    },
     "success": {
       "cleared": "Đã xóa giỏ hàng"
+    },
+    "summary": {
+      "checkout": "Thanh toán",
+      "delivery": "Phí giao hàng",
+      "deliveryFee": "Phí giao hàng",
+      "discount": "Giảm giá",
+      "items": "món",
+      "subtotal": "Tạm tính",
+      "tax": "Thuế",
+      "title": "Tóm tắt đơn hàng",
+      "total": "Tổng cộng",
+      "view": "Xem"
+    },
+    "title": "Giỏ hàng",
+    "viewCart": "Xem giỏ hàng",
+    "warnings": {
+      "minimumOrder": {
+        "description": "Đơn giao hàng tối thiểu {minimum}₫, cần thêm {needed}₫",
+        "title": "Chưa đủ đơn tối thiểu"
+      }
     }
   },
   "checkout": {
-    "title": "Thanh toán",
-    "orderSummary": "Tóm tắt đơn hàng",
-    "tableInfo": "Thông tin bàn",
-    "tableNumber": "Số bàn",
-    "tableNumberPlaceholder": "Nhập số bàn",
-    "deliveryInfo": "Thông tin giao hàng",
-    "fullAddress": "Địa chỉ đầy đủ",
-    "fullAddressPlaceholder": "Nhập địa chỉ giao hàng",
-    "phoneNumber": "Số điện thoại",
-    "phoneNumberPlaceholder": "Nhập số điện thoại",
-    "deliveryNotes": "Ghi chú giao hàng",
-    "deliveryNotesPlaceholder": "Ghi chú cho shipper...",
-    "paymentMethod": "Phương thức thanh toán",
-    "cashOnDelivery": "Thanh toán khi nhận hàng",
-    "confirmOrder": "Tôi xác nhận thông tin đơn hàng chính xác",
-    "placeOrderWithTotal": "Đặt hàng - {total}",
-    "required": "Bắt buộc"
-  },
-  "order": {
-    "title": "Đơn hàng #{number}",
-    "estimatedTime": "Thời gian dự kiến: {minutes} phút",
-    "orderDetails": "Chi tiết đơn hàng",
-    "tableService": "Phục vụ tại bàn - Bàn #{tableNumber}",
-    "deliveryService": "Giao hàng tận nơi",
-    "deliveryAddress": "Địa chỉ giao hàng",
-    "contactInfo": "Thông tin liên hệ",
-    "callRestaurant": "Gọi nhà hàng",
-    "liveChatSupport": "Hỗ trợ trực tuyến",
-    "totalPaid": "Tổng thanh toán",
-    "cash": "Tiền mặt"
-  },
-  "checkout": {
-    "title": "Thanh toán",
-    "stepProgress": "Bước {current} / {total}",
-    "steps": {
-      "tableInfo": {
-        "title": "Thông tin bàn"
-      },
-      "deliveryInfo": {
-        "title": "Thông tin giao hàng"
-      },
-      "payment": {
-        "title": "Phương thức thanh toán"
-      },
-      "review": {
-        "title": "Xem lại đơn hàng"
-      }
-    },
-    "tableInfo": {
-      "title": "Thông tin bàn",
-      "number": "Bàn số {number}",
-      "instructions": {
-        "title": "Lưu ý quan trọng",
-        "description": "Vui lòng ở lại bàn để nhận món ăn. Nhân viên sẽ mang đồ ăn đến bàn cho bạn."
-      }
-    },
-    "deliveryInfo": {
-      "title": "Thông tin giao hàng",
-      "badge": "Giao hàng",
-      "notice": {
-        "title": "Thời gian giao hàng",
-        "description": "Đơn hàng sẽ được giao trong vòng 30-45 phút. Chúng tôi sẽ liên hệ nếu có thay đổi."
-      }
-    },
+    "button": "Thanh toán",
     "customerInfo": {
       "title": "Thông tin khách hàng"
     },
     "deliveryAddress": {
       "title": "Địa chỉ giao hàng"
     },
-    "specialInstructions": {
-      "title": "Yêu cầu đặc biệt",
-      "placeholder": "Ghi chú thêm cho đơn hàng (ví dụ: không cay, ít đường...)",
-      "hint": "Các yêu cầu đặc biệt sẽ được chuyển đến bếp"
+    "deliveryInfo": {
+      "badge": "[TRANSLATE] Delivery",
+      "notice": {
+        "description": "Đơn hàng sẽ được giao trong khoảng thời gian ước tính",
+        "title": "[TRANSLATE] Delivery Time"
+      },
+      "title": "Thông tin giao hàng"
+    },
+    "errors": {
+      "customerNameRequired": "[TRANSLATE] Please enter customer name",
+      "deliveryInfoRequired": "Vui lòng điền đầy đủ thông tin giao hàng",
+      "paymentMethodRequired": "Vui lòng chọn phương thức thanh toán",
+      "submitFailed": "[TRANSLATE] Unable to place order. Please try again.",
+      "validation": {
+        "addressRequired": "[TRANSLATE] Delivery address is required",
+        "customerNameRequired": "[TRANSLATE] Customer name is required",
+        "maxRetriesExceeded": "[TRANSLATE] Maximum retry attempts exceeded",
+        "phoneRequired": "[TRANSLATE] Phone number is required for delivery",
+        "unknownError": "[TRANSLATE] An unexpected error occurred"
+      }
     },
     "form": {
-      "customerName": "Tên khách hàng",
-      "customerNamePlaceholder": "Nhập tên của bạn",
-      "phone": "Số điện thoại",
-      "phonePlaceholder": "0xxx xxx xxx",
-      "phoneHint": "Để nhà hàng liên hệ khi cần thiết",
-      "email": "Email",
-      "emailPlaceholder": "email@example.com",
-      "emailHint": "Để nhận thông báo đơn hàng (không bắt buộc)",
       "address": "Địa chỉ giao hàng",
-      "addressPlaceholder": "Số nhà, tên đường, phường/xã, quận/huyện, thành phố",
-      "addressHint": "Vui lòng cung cấp địa chỉ chính xác để giao hàng đúng hẹn",
+      "addressHint": "[TRANSLATE] Please provide accurate address for timely delivery",
+      "addressPlaceholder": "Nhập địa chỉ đầy đủ",
+      "customerName": "Họ tên",
+      "customerNamePlaceholder": "Nhập họ tên của bạn",
       "deliveryInstructions": "Hướng dẫn giao hàng",
-      "deliveryInstructionsPlaceholder": "Ví dụ: Tầng 3, căn 301, chuông cửa màu xanh",
-      "deliveryInstructionsHint": "Giúp shipper tìm được địa chỉ dễ dàng hơn",
-      "table": "Bàn số"
+      "deliveryInstructionsHint": "[TRANSLATE] Help the delivery person find your address easily",
+      "deliveryInstructionsPlaceholder": "Ghi chú đặc biệt cho shipper",
+      "email": "Email",
+      "emailHint": "[TRANSLATE] To receive order notifications (optional)",
+      "emailPlaceholder": "Nhập địa chỉ email (tùy chọn)",
+      "phone": "Số điện thoại",
+      "phoneHint": "[TRANSLATE] For the restaurant to contact you if needed",
+      "phonePlaceholder": "Nhập số điện thoại",
+      "table": "[TRANSLATE] Table"
+    },
+    "navigation": {
+      "next": "[TRANSLATE] Next",
+      "placeOrder": "[TRANSLATE] Place Order",
+      "previous": "[TRANSLATE] Previous",
+      "submitting": "[TRANSLATE] Processing..."
+    },
+    "orderInfo": {
+      "change": "Thay đổi",
+      "table": "Bàn {number}",
+      "title": "Thông tin đơn hàng"
     },
     "payment": {
-      "selectMethod": "Chọn phương thức thanh toán",
-      "methods": {
-        "cash": "Tiền mặt",
-        "card": "Thẻ tín dụng",
-        "momo": "Ví MoMo",
-        "zalopay": "ZaloPay"
+      "cardInfo": {
+        "description": "Thẻ sẽ được xử lý qua máy POS khi giao hàng.",
+        "title": "Thanh toán thẻ"
       },
+      "cashInfo": {
+        "description": "Vui lòng chuẩn bị tiền lẻ. Nhân viên sẽ mang hóa đơn khi giao hàng.",
+        "title": "Thanh toán tiền mặt"
+      },
+      "comingSoon": "Sắp ra mắt",
       "descriptions": {
-        "cash": "Thanh toán bằng tiền mặt khi nhận hàng",
-        "card": "Thanh toán bằng thẻ Visa, Mastercard",
+        "card": "Thanh toán bằng Visa, Mastercard",
+        "cash": "Thanh toán bằng tiền mặt khi giao hàng",
         "momo": "Thanh toán qua ví điện tử MoMo",
         "zalopay": "Thanh toán qua ví điện tử ZaloPay"
       },
-      "comingSoon": "Sắp có",
-      "cashInfo": {
-        "title": "Thanh toán tiền mặt",
-        "description": "Vui lòng chuẩn bị tiền lẻ. Nhân viên sẽ mang hóa đơn khi giao hàng."
-      },
-      "cardInfo": {
-        "title": "Thanh toán thẻ",
-        "description": "Thẻ sẽ được thanh toán qua máy POS khi giao hàng."
-      },
       "digitalWalletInfo": {
-        "title": "Ví điện tử",
-        "description": "Quét mã QR {method} để thanh toán nhanh chóng và an toàn."
+        "description": "Quét mã QR {method} để thanh toán nhanh chóng và an toàn.",
+        "title": "Ví điện tử"
       },
-      "securityNotice": "Giao dịch được bảo mật và mã hóa"
+      "methods": {
+        "card": "Thẻ tín dụng",
+        "cash": "Tiền mặt",
+        "momo": "Ví MoMo",
+        "zalopay": "ZaloPay"
+      },
+      "securityNotice": "Giao dịch được bảo mật và mã hóa",
+      "selectMethod": "Chọn phương thức thanh toán"
+    },
+    "paymentMethod": {
+      "title": "Phương thức thanh toán"
+    },
+    "placeOrder": "Đặt hàng",
+    "placingOrder": "Đang đặt hàng...",
+    "progress": {
+      "complete": "Hoàn thành",
+      "customer": "Thông tin khách",
+      "delivery": "Chi tiết giao hàng",
+      "instructions": "Ghi chú đặc biệt",
+      "payment": "Phương thức thanh toán",
+      "sectionsComplete": "phần hoàn thành",
+      "title": "Tiến trình thanh toán"
     },
     "review": {
-      "tableInfo": "Thông tin bàn",
-      "deliveryInfo": "Thông tin giao hàng",
-      "paymentMethod": "Phương thức thanh toán",
-      "orderSummary": "Tóm tắt đơn hàng"
+      "deliveryInfo": "[TRANSLATE] Delivery Information",
+      "orderSummary": "[TRANSLATE] Order Summary",
+      "paymentMethod": "[TRANSLATE] Payment Method",
+      "tableInfo": "[TRANSLATE] Table Information"
     },
-    "navigation": {
-      "previous": "Quay lại",
-      "next": "Tiếp tục",
-      "placeOrder": "Đặt hàng",
-      "submitting": "Đang xử lý..."
+    "specialInstructions": {
+      "hint": "Ghi chú sẽ được gửi đến bếp",
+      "placeholder": "Bất kỳ yêu cầu đặc biệt nào cho đơn hàng của bạn...",
+      "title": "Yêu cầu đặc biệt"
     },
-    "errors": {
-      "customerNameRequired": "Vui lòng nhập tên khách hàng",
-      "deliveryInfoRequired": "Vui lòng điền đầy đủ thông tin giao hàng",
-      "submitFailed": "Không thể đặt hàng. Vui lòng thử lại."
+    "stepProgress": "[TRANSLATE] Step {current} of {total}",
+    "steps": {
+      "deliveryInfo": {
+        "title": "[TRANSLATE] Delivery Information"
+      },
+      "payment": {
+        "title": "[TRANSLATE] Payment Method"
+      },
+      "review": {
+        "title": "[TRANSLATE] Review Order"
+      },
+      "tableInfo": {
+        "title": "[TRANSLATE] Table Information"
+      }
     },
     "success": {
-      "orderPlaced": "Đặt hàng thành công! Mã đơn hàng: {orderId}"
+      "orderPlaced": "[TRANSLATE] Order placed successfully! Order ID: {orderId}"
+    },
+    "tableInfo": {
+      "instructions": {
+        "description": "Vui lòng ở lại bàn và chờ nhân viên mang món đến",
+        "title": "[TRANSLATE] Important Notice"
+      },
+      "number": "[TRANSLATE] Table {number}",
+      "title": "[TRANSLATE] Table Information"
+    },
+    "title": "Thanh toán",
+    "validation": {
+      "customerName": {
+        "minLength": "Tên phải có ít nhất 2 ký tự"
+      },
+      "email": {
+        "invalid": "Vui lòng nhập địa chỉ email hợp lệ"
+      },
+      "phone": {
+        "invalid": "Vui lòng nhập số điện thoại hợp lệ"
+      }
     }
   },
-  "order": {
-    "title": "Đơn hàng #{number}",
-    "loading": "Đang tải thông tin đơn hàng...",
-    "tracking": {
-      "title": "Theo dõi đơn hàng",
-      "orderId": "Mã đơn hàng: {orderId}"
+  "common": {
+    "actions": {
+      "addToCart": "Thêm vào giỏ",
+      "cancel": "Hủy",
+      "checkout": "Thanh toán",
+      "close": "Đóng",
+      "confirm": "Xác nhận",
+      "continue": "Tiếp tục",
+      "edit": "Chỉnh sửa",
+      "goBack": "Quay lại",
+      "placeOrder": "Đặt hàng",
+      "remove": "Xóa",
+      "save": "Lưu",
+      "viewOrder": "Xem đơn hàng"
+    },
+    "cancel": "Hủy",
+    "currency": "₫",
+    "delivery": "Giao hàng",
+    "error": "Đã có lỗi xảy ra",
+    "fallbacks": {
+      "unknownCategory": "Không xác định",
+      "unknownItem": "Món không xác định",
+      "unknownProduct": "Sản phẩm không xác định",
+      "unknownTopping": "Topping không xác định"
+    },
+    "item": "món",
+    "items": "món",
+    "loading": "Đang tải...",
+    "minutes": "phút",
+    "navigation": {
+      "cart": "Giỏ hàng",
+      "home": "Trang chủ",
+      "menu": "Thực đơn",
+      "orders": "Đơn hàng",
+      "staff": "Nhân viên"
+    },
+    "orderTypes": {
+      "delivery": "Giao hàng tận nơi",
+      "table": "Phục vụ tại bàn"
+    },
+    "success": "Thành công"
+  },
+  "errors": {
+    "invalidPhone": "Số điện thoại không hợp lệ",
+    "maxLength": "Tối đa {max} ký tự",
+    "minLength": "Tối thiểu {min} ký tự",
+    "required": "Trường này là bắt buộc"
+  },
+  "landing": {
+    "actions": {
+      "browseMenu": "Xem thực đơn"
+    },
+    "delivery": {
+      "confirm": "Tiếp tục đặt hàng",
+      "minimum": "Đơn tối thiểu",
+      "radius": "Bán kính giao hàng",
+      "title": "Xác nhận giao hàng"
+    },
+    "errors": {
+      "invalidTableNumber": "Số bàn không hợp lệ (1-50)",
+      "tableNumberRequired": "Vui lòng nhập số bàn"
+    },
+    "footer": {
+      "copyright": "© 2025 Bánh Mì PateDeli. Tất cả quyền được bảo lưu.",
+      "poweredBy": "Được hỗ trợ bởi FoodOrder PWA"
+    },
+    "info": {
+      "address": "Địa chỉ",
+      "dailyHours": "06:00 - 19:00 hàng ngày",
+      "hours": "Giờ mở cửa",
+      "phone": "Điện thoại"
+    },
+    "orderType": {
+      "delivery": {
+        "benefit1": "Tiện lợi",
+        "description": "Giao hàng nhanh chóng đến tận nhà bạn",
+        "fee": "Phí giao hàng {fee}₫",
+        "title": "Giao hàng tận nơi"
+      },
+      "table": {
+        "benefit1": "Tươi & Nóng",
+        "benefit2": "Trải nghiệm cao cấp",
+        "description": "Thưởng thức tại nhà hàng với dịch vụ chu đáo",
+        "title": "Phục vụ tại bàn"
+      },
+      "title": "Chọn loại đặt hàng"
     },
     "status": {
-      "title": "Trạng thái đơn hàng",
-      "pending": "Chờ xác nhận",
-      "confirmed": "Đã xác nhận",
-      "preparing": "Đang chuẩn bị",
-      "ready": "Sẵn sàng",
-      "delivering": "Đang giao hàng",
-      "completed": "Hoàn thành",
-      "cancelled": "Đã hủy",
-      "preparingActive": "Bếp đang chế biến món ăn của bạn",
-      "readyTableActive": "Món ăn đã sẵn sàng, vui lòng chờ nhân viên phục vụ",
-      "deliveringActive": "Shipper đang giao hàng đến bạn"
+      "closed": "Đã đóng cửa",
+      "open": "Đang mở cửa",
+      "until": "đến"
     },
-    "statusDescriptions": {
-      "pending": "Đơn hàng đã được tiếp nhận và đang chờ xác nhận",
-      "confirmed": "Nhà hàng đã xác nhận đơn hàng và bắt đầu chuẩn bị",
-      "preparing": "Bếp đang chế biến món ăn theo yêu cầu",
-      "ready": "Món ăn đã sẵn sàng để {type, select, delivery {giao hàng} table {phục vụ} other {phục vụ}}",
-      "delivering": "Shipper đang trên đường giao đến địa chỉ của bạn",
-      "completed": "Đơn hàng đã được giao thành công",
-      "cancelled": "Đơn hàng đã được hủy"
+    "success": {
+      "deliverySelected": "Đã chọn giao hàng tận nơi",
+      "tableSet": "Đã chọn bàn số {number}"
     },
-    "estimatedCompletion": {
-      "title": "Thời gian dự kiến",
-      "delivery": "Đơn hàng sẽ được giao lúc {time}",
-      "table": "Món ăn sẽ sẵn sàng lúc {time}"
+    "tableNumber": {
+      "confirm": "Xác nhận số bàn",
+      "hint": "Vui lòng nhập số bàn từ 1-50",
+      "placeholder": "Số bàn",
+      "title": "Nhập số bàn của bạn"
     },
-    "summary": {
-      "title": "Thông tin đơn hàng",
-      "orderTime": "Thời gian đặt",
-      "estimatedTime": "Dự kiến hoàn thành",
-      "orderType": "Loại đơn hàng",
-      "table": "Bàn số",
-      "paymentMethod": "Thanh toán",
-      "total": "Tổng cộng"
+    "welcome": {
+      "description": "Bánh Mì Truyền Thống, Xôi, Mì và Bò Kho cùng các loại cà phê, nước giải khát.",
+      "subtitle": "Thưởng thức những món ăn Việt Nam đích thực",
+      "title": "Bánh Mì PateDeli"
+    }
+  },
+  "menu": {
+    "badges": {
+      "bestSeller": "Bán chạy",
+      "new": "Mới",
+      "promotion": "Khuyến mãi"
     },
-    "details": {
-      "title": "Chi tiết đơn hàng",
-      "customerInfo": "Thông tin khách hàng",
-      "name": "Tên khách hàng",
-      "phone": "Số điện thoại",
-      "email": "Email",
-      "table": "Số bàn",
-      "tableNumber": "Bàn {number}",
-      "deliveryAddress": "Địa chỉ giao hàng",
-      "items": "Món đã đặt",
-      "toppings": "Topping",
-      "specialInstructions": "Yêu cầu đặc biệt",
-      "each": "mỗi món",
-      "summary": "Tóm tắt đơn hàng",
-      "subtotal": "Tạm tính",
-      "deliveryFee": "Phí giao hàng",
-      "tax": "Thuế",
-      "discount": "Giảm giá",
-      "total": "Tổng cộng",
-      "orderInstructions": "Ghi chú đơn hàng"
+    "categories": {
+      "all": "Tất cả danh mục",
+      "title": "Danh mục",
+      "viewAll": "Xem tất cả"
     },
+    "empty": {
+      "description": "Hiện tại không có món ăn nào phù hợp với bộ lọc của bạn",
+      "title": "Không có món ăn nào"
+    },
+    "errors": {
+      "loadFailed": "Không thể tải thực đơn"
+    },
+    "filters": {
+      "ascending": "Tăng dần",
+      "availableOnly": "Chỉ hiện món còn hàng",
+      "descending": "Giảm dần",
+      "includingUnavailable": "Bao gồm món hết hàng",
+      "reset": "Đặt lại",
+      "showing": "Hiển thị",
+      "sort": {
+        "name": "Tên món",
+        "newest": "Mới nhất",
+        "popularity": "Phổ biến",
+        "price": "Giá"
+      },
+      "sortBy": "Sắp xếp theo"
+    },
+    "orderInfo": {
+      "delivery": "Giao hàng tận nơi",
+      "table": "Bàn số {number}"
+    },
+    "orderTypeRequired": {
+      "backToHome": "Quay lại trang chủ",
+      "description": "Vui lòng quay lại trang chủ để chọn loại đặt hàng trước khi xem thực đơn",
+      "title": "Chọn loại đặt hàng"
+    },
+    "product": {
+      "addToCart": "Thêm vào giỏ",
+      "addedToCart": "Đã thêm {name} vào giỏ hàng",
+      "customizable": "Tùy chỉnh được",
+      "minutes": "phút",
+      "outOfStock": "Hết hàng",
+      "viewDetails": "Xem chi tiết"
+    },
+    "products": {
+      "all": "Tất cả món ăn",
+      "featured": "Món nổi bật",
+      "noFeatured": "Hiện tại không có món nổi bật nào",
+      "showFeatured": "Chỉ hiển thị món nổi bật",
+      "viewAll": "Xem tất cả {count} món"
+    },
+    "search": {
+      "noResults": {
+        "browseAll": "Xem tất cả món ăn",
+        "description": "Không có kết quả cho \"{query}\"",
+        "title": "Không tìm thấy món ăn nào"
+      },
+      "placeholder": "Tìm kiếm món ăn...",
+      "results": {
+        "clear": "Xóa tìm kiếm",
+        "found": "Tìm thấy {count} món cho \"{query}\"",
+        "searching": "Đang tìm kiếm \"{query}\"...",
+        "title": "Kết quả tìm kiếm"
+      }
+    },
+    "title": "Thực đơn"
+  },
+  "order": {
     "actions": {
-      "title": "Thao tác",
-      "refresh": "Làm mới",
-      "trackOrder": "Theo dõi đơn hàng",
-      "viewDetails": "Xem chi tiết",
+      "backToHome": "Về trang chủ",
+      "backToMenu": "Quay lại thực đơn",
+      "callInitiated": "Đang kết nối cuộc gọi...",
       "callRestaurant": "Gọi nhà hàng",
       "cancelOrder": "Hủy đơn hàng",
-      "reorder": "Đặt lại món này",
-      "orderAgain": "Đặt món mới",
-      "contactSupport": "Liên hệ hỗ trợ",
-      "backToMenu": "Quay lại thực đơn",
-      "backToHome": "Về trang chủ",
-      "callInitiated": "Đang kết nối cuộc gọi...",
-      "itemsAddedToCart": "Đã thêm món vào giỏ hàng",
-      "orderCancelled": "Đơn hàng đã được hủy",
       "cannotCancel": "Không thể hủy đơn hàng ở trạng thái này",
-      "supportContacted": "Đã liên hệ bộ phận hỗ trợ"
-    },
-    "settings": {
-      "autoRefresh": "Tự động cập nhật"
-    },
-    "notifications": {
-      "statusUpdated": "Trạng thái đơn hàng đã được cập nhật",
-      "autoRefreshEnabled": "Đã bật tự động cập nhật",
-      "autoRefreshDisabled": "Đã tắt tự động cập nhật"
+      "contactSupport": "Liên hệ hỗ trợ",
+      "itemsAddedToCart": "Đã thêm món vào giỏ hàng",
+      "orderAgain": "Đặt món mới",
+      "orderCancelled": "Đơn hàng đã được hủy",
+      "refresh": "Làm mới",
+      "reorder": "Đặt lại món này",
+      "showQRCode": "Hiển thị mã QR",
+      "supportContacted": "Đã liên hệ bộ phận hỗ trợ",
+      "title": "Thao tác",
+      "trackOrder": "Theo dõi đơn hàng",
+      "viewDetails": "Xem chi tiết"
     },
     "completed": {
-      "title": "Đặt hàng thành công!",
-      "subtitle": "Cảm ơn bạn đã đặt hàng",
-      "message": "Đơn hàng của bạn đã được hoàn thành thành công!"
+      "message": "Đơn hàng của bạn đã được hoàn thành thành công!",
+      "title": "Đặt hàng thành công!"
     },
     "customer": {
       "info": "Thông tin khách hàng"
     },
-    "number": "Đơn hàng",
-    "title": "Đơn hàng #{number}",
-    "table": "Bàn",
-    "items": {
-      "title": "Món đã đặt"
-    },
-    "ready": "Sẵn sàng",
-    "estimatedTime": "{minutes} phút",
-    "errors": {
-      "notFound": {
-        "title": "Không tìm thấy đơn hàng",
-        "description": "Không thể tìm thấy đơn hàng bạn đang tìm kiếm."
-      }
-    },
-    "help": {
-      "title": "Cần hỗ trợ?",
-      "deliveryInstructions": "Nếu có vấn đề với giao hàng, vui lòng gọi trực tiếp cho nhà hàng.",
-      "tableInstructions": "Vui lòng ở lại bàn và chờ nhân viên mang món đến."
+    "details": {
+      "customerInfo": "Thông tin khách hàng",
+      "deliveryAddress": "Địa chỉ giao hàng",
+      "deliveryFee": "Phí giao hàng",
+      "discount": "Giảm giá",
+      "each": "mỗi món",
+      "email": "Email",
+      "items": "Món đã đặt",
+      "name": "Tên khách hàng",
+      "orderInstructions": "Ghi chú đơn hàng",
+      "phone": "Số điện thoại",
+      "specialInstructions": "Yêu cầu đặc biệt",
+      "subtotal": "Tạm tính",
+      "summary": "Tóm tắt đơn hàng",
+      "table": "Số bàn",
+      "tableNumber": "Bàn {number}",
+      "tax": "Thuế",
+      "title": "Chi tiết đơn hàng",
+      "toppings": "Topping",
+      "total": "Tổng cộng"
     },
     "errors": {
       "loadFailed": "Không thể tải thông tin đơn hàng",
       "notFound": {
-        "title": "Không tìm thấy đơn hàng",
-        "description": "Đơn hàng không tồn tại hoặc đã bị xóa"
+        "description": "Đơn hàng không tồn tại hoặc đã bị xóa",
+        "title": "Không tìm thấy đơn hàng"
       }
+    },
+    "estimatedCompletion": {
+      "delivery": "Đơn hàng sẽ được giao lúc {time}",
+      "table": "Món ăn sẽ sẵn sàng lúc {time}",
+      "title": "Thời gian dự kiến"
+    },
+    "estimatedTime": "{minutes} phút",
+    "help": {
+      "deliveryInstructions": "Nếu có vấn đề với giao hàng, vui lòng gọi trực tiếp cho nhà hàng.",
+      "tableInstructions": "Vui lòng ở lại bàn và chờ nhân viên mang món đến.",
+      "title": "Cần hỗ trợ?"
+    },
+    "items": {
+      "title": "Món đã đặt"
+    },
+    "loading": "Đang tải thông tin đơn hàng...",
+    "notifications": {
+      "autoRefreshDisabled": "Đã tắt tự động cập nhật",
+      "autoRefreshEnabled": "Đã bật tự động cập nhật",
+      "liveUpdates": "Cập nhật trực tiếp",
+      "manualRefresh": "Làm mới thủ công",
+      "statusUpdated": "Trạng thái đơn hàng đã được cập nhật"
+    },
+    "number": "Đơn hàng",
+    "ready": "Sẵn sàng",
+    "settings": {
+      "autoRefresh": "Tự động cập nhật"
+    },
+    "status": {
+      "cancelled": "Đã hủy",
+      "completed": "Hoàn thành",
+      "confirmed": "Đã xác nhận",
+      "delivering": "Đang giao hàng",
+      "deliveringActive": "Shipper đang giao hàng đến bạn",
+      "pending": "Chờ xác nhận",
+      "preparing": "Đang chuẩn bị",
+      "preparingActive": "Bếp đang chế biến món ăn của bạn",
+      "ready": "Sẵn sàng",
+      "readyTableActive": "Món ăn đã sẵn sàng, vui lòng chờ nhân viên phục vụ",
+      "title": "Trạng thái đơn hàng"
+    },
+    "statusDescriptions": {
+      "cancelled": "Đơn hàng đã được hủy",
+      "completed": "Đơn hàng đã được giao thành công",
+      "confirmed": "Nhà hàng đã xác nhận đơn hàng và bắt đầu chuẩn bị",
+      "delivering": "Shipper đang trên đường giao đến địa chỉ của bạn",
+      "pending": "Đơn hàng đã được tiếp nhận và đang chờ xác nhận",
+      "preparing": "Bếp đang chế biến món ăn theo yêu cầu",
+      "ready": "Món ăn đã sẵn sàng để {type, select, delivery {giao hàng} table {phục vụ} other {phục vụ}}"
+    },
+    "summary": {
+      "estimatedTime": "Dự kiến hoàn thành",
+      "orderTime": "Thời gian đặt",
+      "orderType": "Loại đơn hàng",
+      "paymentMethod": "Thanh toán",
+      "table": "Bàn số",
+      "title": "Thông tin đơn hàng",
+      "total": "Tổng cộng"
+    },
+    "table": "Bàn",
+    "title": "Đơn hàng #{number}",
+    "tracking": {
+      "orderId": "Mã đơn hàng: {orderId}",
+      "title": "Theo dõi đơn hàng"
+    }
+  },
+  "product": {
+    "addToCart": {
+      "button": "Thêm vào giỏ - {price}₫"
+    },
+    "allergens": {
+      "dairy": "Sữa",
+      "eggs": "Trứng",
+      "fish": "Cá",
+      "gluten": "Gluten",
+      "nuts": "Hạt",
+      "soy": "Đậu nành",
+      "title": "Thông tin dị ứng"
+    },
+    "errors": {
+      "addToCartFailed": "Không thể thêm vào giỏ hàng",
+      "toppingsLoadFailed": "Không thể tải tùy chọn thêm"
+    },
+    "instructions": {
+      "placeholder": "Yêu cầu đặc biệt cho món ăn này...",
+      "title": "Ghi chú đặc biệt"
+    },
+    "nutrition": {
+      "calories": "Calo",
+      "carbs": "Carbs",
+      "fat": "Chất béo",
+      "protein": "Protein",
+      "title": "Thông tin dinh dưỡng"
+    },
+    "quantity": {
+      "label": "Số lượng"
+    },
+    "success": {
+      "addedToCart": "Đã thêm {quantity} {name} vào giỏ hàng"
+    },
+    "toppings": {
+      "title": "Tùy chọn thêm"
     }
   },
   "staff": {
-    "loading": "Đang tải bảng điều khiển...",
+    "actions": {
+      "bulkMarkReady": "Đã cập nhật các đơn khẩn cấp",
+      "markUrgentReady": "Sẵn sàng (Khẩn cấp)",
+      "refresh": "Làm mới",
+      "sound": "Âm thanh",
+      "testSound": "Thử âm thanh"
+    },
+    "autoRefreshDisabled": "Đã tắt tự động cập nhật",
+    "autoRefreshEnabled": "Đã bật tự động cập nhật",
     "dashboard": {
       "title": "Bảng điều khiển nhân viên"
     },
-    "status": {
-      "live": "Trực tiếp",
-      "paused": "Tạm dừng"
+    "errors": {
+      "loadFailed": "Không thể tải dữ liệu bảng điều khiển",
+      "refreshFailed": "Không thể làm mới dữ liệu",
+      "updateFailed": "Không thể cập nhật đơn hàng"
     },
-    "stats": {
-      "title": "Thống kê tổng quan",
-      "activeOrders": "Đơn đang xử lý",
-      "activeOrdersDesc": "Đơn hàng cần xử lý",
-      "pendingConfirmation": "Chờ xác nhận",
-      "pendingConfirmationDesc": "Đơn mới cần xác nhận",
-      "inPreparation": "Đang chế biến",
-      "inPreparationDesc": "Đơn đang trong bếp",
-      "readyForDelivery": "Sẵn sàng",
-      "readyForDeliveryDesc": "Đơn đã hoàn thành",
-      "averageTime": "Thời gian TB",
-      "averageTimeDesc": "Thời gian chế biến",
-      "todayOrders": "Đơn hôm nay",
-      "todayOrdersDesc": "Tổng đơn hàng",
-      "revenue": "Doanh thu",
-      "revenueDesc": "Doanh thu hôm nay"
+    "filters": {
+      "all": "Tất cả",
+      "allStatus": "Tất cả",
+      "confirmed": "Đã xác nhận",
+      "delivering": "Đang giao",
+      "delivery": "Giao hàng",
+      "orderType": "Loại đơn hàng",
+      "pending": "Chờ xác nhận",
+      "preparing": "Đang chế biến",
+      "quickActions": "Thao tác nhanh",
+      "ready": "Sẵn sàng",
+      "showPreparing": "Đang chế biến",
+      "showReady": "Sẵn sàng",
+      "showUrgent": "Đơn khẩn cấp",
+      "status": "Trạng thái",
+      "table": "Tại bàn",
+      "urgent": "Khẩn cấp"
     },
     "insights": {
       "performance": "Hiệu suất",
       "performanceGood": "Thời gian chế biến tốt",
       "performanceNeedsImprovement": "Cần cải thiện tốc độ",
-      "workload": "Khối lượng công việc",
-      "workloadLight": "Nhẹ nhàng",
-      "workloadModerate": "Vừa phải",
-      "workloadHigh": "Cao peak, cần tập trung",
       "revenue": "Doanh thu",
-      "revenueToday": "Hôm nay: {amount}₫"
+      "revenueToday": "Hôm nay: {amount}₫",
+      "workload": "Khối lượng công việc",
+      "workloadHigh": "Cao peak, cần tập trung",
+      "workloadLight": "Nhẹ nhàng",
+      "workloadModerate": "Vừa phải"
     },
-    "filters": {
-      "orderType": "Loại đơn hàng",
-      "status": "Trạng thái",
-      "all": "Tất cả",
-      "table": "Tại bàn",
-      "delivery": "Giao hàng",
-      "urgent": "Khẩn cấp",
-      "allStatus": "Tất cả",
-      "pending": "Chờ xác nhận",
-      "confirmed": "Đã xác nhận",
-      "preparing": "Đang chế biến",
-      "ready": "Sẵn sàng",
-      "delivering": "Đang giao",
-      "quickActions": "Thao tác nhanh",
-      "showUrgent": "Đơn khẩn cấp",
-      "showPreparing": "Đang chế biến",
-      "showReady": "Sẵn sàng"
-    },
-    "orders": {
-      "title": "Đơn hàng",
-      "empty": {
-        "title": "Không có đơn hàng",
-        "description": "Hiện tại không có đơn hàng nào phù hợp với bộ lọc"
-      }
-    },
-    "orderStatus": {
-      "pending": "Chờ xác nhận",
-      "confirmed": "Đã xác nhận",
-      "preparing": "Đang chế biến",
-      "ready": "Sẵn sàng",
-      "delivering": "Đang giao",
-      "completed": "Hoàn thành"
-    },
-    "priority": {
-      "normal": "Bình thường",
-      "high": "Cao",
-      "urgent": "Khẩn cấp"
-    },
-    "orderCard": {
-      "table": "Bàn",
-      "items": "Món",
-      "overdue": "Quá hạn",
-      "updating": "Đang cập nhật...",
-      "completed": "Đã hoàn thành",
-      "call": "Gọi",
-      "view": "Xem",
-      "rush": "Gấp",
-      "markAs": {
-        "confirmed": "Xác nhận đơn",
-        "preparing": "Bắt đầu chế biến",
-        "ready": "Đánh dấu sẵn sàng",
-        "delivering": "Bắt đầu giao hàng",
-        "completed": "Hoàn thành"
-      }
-    },
-    "actions": {
-      "refresh": "Làm mới",
-      "sound": "Âm thanh",
-      "testSound": "Thử âm thanh",
-      "markUrgentReady": "Sẵn sàng (Khẩn cấp)",
-      "bulkMarkReady": "Đã cập nhật các đơn khẩn cấp"
-    },
-    "sidebar": {
-      "quickActions": "Thao tác nhanh",
-      "settings": "Cài đặt",
-      "filters": "Bộ lọc"
-    },
-    "settings": {
-      "autoRefresh": "Tự động cập nhật",
-      "autoRefreshDesc": "Tự động làm mới dữ liệu đơn hàng",
-      "language": "Ngôn ngữ"
-    },
+    "loading": "Đang tải bảng điều khiển...",
     "minutes": "phút",
-    "soundTest": {
-      "success": "Âm thanh hoạt động bình thường",
-      "failed": "Không thể phát âm thanh",
-      "error": "Lỗi khi thử âm thanh"
-    },
-    "refreshed": "Đã làm mới dữ liệu",
-    "orderUpdated": "Đã cập nhật trạng thái đơn hàng",
-    "autoRefreshEnabled": "Đã bật tự động cập nhật",
-    "autoRefreshDisabled": "Đã tắt tự động cập nhật",
-    "soundControls": {
-      "title": "Điều khiển âm thanh",
-      "status": {
-        "ready": "Sẵn sàng",
-        "suspended": "Tạm dừng",
-        "notReady": "Chưa sẵn sàng"
-      },
-      "initRequired": {
-        "title": "Cần khởi tạo âm thanh",
-        "description": "Nhấp để bật thông báo âm thanh",
-        "button": "Khởi tạo âm thanh"
-      },
-      "suspended": {
-        "title": "Âm thanh bị tạm dừng",
-        "description": "Ngữ cảnh âm thanh đang bị tạm dừng",
-        "button": "Tiếp tục âm thanh"
-      },
-      "masterEnable": {
-        "label": "Bật âm thanh",
-        "description": "Công tắc chính cho tất cả thông báo âm thanh"
-      },
-      "volume": {
-        "label": "Âm lượng"
-      },
-      "notifications": {
-        "title": "Thông báo",
-        "newOrder": "Đơn hàng mới",
-        "statusChange": "Thay đổi trạng thái",
-        "urgentOrder": "Đơn khẩn cấp"
-      },
-      "test": "Thử",
-      "reset": "Đặt lại",
-      "info": "Cài đặt âm thanh được lưu cục bộ"
-    },
     "notifications": {
       "newOrder": "Đơn hàng mới #{orderNumber} từ {customer}",
       "statusChanged": "Đơn hàng #{orderNumber} đã cập nhật trạng thái",
       "urgentOrder": "Đơn khẩn cấp #{orderNumber} cần xử lý ngay"
     },
-    "errors": {
-      "loadFailed": "Không thể tải dữ liệu bảng điều khiển",
-      "updateFailed": "Không thể cập nhật đơn hàng",
-      "refreshFailed": "Không thể làm mới dữ liệu"
+    "orderCard": {
+      "call": "Gọi",
+      "completed": "Đã hoàn thành",
+      "items": "Món",
+      "markAs": {
+        "completed": "Hoàn thành",
+        "confirmed": "Xác nhận đơn",
+        "delivering": "Bắt đầu giao hàng",
+        "preparing": "Bắt đầu chế biến",
+        "ready": "Đánh dấu sẵn sàng"
+      },
+      "overdue": "Quá hạn",
+      "rush": "Gấp",
+      "table": "Bàn",
+      "updating": "Đang cập nhật...",
+      "view": "Xem"
+    },
+    "orderStatus": {
+      "completed": "Hoàn thành",
+      "confirmed": "Đã xác nhận",
+      "delivering": "Đang giao",
+      "pending": "Chờ xác nhận",
+      "preparing": "Đang chế biến",
+      "ready": "Sẵn sàng"
+    },
+    "orderUpdated": "Đã cập nhật trạng thái đơn hàng",
+    "orders": {
+      "empty": {
+        "description": "Hiện tại không có đơn hàng nào phù hợp với bộ lọc",
+        "title": "Không có đơn hàng"
+      },
+      "title": "Đơn hàng"
+    },
+    "priority": {
+      "high": "Cao",
+      "normal": "Bình thường",
+      "urgent": "Khẩn cấp"
+    },
+    "refreshed": "Đã làm mới dữ liệu",
+    "settings": {
+      "autoRefresh": "Tự động cập nhật",
+      "autoRefreshDesc": "Tự động làm mới dữ liệu đơn hàng",
+      "language": "Ngôn ngữ"
+    },
+    "sidebar": {
+      "filters": "Bộ lọc",
+      "quickActions": "Thao tác nhanh",
+      "settings": "Cài đặt"
+    },
+    "soundControls": {
+      "info": "Cài đặt âm thanh được lưu cục bộ",
+      "initRequired": {
+        "button": "Khởi tạo âm thanh",
+        "description": "Nhấp để bật thông báo âm thanh",
+        "title": "Cần khởi tạo âm thanh"
+      },
+      "masterEnable": {
+        "description": "Công tắc chính cho tất cả thông báo âm thanh",
+        "label": "Bật âm thanh"
+      },
+      "notifications": {
+        "newOrder": "Đơn hàng mới",
+        "statusChange": "Thay đổi trạng thái",
+        "title": "Thông báo",
+        "urgentOrder": "Đơn khẩn cấp"
+      },
+      "reset": "Đặt lại",
+      "status": {
+        "notReady": "Chưa sẵn sàng",
+        "ready": "Sẵn sàng",
+        "suspended": "Tạm dừng"
+      },
+      "suspended": {
+        "button": "Tiếp tục âm thanh",
+        "description": "Ngữ cảnh âm thanh đang bị tạm dừng",
+        "title": "Âm thanh bị tạm dừng"
+      },
+      "test": "Thử",
+      "title": "Điều khiển âm thanh",
+      "volume": {
+        "label": "Âm lượng"
+      }
+    },
+    "soundTest": {
+      "error": "Lỗi khi thử âm thanh",
+      "failed": "Không thể phát âm thanh",
+      "success": "Âm thanh hoạt động bình thường"
+    },
+    "stats": {
+      "activeOrders": "Đơn đang xử lý",
+      "activeOrdersDesc": "Đơn hàng cần xử lý",
+      "averageTime": "Thời gian TB",
+      "averageTimeDesc": "Thời gian chế biến",
+      "inPreparation": "Đang chế biến",
+      "inPreparationDesc": "Đơn đang trong bếp",
+      "pendingConfirmation": "Chờ xác nhận",
+      "pendingConfirmationDesc": "Đơn mới cần xác nhận",
+      "readyForDelivery": "Sẵn sàng",
+      "readyForDeliveryDesc": "Đơn đã hoàn thành",
+      "revenue": "Doanh thu",
+      "revenueDesc": "Doanh thu hôm nay",
+      "title": "Thống kê tổng quan",
+      "todayOrders": "Đơn hôm nay",
+      "todayOrdersDesc": "Tổng đơn hàng"
+    },
+    "status": {
+      "live": "Trực tiếp",
+      "paused": "Tạm dừng"
     }
-  },
-  "checkout": {
-    "title": "Thanh toán",
-    "button": "Thanh toán",
-    "placeOrder": "Đặt hàng",
-    "placingOrder": "Đang đặt hàng...",
-    "estimatedTime": {
-      "delivery": "Dự kiến giao hàng trong 30-45 phút",
-      "pickup": "Dự kiến sẵn sàng trong 15-20 phút"
-    }
-  },
-  "errors": {
-    "required": "Trường này là bắt buộc",
-    "invalidPhone": "Số điện thoại không hợp lệ",
-    "minLength": "Tối thiểu {min} ký tự",
-    "maxLength": "Tối đa {max} ký tự"
   }
 }

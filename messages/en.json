@@ -1,330 +1,227 @@
 {
-  "common": {
-    "navigation": {
-      "home": "Home",
-      "menu": "Menu",
-      "cart": "Cart",
-      "orders": "Orders",
-      "staff": "Staff"
-    },
-    "orderTypes": {
-      "table": "Table Service",
-      "delivery": "Home Delivery"
-    },
-    "actions": {
-      "addToCart": "Add to Cart",
-      "checkout": "Checkout",
-      "placeOrder": "Place Order",
-      "viewOrder": "View Order",
-      "goBack": "Go Back",
-      "close": "Close",
-      "edit": "Edit",
-      "remove": "Remove",
-      "confirm": "Confirm",
-      "cancel": "Cancel",
-      "save": "Save"
-    },
-    "currency": "$",
-    "loading": "Loading...",
-    "error": "An error occurred",
-    "success": "Success",
-    "minutes": "minutes",
-    "cancel": "Cancel",
-    "item": "item",
-    "items": "items"
-  },
-  "landing": {
-    "welcome": {
-      "title": "Bánh Mì PateDeli",
-      "subtitle": "Enjoy authentic Vietnamese cuisine",
-      "description": "Traditional Bánh Mì, Sticky Rice, Noodles and Beef Stew with various coffee and beverages."
-    },
-    "status": {
-      "open": "Open Now",
-      "closed": "Closed",
-      "until": "until"
-    },
-    "info": {
-      "address": "Address",
-      "phone": "Phone",
-      "hours": "Opening Hours",
-      "dailyHours": "06:00 - 19:00 daily"
-    },
-    "orderType": {
-      "title": "Choose your order type",
-      "table": {
-        "title": "Table Service",
-        "description": "Dine in at our restaurant with attentive service",
-        "benefit1": "Fresh & Hot",
-        "benefit2": "Premium experience"
-      },
-      "delivery": {
-        "title": "Home Delivery",
-        "description": "Fast delivery straight to your door",
-        "benefit1": "Convenient",
-        "fee": "Delivery fee {fee}₫"
-      }
-    },
-    "tableNumber": {
-      "title": "Enter your table number",
-      "placeholder": "Table number",
-      "hint": "Please enter table number 1-50",
-      "confirm": "Confirm table number"
-    },
-    "delivery": {
-      "title": "Confirm delivery",
-      "radius": "Delivery radius",
-      "minimum": "Minimum order",
-      "confirm": "Continue ordering"
-    },
-    "actions": {
-      "browseMenu": "Browse menu"
-    },
-    "errors": {
-      "tableNumberRequired": "Please enter table number",
-      "invalidTableNumber": "Invalid table number (1-50)"
-    },
-    "success": {
-      "tableSet": "Selected table {number}",
-      "deliverySelected": "Selected home delivery"
-    },
-    "footer": {
-      "copyright": "© 2025 Bánh Mì PateDeli. All rights reserved.",
-      "poweredBy": "Powered by FoodOrder PWA"
-    }
-  },
-  "menu": {
-    "title": "Menu",
-    "orderTypeRequired": {
-      "title": "Select Order Type",
-      "description": "Please return to the home page to select an order type before viewing the menu",
-      "backToHome": "Back to Home"
-    },
-    "orderInfo": {
-      "table": "Table {number}",
-      "delivery": "Home Delivery"
-    },
-    "search": {
-      "placeholder": "Search for food...",
-      "results": {
-        "title": "Search Results",
-        "searching": "Searching for \"{query}\"...",
-        "found": "Found {count} items for \"{query}\"",
-        "clear": "Clear search"
-      },
-      "noResults": {
-        "title": "No dishes found",
-        "description": "No results for \"{query}\"",
-        "browseAll": "Browse all dishes"
-      }
-    },
-    "categories": {
-      "title": "Categories",
-      "viewAll": "View all"
-    },
-    "products": {
-      "featured": "Featured Items",
-      "all": "All Products",
-      "viewAll": "View all {count} items",
-      "showFeatured": "Show featured only",
-      "noFeatured": "No featured items available currently"
-    },
-    "filters": {
-      "sortBy": "Sort by",
-      "sort": {
-        "popularity": "Popularity",
-        "name": "Name",
-        "price": "Price",
-        "newest": "Newest"
-      },
-      "ascending": "Ascending",
-      "descending": "Descending",
-      "availableOnly": "Show available only",
-      "reset": "Reset",
-      "showing": "Showing",
-      "includingUnavailable": "Including unavailable"
-    },
-    "badges": {
-      "promotion": "Promotion",
-      "bestSeller": "Best Seller",
-      "new": "New"
-    },
-    "product": {
-      "outOfStock": "Out of Stock",
-      "minutes": "min",
-      "customizable": "Customizable",
-      "viewDetails": "View Details",
-      "addedToCart": "Added {name} to cart",
-      "addToCart": "Add to Cart"
-    },
-    "empty": {
-      "title": "No dishes available",
-      "description": "Currently no dishes match your filters"
-    },
-    "errors": {
-      "loadFailed": "Failed to load menu"
-    }
-  },
-  "product": {
-    "toppings": {
-      "title": "Add-ons"
-    },
-    "instructions": {
-      "title": "Special Instructions",
-      "placeholder": "Special requests for this dish..."
-    },
-    "quantity": {
-      "label": "Quantity"
-    },
-    "addToCart": {
-      "button": "Add to Cart - {price}₫"
-    },
-    "allergens": {
-      "title": "Allergen Information",
-      "gluten": "Gluten",
-      "dairy": "Dairy",
-      "eggs": "Eggs",
-      "fish": "Fish",
-      "soy": "Soy",
-      "nuts": "Nuts"
-    },
-    "nutrition": {
-      "title": "Nutritional Information",
-      "calories": "Calories",
-      "protein": "Protein",
-      "carbs": "Carbs",
-      "fat": "Fat"
-    },
-    "success": {
-      "addedToCart": "Added {quantity} {name} to cart"
-    },
-    "errors": {
-      "toppingsLoadFailed": "Failed to load add-ons",
-      "addToCartFailed": "Failed to add to cart"
-    }
-  },
   "cart": {
-    "title": "Shopping Cart",
-    "viewCart": "View Cart",
-    "itemCount": "{count} items in cart",
-    "empty": {
-      "title": "Cart is empty",
-      "description": "Add items to your cart to continue",
-      "browseMenu": "Browse Menu",
-      "backToHome": "Back to Home",
-      "suggestions": {
-        "title": "Suggested Items",
-        "promotions": "Promotions",
-        "promotionsDesc": "Great deals",
-        "banhMi": "Banh Mi",
-        "banhMiDesc": "Fresh sandwiches",
-        "bestsellers": "Bestsellers",
-        "bestsellersDesc": "Most popular items"
-      }
-    },
-    "item": {
-      "removed": "Removed {name} from cart",
-      "instructionsUpdated": "Instructions updated",
-      "toppings": "Toppings",
-      "specialInstructions": "Special Instructions",
-      "edit": "Edit",
-      "instructionsPlaceholder": "Notes for this item...",
-      "each": "each",
-      "quantity": "Quantity",
-      "modify": "Modify",
-      "remove": "Remove"
-    },
-    "summary": {
-      "title": "Order Summary",
-      "items": "items",
-      "view": "View",
-      "subtotal": "Subtotal",
-      "delivery": "Delivery Fee",
-      "deliveryFee": "Delivery Fee",
-      "tax": "Tax",
-      "discount": "Discount",
-      "total": "Total",
-      "checkout": "Checkout"
-    },
-    "orderInfo": {
-      "title": "Order Information",
-      "table": "Table {number}",
-      "delivery": "Delivery",
-      "edit": "Edit Order Information"
-    },
     "actions": {
-      "clear": "Clear All",
       "change": "Change",
+      "clear": "Clear All",
       "continueShopping": "Continue Shopping"
-    },
-    "items": {
-      "title": "Selected Items"
-    },
-    "specialInstructions": {
-      "title": "Special Instructions",
-      "placeholder": "Special requests for your order...",
-      "hint": "Instructions will be sent to kitchen"
-    },
-    "warnings": {
-      "minimumOrder": {
-        "title": "Minimum Order Not Met",
-        "description": "Minimum delivery order ${minimum}, need ${needed} more"
-      }
     },
     "checkout": {
       "button": "Checkout ${total}"
     },
-    "estimatedTime": {
-      "delivery": "Estimated delivery in 30-45 minutes",
-      "pickup": "Ready for pickup in 15-20 minutes"
+    "empty": {
+      "backToHome": "Back to Home",
+      "browseMenu": "Browse Menu",
+      "description": "Add items to your cart to continue",
+      "suggestions": {
+        "banhMi": "Banh Mi",
+        "banhMiDesc": "Fresh sandwiches",
+        "bestsellers": "Bestsellers",
+        "bestsellersDesc": "Most popular items",
+        "promotions": "Promotions",
+        "promotionsDesc": "Great deals",
+        "title": "Suggested Items"
+      },
+      "title": "Cart is empty"
     },
     "errors": {
       "minimumOrder": "Minimum delivery order ${minimum}",
       "noOrderType": "Please select order type"
     },
+    "estimatedTime": {
+      "delivery": "Estimated delivery in 30-45 minutes",
+      "pickup": "Ready for pickup in 15-20 minutes"
+    },
+    "hideDetails": "Hide Details",
+    "item": {
+      "each": "each",
+      "edit": "Edit",
+      "instructionsPlaceholder": "Notes for this item...",
+      "instructionsUpdated": "Instructions updated",
+      "modify": "Modify",
+      "quantity": "Quantity",
+      "remove": "Remove",
+      "removed": "Removed {name} from cart",
+      "specialInstructions": "Special Instructions",
+      "toppings": "Toppings",
+      "updateFailed": "Failed to update item",
+      "updated": "{name} updated successfully"
+    },
+    "itemCount": "{count} items in cart",
+    "items": {
+      "title": "Selected Items"
+    },
+    "orderInfo": {
+      "delivery": "Delivery",
+      "edit": "Edit Order Information",
+      "orderTypeSelection": {
+        "delivery": {
+          "description": "Fast delivery straight to your door",
+          "title": "Home Delivery"
+        },
+        "deliveryAddress": {
+          "hint": "Please provide accurate address for timely delivery",
+          "label": "Delivery Address",
+          "placeholder": "Enter your full delivery address",
+          "required": "Delivery address is required"
+        },
+        "tableNumber": {
+          "hint": "Please enter table number 1-50",
+          "label": "Table Number",
+          "placeholder": "Enter table number"
+        },
+        "tableService": {
+          "description": "Dine in at our restaurant with attentive service",
+          "title": "Table Service"
+        },
+        "title": "Select Order Type"
+      },
+      "table": "Table {number}",
+      "title": "Order Information"
+    },
+    "reviewItems": "Review Items",
+    "showDetails": "Show Details",
+    "specialInstructions": {
+      "hint": "Instructions will be sent to kitchen",
+      "placeholder": "Special requests for your order...",
+      "title": "Special Instructions"
+    },
     "success": {
       "cleared": "Cart cleared"
+    },
+    "summary": {
+      "checkout": "Checkout",
+      "delivery": "Delivery Fee",
+      "deliveryFee": "Delivery Fee",
+      "discount": "Discount",
+      "items": "items",
+      "subtotal": "Subtotal",
+      "tax": "Tax",
+      "title": "Order Summary",
+      "total": "Total",
+      "view": "View"
+    },
+    "title": "Shopping Cart",
+    "viewCart": "View Cart",
+    "warnings": {
+      "minimumOrder": {
+        "description": "Minimum delivery order ${minimum}, need ${needed} more",
+        "title": "Minimum Order Not Met"
+      }
     }
   },
   "checkout": {
-    "title": "Checkout",
-    "orderSummary": "Order Summary",
-    "tableInfo": "Table Information",
-    "tableNumber": "Table Number",
-    "tableNumberPlaceholder": "Enter table number",
-    "deliveryInfo": "Delivery Information",
-    "fullAddress": "Full Address",
-    "fullAddressPlaceholder": "Enter delivery address",
-    "phoneNumber": "Phone Number",
-    "phoneNumberPlaceholder": "Enter phone number",
-    "deliveryNotes": "Delivery Notes",
-    "deliveryNotesPlaceholder": "Notes for delivery...",
-    "paymentMethod": "Payment Method",
-    "cashOnDelivery": "Cash on Delivery",
-    "confirmOrder": "I confirm my order details are correct",
-    "placeOrderWithTotal": "Place Order - {total}",
-    "required": "Required"
-  },
-  "order": {
-    "title": "Order #{number}",
-    "estimatedTime": "Estimated time: {minutes} minutes",
-    "orderDetails": "Order Details",
-    "tableService": "Table Service - Table #{tableNumber}",
-    "deliveryService": "Home Delivery",
-    "deliveryAddress": "Delivery Address",
-    "contactInfo": "Contact Information",
-    "callRestaurant": "Call Restaurant",
-    "liveChatSupport": "Live Chat Support",
-    "totalPaid": "Total Paid",
-    "cash": "Cash"
-  },
-  "checkout": {
-    "title": "Checkout",
+    "button": "Checkout",
+    "customerInfo": {
+      "title": "Customer Information"
+    },
+    "deliveryAddress": {
+      "title": "Delivery Address"
+    },
+    "deliveryInfo": {
+      "badge": "Delivery",
+      "notice": {
+        "description": "Your order will be delivered within 30-45 minutes. We'll contact you if there are any changes.",
+        "title": "Delivery Time"
+      },
+      "title": "Delivery Information"
+    },
+    "errors": {
+      "customerNameRequired": "Please enter customer name",
+      "deliveryInfoRequired": "Please fill in all delivery information",
+      "paymentMethodRequired": "Please select a payment method",
+      "submitFailed": "Unable to place order. Please try again.",
+      "validation": {
+        "addressRequired": "Delivery address is required",
+        "customerNameRequired": "Customer name is required",
+        "maxRetriesExceeded": "Maximum retry attempts exceeded",
+        "phoneRequired": "Phone number is required for delivery",
+        "unknownError": "An unexpected error occurred"
+      }
+    },
+    "form": {
+      "address": "Delivery Address",
+      "addressHint": "Please provide accurate address for timely delivery",
+      "addressPlaceholder": "House number, street, ward, district, city",
+      "customerName": "Customer Name",
+      "customerNamePlaceholder": "Enter your name",
+      "deliveryInstructions": "Delivery Instructions",
+      "deliveryInstructionsHint": "Help the delivery person find your address easily",
+      "deliveryInstructionsPlaceholder": "e.g., 3rd floor, room 301, blue door bell",
+      "email": "Email",
+      "emailHint": "To receive order notifications (optional)",
+      "emailPlaceholder": "email@example.com",
+      "phone": "Phone Number",
+      "phoneHint": "For the restaurant to contact you if needed",
+      "phonePlaceholder": "0xxx xxx xxx",
+      "table": "Table"
+    },
+    "navigation": {
+      "next": "Next",
+      "placeOrder": "Place Order",
+      "previous": "Previous",
+      "submitting": "Processing..."
+    },
+    "orderInfo": {
+      "change": "Change",
+      "table": "Table {number}",
+      "title": "Order Information"
+    },
+    "payment": {
+      "cardInfo": {
+        "description": "Card will be processed via POS machine upon delivery.",
+        "title": "Card Payment"
+      },
+      "cashInfo": {
+        "description": "Please prepare exact change. Staff will bring receipt upon delivery.",
+        "title": "Cash Payment"
+      },
+      "comingSoon": "Coming Soon",
+      "descriptions": {
+        "card": "Pay with Visa, Mastercard",
+        "cash": "Pay with cash upon delivery",
+        "momo": "Pay via MoMo digital wallet",
+        "zalopay": "Pay via ZaloPay digital wallet"
+      },
+      "digitalWalletInfo": {
+        "description": "Scan the {method} QR code for quick and secure payment.",
+        "title": "Digital Wallet"
+      },
+      "methods": {
+        "card": "Credit Card",
+        "cash": "Cash",
+        "momo": "MoMo Wallet",
+        "zalopay": "ZaloPay"
+      },
+      "securityNotice": "Transactions are secure and encrypted",
+      "selectMethod": "Select Payment Method"
+    },
+    "paymentMethod": {
+      "title": "Payment Method"
+    },
+    "placeOrder": "Place Order",
+    "placingOrder": "Processing order...",
+    "progress": {
+      "complete": "complete",
+      "customer": "Customer Information",
+      "delivery": "Delivery Information",
+      "instructions": "Special Instructions",
+      "payment": "Payment Method",
+      "sectionsComplete": "sections complete",
+      "title": "Checkout Progress"
+    },
+    "review": {
+      "deliveryInfo": "Delivery Information",
+      "orderSummary": "Order Summary",
+      "paymentMethod": "Payment Method",
+      "tableInfo": "Table Information"
+    },
+    "specialInstructions": {
+      "hint": "Special requests will be forwarded to the kitchen",
+      "placeholder": "Add notes for your order (e.g., no spicy, less sugar...)",
+      "title": "Special Instructions"
+    },
     "stepProgress": "Step {current} of {total}",
     "steps": {
-      "tableInfo": {
-        "title": "Table Information"
-      },
       "deliveryInfo": {
         "title": "Delivery Information"
       },
@@ -333,409 +230,536 @@
       },
       "review": {
         "title": "Review Order"
+      },
+      "tableInfo": {
+        "title": "Table Information"
       }
-    },
-    "tableInfo": {
-      "title": "Table Information",
-      "number": "Table {number}",
-      "instructions": {
-        "title": "Important Notice",
-        "description": "Please remain at your table to receive your order. Our staff will bring your food directly to you."
-      }
-    },
-    "deliveryInfo": {
-      "title": "Delivery Information",
-      "badge": "Delivery",
-      "notice": {
-        "title": "Delivery Time",
-        "description": "Your order will be delivered within 30-45 minutes. We'll contact you if there are any changes."
-      }
-    },
-    "customerInfo": {
-      "title": "Customer Information"
-    },
-    "deliveryAddress": {
-      "title": "Delivery Address"
-    },
-    "specialInstructions": {
-      "title": "Special Instructions",
-      "placeholder": "Add notes for your order (e.g., no spicy, less sugar...)",
-      "hint": "Special requests will be forwarded to the kitchen"
-    },
-    "form": {
-      "customerName": "Customer Name",
-      "customerNamePlaceholder": "Enter your name",
-      "phone": "Phone Number",
-      "phonePlaceholder": "0xxx xxx xxx",
-      "phoneHint": "For the restaurant to contact you if needed",
-      "email": "Email",
-      "emailPlaceholder": "email@example.com",
-      "emailHint": "To receive order notifications (optional)",
-      "address": "Delivery Address",
-      "addressPlaceholder": "House number, street, ward, district, city",
-      "addressHint": "Please provide accurate address for timely delivery",
-      "deliveryInstructions": "Delivery Instructions",
-      "deliveryInstructionsPlaceholder": "e.g., 3rd floor, room 301, blue door bell",
-      "deliveryInstructionsHint": "Help the delivery person find your address easily",
-      "table": "Table"
-    },
-    "payment": {
-      "selectMethod": "Select Payment Method",
-      "methods": {
-        "cash": "Cash",
-        "card": "Credit Card",
-        "momo": "MoMo Wallet",
-        "zalopay": "ZaloPay"
-      },
-      "descriptions": {
-        "cash": "Pay with cash upon delivery",
-        "card": "Pay with Visa, Mastercard",
-        "momo": "Pay via MoMo digital wallet",
-        "zalopay": "Pay via ZaloPay digital wallet"
-      },
-      "comingSoon": "Coming Soon",
-      "cashInfo": {
-        "title": "Cash Payment",
-        "description": "Please prepare exact change. Staff will bring receipt upon delivery."
-      },
-      "cardInfo": {
-        "title": "Card Payment",
-        "description": "Card will be processed via POS machine upon delivery."
-      },
-      "digitalWalletInfo": {
-        "title": "Digital Wallet",
-        "description": "Scan the {method} QR code for quick and secure payment."
-      },
-      "securityNotice": "Transactions are secure and encrypted"
-    },
-    "review": {
-      "tableInfo": "Table Information",
-      "deliveryInfo": "Delivery Information",
-      "paymentMethod": "Payment Method",
-      "orderSummary": "Order Summary"
-    },
-    "navigation": {
-      "previous": "Previous",
-      "next": "Next",
-      "placeOrder": "Place Order",
-      "submitting": "Processing..."
-    },
-    "errors": {
-      "customerNameRequired": "Please enter customer name",
-      "deliveryInfoRequired": "Please fill in all delivery information",
-      "submitFailed": "Unable to place order. Please try again."
     },
     "success": {
       "orderPlaced": "Order placed successfully! Order ID: {orderId}"
+    },
+    "tableInfo": {
+      "instructions": {
+        "description": "Please remain at your table to receive your order. Our staff will bring your food directly to you.",
+        "title": "Important Notice"
+      },
+      "number": "Table {number}",
+      "title": "Table Information"
+    },
+    "title": "Checkout",
+    "validation": {
+      "customerName": {
+        "minLength": "Name must be at least 2 characters"
+      },
+      "email": {
+        "invalid": "Please enter a valid email address"
+      },
+      "phone": {
+        "invalid": "Please enter a valid phone number"
+      }
     }
   },
-  "order": {
-    "title": "Order #{number}",
-    "loading": "Loading order information...",
-    "tracking": {
-      "title": "Order Tracking",
-      "orderId": "Order ID: {orderId}"
+  "common": {
+    "actions": {
+      "addToCart": "Add to Cart",
+      "cancel": "Cancel",
+      "checkout": "Checkout",
+      "close": "Close",
+      "confirm": "Confirm",
+      "continue": "Continue",
+      "edit": "Edit",
+      "goBack": "Go Back",
+      "placeOrder": "Place Order",
+      "remove": "Remove",
+      "save": "Save",
+      "viewOrder": "View Order"
+    },
+    "cancel": "Cancel",
+    "currency": "$",
+    "delivery": "Delivery",
+    "error": "An error occurred",
+    "fallbacks": {
+      "unknownCategory": "Unknown",
+      "unknownItem": "Unknown Item",
+      "unknownProduct": "Unknown Product",
+      "unknownTopping": "Unknown Topping"
+    },
+    "item": "item",
+    "items": "items",
+    "loading": "Loading...",
+    "minutes": "minutes",
+    "navigation": {
+      "cart": "Cart",
+      "home": "Home",
+      "menu": "Menu",
+      "orders": "Orders",
+      "staff": "Staff"
+    },
+    "orderTypes": {
+      "delivery": "Home Delivery",
+      "table": "Table Service"
+    },
+    "success": "Success"
+  },
+  "errors": {
+    "invalidPhone": "Invalid phone number",
+    "maxLength": "Maximum {max} characters",
+    "minLength": "Minimum {min} characters",
+    "required": "This field is required"
+  },
+  "landing": {
+    "actions": {
+      "browseMenu": "Browse menu"
+    },
+    "delivery": {
+      "confirm": "Continue ordering",
+      "minimum": "Minimum order",
+      "radius": "Delivery radius",
+      "title": "Confirm delivery"
+    },
+    "errors": {
+      "invalidTableNumber": "Invalid table number (1-50)",
+      "tableNumberRequired": "Please enter table number"
+    },
+    "footer": {
+      "copyright": "© 2025 Bánh Mì PateDeli. All rights reserved.",
+      "poweredBy": "Powered by FoodOrder PWA"
+    },
+    "info": {
+      "address": "Address",
+      "dailyHours": "06:00 - 19:00 daily",
+      "hours": "Opening Hours",
+      "phone": "Phone"
+    },
+    "orderType": {
+      "delivery": {
+        "benefit1": "Convenient",
+        "description": "Fast delivery straight to your door",
+        "fee": "Delivery fee {fee}₫",
+        "title": "Home Delivery"
+      },
+      "table": {
+        "benefit1": "Fresh & Hot",
+        "benefit2": "Premium experience",
+        "description": "Dine in at our restaurant with attentive service",
+        "title": "Table Service"
+      },
+      "title": "Choose your order type"
     },
     "status": {
-      "title": "Order Status",
-      "pending": "Pending",
-      "confirmed": "Confirmed",
-      "preparing": "Preparing",
-      "ready": "Ready",
-      "delivering": "Delivering",
-      "completed": "Completed",
-      "cancelled": "Cancelled",
-      "preparingActive": "Kitchen is preparing your food",
-      "readyTableActive": "Food is ready, please wait for staff to serve",
-      "deliveringActive": "Driver is on the way to you"
+      "closed": "Closed",
+      "open": "Open Now",
+      "until": "until"
     },
-    "statusDescriptions": {
-      "pending": "Order has been received and awaiting confirmation",
-      "confirmed": "Restaurant has confirmed your order and started preparation",
-      "preparing": "Kitchen is cooking your food according to your requirements",
-      "ready": "Food is ready for {type, select, delivery {delivery} table {pickup} other {pickup}}",
-      "delivering": "Delivery driver is on the way to your address",
-      "completed": "Order has been successfully delivered",
-      "cancelled": "Order has been cancelled"
+    "success": {
+      "deliverySelected": "Selected home delivery",
+      "tableSet": "Selected table {number}"
     },
-    "estimatedCompletion": {
-      "title": "Estimated Time",
-      "delivery": "Order will be delivered at {time}",
-      "table": "Food will be ready at {time}"
+    "tableNumber": {
+      "confirm": "Confirm table number",
+      "hint": "Please enter table number 1-50",
+      "placeholder": "Table number",
+      "title": "Enter your table number"
     },
-    "summary": {
-      "title": "Order Information",
-      "orderTime": "Order Time",
-      "estimatedTime": "Estimated Completion",
-      "orderType": "Order Type",
-      "table": "Table",
-      "paymentMethod": "Payment Method",
-      "total": "Total"
+    "welcome": {
+      "description": "Traditional Bánh Mì, Sticky Rice, Noodles and Beef Stew with various coffee and beverages.",
+      "subtitle": "Enjoy authentic Vietnamese cuisine",
+      "title": "Bánh Mì PateDeli"
+    }
+  },
+  "menu": {
+    "badges": {
+      "bestSeller": "Best Seller",
+      "new": "New",
+      "promotion": "Promotion"
     },
-    "details": {
-      "title": "Order Details",
-      "customerInfo": "Customer Information",
-      "name": "Customer Name",
-      "phone": "Phone Number",
-      "email": "Email",
-      "table": "Table Number",
-      "tableNumber": "Table {number}",
-      "deliveryAddress": "Delivery Address",
-      "items": "Ordered Items",
-      "toppings": "Toppings",
-      "specialInstructions": "Special Instructions",
-      "each": "each",
-      "summary": "Order Summary",
-      "subtotal": "Subtotal",
-      "deliveryFee": "Delivery Fee",
-      "tax": "Tax",
-      "discount": "Discount",
-      "total": "Total",
-      "orderInstructions": "Order Notes"
+    "categories": {
+      "all": "All Categories",
+      "title": "Categories",
+      "viewAll": "View all"
     },
+    "empty": {
+      "description": "Currently no dishes match your filters",
+      "title": "No dishes available"
+    },
+    "errors": {
+      "loadFailed": "Failed to load menu"
+    },
+    "filters": {
+      "ascending": "Ascending",
+      "availableOnly": "Show available only",
+      "descending": "Descending",
+      "includingUnavailable": "Including unavailable",
+      "reset": "Reset",
+      "showing": "Showing",
+      "sort": {
+        "name": "Name",
+        "newest": "Newest",
+        "popularity": "Popularity",
+        "price": "Price"
+      },
+      "sortBy": "Sort by"
+    },
+    "orderInfo": {
+      "delivery": "Home Delivery",
+      "table": "Table {number}"
+    },
+    "orderTypeRequired": {
+      "backToHome": "Back to Home",
+      "description": "Please return to the home page to select an order type before viewing the menu",
+      "title": "Select Order Type"
+    },
+    "product": {
+      "addToCart": "Add to Cart",
+      "addedToCart": "Added {name} to cart",
+      "customizable": "Customizable",
+      "minutes": "min",
+      "outOfStock": "Out of Stock",
+      "viewDetails": "View Details"
+    },
+    "products": {
+      "all": "All Products",
+      "featured": "Featured Items",
+      "noFeatured": "No featured items available currently",
+      "showFeatured": "Show featured only",
+      "viewAll": "View all {count} items"
+    },
+    "search": {
+      "noResults": {
+        "browseAll": "Browse all dishes",
+        "description": "No results for \"{query}\"",
+        "title": "No dishes found"
+      },
+      "placeholder": "Search for food...",
+      "results": {
+        "clear": "Clear search",
+        "found": "Found {count} items for \"{query}\"",
+        "searching": "Searching for \"{query}\"...",
+        "title": "Search Results"
+      }
+    },
+    "title": "Menu"
+  },
+  "order": {
     "actions": {
-      "title": "Actions",
-      "refresh": "Refresh",
-      "trackOrder": "Track Order",
-      "viewDetails": "View Details",
+      "backToHome": "Back to Home",
+      "backToMenu": "Back to Menu",
+      "callInitiated": "Initiating call...",
       "callRestaurant": "Call Restaurant",
       "cancelOrder": "Cancel Order",
-      "reorder": "Reorder These Items",
-      "orderAgain": "Order Again",
-      "contactSupport": "Contact Support",
-      "backToMenu": "Back to Menu",
-      "backToHome": "Back to Home",
-      "callInitiated": "Initiating call...",
-      "itemsAddedToCart": "Items added to cart",
-      "orderCancelled": "Order has been cancelled",
       "cannotCancel": "Cannot cancel order at this stage",
-      "supportContacted": "Support team has been contacted"
-    },
-    "settings": {
-      "autoRefresh": "Auto Refresh"
-    },
-    "notifications": {
-      "statusUpdated": "Order status has been updated",
-      "autoRefreshEnabled": "Auto refresh enabled",
-      "autoRefreshDisabled": "Auto refresh disabled"
+      "contactSupport": "Contact Support",
+      "itemsAddedToCart": "Items added to cart",
+      "orderAgain": "Order Again",
+      "orderCancelled": "Order has been cancelled",
+      "refresh": "Refresh",
+      "reorder": "Reorder These Items",
+      "showQRCode": "Show QR Code",
+      "supportContacted": "Support team has been contacted",
+      "title": "Actions",
+      "trackOrder": "Track Order",
+      "viewDetails": "View Details"
     },
     "completed": {
-      "title": "Order Complete!",
-      "subtitle": "Thank you for your order",
-      "message": "Your order has been completed successfully!"
+      "message": "Thank you for your order! Please leave us a review.",
+      "title": "Order Completed"
     },
     "customer": {
       "info": "Customer Information"
     },
-    "number": "Order",
-    "title": "Order #{number}",
-    "table": "Table",
-    "items": {
-      "title": "Order Items"
-    },
-    "ready": "Ready now",
-    "estimatedTime": "{minutes} minutes",
-    "errors": {
-      "notFound": {
-        "title": "Order Not Found",
-        "description": "The order you're looking for could not be found."
-      }
-    },
-    "help": {
-      "title": "Need Help?",
-      "deliveryInstructions": "If there's an issue with delivery, please call the restaurant directly.",
-      "tableInstructions": "Please remain at your table and wait for staff to bring your order."
-    },
-    "completed": {
-      "title": "Order Completed",
-      "message": "Thank you for your order! Please leave us a review."
+    "details": {
+      "customerInfo": "Customer Information",
+      "deliveryAddress": "Delivery Address",
+      "deliveryFee": "Delivery Fee",
+      "discount": "Discount",
+      "each": "each",
+      "email": "Email",
+      "items": "Ordered Items",
+      "name": "Customer Name",
+      "orderInstructions": "Order Notes",
+      "phone": "Phone Number",
+      "specialInstructions": "Special Instructions",
+      "subtotal": "Subtotal",
+      "summary": "Order Summary",
+      "table": "Table Number",
+      "tableNumber": "Table {number}",
+      "tax": "Tax",
+      "title": "Order Details",
+      "toppings": "Toppings",
+      "total": "Total"
     },
     "errors": {
       "loadFailed": "Failed to load order information",
       "notFound": {
-        "title": "Order Not Found",
-        "description": "The order does not exist or has been deleted"
+        "description": "The order does not exist or has been deleted",
+        "title": "Order Not Found"
       }
+    },
+    "estimatedCompletion": {
+      "delivery": "Order will be delivered at {time}",
+      "table": "Food will be ready at {time}",
+      "title": "Estimated Time"
+    },
+    "estimatedTime": "{minutes} minutes",
+    "help": {
+      "deliveryInstructions": "If there's an issue with delivery, please call the restaurant directly.",
+      "tableInstructions": "Please remain at your table and wait for staff to bring your order.",
+      "title": "Need Help?"
+    },
+    "items": {
+      "title": "Order Items"
+    },
+    "loading": "Loading order information...",
+    "notifications": {
+      "autoRefreshDisabled": "Auto refresh disabled",
+      "autoRefreshEnabled": "Auto refresh enabled",
+      "liveUpdates": "Live updates",
+      "manualRefresh": "Manual refresh",
+      "statusUpdated": "Order status has been updated"
+    },
+    "number": "Order",
+    "ready": "Ready now",
+    "settings": {
+      "autoRefresh": "Auto Refresh"
+    },
+    "status": {
+      "cancelled": "Cancelled",
+      "completed": "Completed",
+      "confirmed": "Confirmed",
+      "delivering": "Delivering",
+      "deliveringActive": "Driver is on the way to you",
+      "pending": "Pending",
+      "preparing": "Preparing",
+      "preparingActive": "Kitchen is preparing your food",
+      "ready": "Ready",
+      "readyTableActive": "Food is ready, please wait for staff to serve",
+      "title": "Order Status"
+    },
+    "statusDescriptions": {
+      "cancelled": "Order has been cancelled",
+      "completed": "Order has been successfully delivered",
+      "confirmed": "Restaurant has confirmed your order and started preparation",
+      "delivering": "Delivery driver is on the way to your address",
+      "pending": "Order has been received and awaiting confirmation",
+      "preparing": "Kitchen is cooking your food according to your requirements",
+      "ready": "Food is ready for {type, select, delivery {delivery} table {pickup} other {pickup}}"
+    },
+    "summary": {
+      "estimatedTime": "Estimated Completion",
+      "orderTime": "Order Time",
+      "orderType": "Order Type",
+      "paymentMethod": "Payment Method",
+      "table": "Table",
+      "title": "Order Information",
+      "total": "Total"
+    },
+    "table": "Table",
+    "title": "Order #{number}",
+    "tracking": {
+      "orderId": "Order ID: {orderId}",
+      "title": "Order Tracking"
+    }
+  },
+  "product": {
+    "addToCart": {
+      "button": "Add to Cart - {price}₫"
+    },
+    "allergens": {
+      "dairy": "Dairy",
+      "eggs": "Eggs",
+      "fish": "Fish",
+      "gluten": "Gluten",
+      "nuts": "Nuts",
+      "soy": "Soy",
+      "title": "Allergen Information"
+    },
+    "errors": {
+      "addToCartFailed": "Failed to add to cart",
+      "toppingsLoadFailed": "Failed to load add-ons"
+    },
+    "instructions": {
+      "placeholder": "Special requests for this dish...",
+      "title": "Special Instructions"
+    },
+    "nutrition": {
+      "calories": "Calories",
+      "carbs": "Carbs",
+      "fat": "Fat",
+      "protein": "Protein",
+      "title": "Nutritional Information"
+    },
+    "quantity": {
+      "label": "Quantity"
+    },
+    "success": {
+      "addedToCart": "Added {quantity} {name} to cart"
+    },
+    "toppings": {
+      "title": "Add-ons"
     }
   },
   "staff": {
-    "loading": "Loading dashboard...",
+    "actions": {
+      "bulkMarkReady": "Updated urgent orders",
+      "markUrgentReady": "Ready (Urgent)",
+      "refresh": "Refresh",
+      "sound": "Sound",
+      "testSound": "Test Sound"
+    },
+    "autoRefreshDisabled": "Auto refresh disabled",
+    "autoRefreshEnabled": "Auto refresh enabled",
     "dashboard": {
       "title": "Staff Dashboard"
     },
-    "status": {
-      "live": "Live",
-      "paused": "Paused"
+    "errors": {
+      "loadFailed": "Failed to load dashboard data",
+      "refreshFailed": "Failed to refresh data",
+      "updateFailed": "Failed to update order"
     },
-    "stats": {
-      "title": "Overview Statistics",
-      "activeOrders": "Active Orders",
-      "activeOrdersDesc": "Orders to process",
-      "pendingConfirmation": "Pending",
-      "pendingConfirmationDesc": "New orders to confirm",
-      "inPreparation": "Preparing",
-      "inPreparationDesc": "Orders in kitchen",
-      "readyForDelivery": "Ready",
-      "readyForDeliveryDesc": "Completed orders",
-      "averageTime": "Avg Time",
-      "averageTimeDesc": "Preparation time",
-      "todayOrders": "Today Orders",
-      "todayOrdersDesc": "Total orders",
-      "revenue": "Revenue",
-      "revenueDesc": "Today's revenue"
+    "filters": {
+      "all": "All",
+      "allStatus": "All Status",
+      "confirmed": "Confirmed",
+      "delivering": "Delivering",
+      "delivery": "Delivery",
+      "orderType": "Order Type",
+      "pending": "Pending",
+      "preparing": "Preparing",
+      "quickActions": "Quick Actions",
+      "ready": "Ready",
+      "showPreparing": "Preparing",
+      "showReady": "Ready",
+      "showUrgent": "Urgent Orders",
+      "status": "Status",
+      "table": "Table",
+      "urgent": "Urgent"
     },
     "insights": {
       "performance": "Performance",
       "performanceGood": "Good preparation time",
       "performanceNeedsImprovement": "Need to improve speed",
-      "workload": "Workload",
-      "workloadLight": "Light",
-      "workloadModerate": "Moderate",
-      "workloadHigh": "High peak, focus needed",
       "revenue": "Revenue",
-      "revenueToday": "Today: ${amount}"
+      "revenueToday": "Today: ${amount}",
+      "workload": "Workload",
+      "workloadHigh": "High peak, focus needed",
+      "workloadLight": "Light",
+      "workloadModerate": "Moderate"
     },
-    "filters": {
-      "orderType": "Order Type",
-      "status": "Status",
-      "all": "All",
-      "table": "Table",
-      "delivery": "Delivery",
-      "urgent": "Urgent",
-      "allStatus": "All Status",
-      "pending": "Pending",
-      "confirmed": "Confirmed",
-      "preparing": "Preparing",
-      "ready": "Ready",
-      "delivering": "Delivering",
-      "quickActions": "Quick Actions",
-      "showUrgent": "Urgent Orders",
-      "showPreparing": "Preparing",
-      "showReady": "Ready"
-    },
-    "orders": {
-      "title": "Orders",
-      "empty": {
-        "title": "No Orders",
-        "description": "No orders match the current filters"
-      }
-    },
-    "orderStatus": {
-      "pending": "Pending",
-      "confirmed": "Confirmed",
-      "preparing": "Preparing",
-      "ready": "Ready",
-      "delivering": "Delivering",
-      "completed": "Completed"
-    },
-    "priority": {
-      "normal": "Normal",
-      "high": "High",
-      "urgent": "Urgent"
-    },
-    "orderCard": {
-      "table": "Table",
-      "items": "Items",
-      "overdue": "Overdue",
-      "updating": "Updating...",
-      "completed": "Completed",
-      "call": "Call",
-      "view": "View",
-      "rush": "Rush",
-      "markAs": {
-        "confirmed": "Confirm Order",
-        "preparing": "Start Preparing",
-        "ready": "Mark Ready",
-        "delivering": "Start Delivery",
-        "completed": "Complete"
-      }
-    },
-    "actions": {
-      "refresh": "Refresh",
-      "sound": "Sound",
-      "testSound": "Test Sound",
-      "markUrgentReady": "Ready (Urgent)",
-      "bulkMarkReady": "Updated urgent orders"
-    },
-    "sidebar": {
-      "quickActions": "Quick Actions",
-      "settings": "Settings",
-      "filters": "Filters"
-    },
-    "settings": {
-      "autoRefresh": "Auto Refresh",
-      "autoRefreshDesc": "Automatically refresh order data",
-      "language": "Language"
-    },
+    "loading": "Loading dashboard...",
     "minutes": "minutes",
-    "soundTest": {
-      "success": "Sound is working properly",
-      "failed": "Could not play sound",
-      "error": "Error testing sound"
-    },
-    "refreshed": "Data refreshed successfully",
-    "orderUpdated": "Order status updated",
-    "autoRefreshEnabled": "Auto refresh enabled",
-    "autoRefreshDisabled": "Auto refresh disabled",
-    "soundControls": {
-      "title": "Sound Controls",
-      "status": {
-        "ready": "Ready",
-        "suspended": "Suspended",
-        "notReady": "Not Ready"
-      },
-      "initRequired": {
-        "title": "Audio Initialization Required",
-        "description": "Click to enable sound notifications",
-        "button": "Initialize Audio"
-      },
-      "suspended": {
-        "title": "Audio Suspended",
-        "description": "Audio context is suspended",
-        "button": "Resume Audio"
-      },
-      "masterEnable": {
-        "label": "Enable Sounds",
-        "description": "Master toggle for all sound notifications"
-      },
-      "volume": {
-        "label": "Volume"
-      },
-      "notifications": {
-        "title": "Notifications",
-        "newOrder": "New Order",
-        "statusChange": "Status Change",
-        "urgentOrder": "Urgent Order"
-      },
-      "test": "Test",
-      "reset": "Reset",
-      "info": "Sound settings are saved locally"
-    },
     "notifications": {
       "newOrder": "New order #{orderNumber} from {customer}",
       "statusChanged": "Order #{orderNumber} status updated",
       "urgentOrder": "Urgent order #{orderNumber} needs immediate attention"
     },
-    "errors": {
-      "loadFailed": "Failed to load dashboard data",
-      "updateFailed": "Failed to update order",
-      "refreshFailed": "Failed to refresh data"
+    "orderCard": {
+      "call": "Call",
+      "completed": "Completed",
+      "items": "Items",
+      "markAs": {
+        "completed": "Complete",
+        "confirmed": "Confirm Order",
+        "delivering": "Start Delivery",
+        "preparing": "Start Preparing",
+        "ready": "Mark Ready"
+      },
+      "overdue": "Overdue",
+      "rush": "Rush",
+      "table": "Table",
+      "updating": "Updating...",
+      "view": "View"
+    },
+    "orderStatus": {
+      "completed": "Completed",
+      "confirmed": "Confirmed",
+      "delivering": "Delivering",
+      "pending": "Pending",
+      "preparing": "Preparing",
+      "ready": "Ready"
+    },
+    "orderUpdated": "Order status updated",
+    "orders": {
+      "empty": {
+        "description": "No orders match the current filters",
+        "title": "No Orders"
+      },
+      "title": "Orders"
+    },
+    "priority": {
+      "high": "High",
+      "normal": "Normal",
+      "urgent": "Urgent"
+    },
+    "refreshed": "Data refreshed successfully",
+    "settings": {
+      "autoRefresh": "Auto Refresh",
+      "autoRefreshDesc": "Automatically refresh order data",
+      "language": "Language"
+    },
+    "sidebar": {
+      "filters": "Filters",
+      "quickActions": "Quick Actions",
+      "settings": "Settings"
+    },
+    "soundControls": {
+      "info": "Sound settings are saved locally",
+      "initRequired": {
+        "button": "Initialize Audio",
+        "description": "Click to enable sound notifications",
+        "title": "Audio Initialization Required"
+      },
+      "masterEnable": {
+        "description": "Master toggle for all sound notifications",
+        "label": "Enable Sounds"
+      },
+      "notifications": {
+        "newOrder": "New Order",
+        "statusChange": "Status Change",
+        "title": "Notifications",
+        "urgentOrder": "Urgent Order"
+      },
+      "reset": "Reset",
+      "status": {
+        "notReady": "Not Ready",
+        "ready": "Ready",
+        "suspended": "Suspended"
+      },
+      "suspended": {
+        "button": "Resume Audio",
+        "description": "Audio context is suspended",
+        "title": "Audio Suspended"
+      },
+      "test": "Test",
+      "title": "Sound Controls",
+      "volume": {
+        "label": "Volume"
+      }
+    },
+    "soundTest": {
+      "error": "Error testing sound",
+      "failed": "Could not play sound",
+      "success": "Sound is working properly"
+    },
+    "stats": {
+      "activeOrders": "Active Orders",
+      "activeOrdersDesc": "Orders to process",
+      "averageTime": "Avg Time",
+      "averageTimeDesc": "Preparation time",
+      "inPreparation": "Preparing",
+      "inPreparationDesc": "Orders in kitchen",
+      "pendingConfirmation": "Pending",
+      "pendingConfirmationDesc": "New orders to confirm",
+      "readyForDelivery": "Ready",
+      "readyForDeliveryDesc": "Completed orders",
+      "revenue": "Revenue",
+      "revenueDesc": "Today's revenue",
+      "title": "Overview Statistics",
+      "todayOrders": "Today Orders",
+      "todayOrdersDesc": "Total orders"
+    },
+    "status": {
+      "live": "Live",
+      "paused": "Paused"
     }
-  },
-  "checkout": {
-    "title": "Checkout",
-    "button": "Checkout",
-    "placeOrder": "Place Order",
-    "placingOrder": "Placing Order...",
-    "estimatedTime": {
-      "delivery": "Ready for delivery in 30-45 minutes",
-      "pickup": "Ready for pickup in 15-20 minutes"
-    }
-  },
-  "errors": {
-    "required": "This field is required",
-    "invalidPhone": "Invalid phone number",
-    "minLength": "Minimum {min} characters",
-    "maxLength": "Maximum {max} characters"
   }
 }

@@ -5,8 +5,8 @@ import { useState, useEffect } from 'react';
 import { useRouter } from '@/i18n/navigation';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
-import { LanguageSelector } from '@/components/ui/LanguageSelector';
-import { Breadcrumb } from '@/components/ui/Breadcrumb';
+import { Input } from '@/components/ui/Input';
+import { CheckoutPageLayout } from '@/components/layout/PageLayout';
 import { OrderInfoModal } from '@/components/modals/OrderInfoModal';
 import { TableCheckoutForm } from '@/components/checkout/TableCheckoutForm';
 import { DeliveryCheckoutForm } from '@/components/checkout/DeliveryCheckoutForm';
@@ -15,6 +15,7 @@ import { CartSummary } from '@/components/cart/CartSummary';
 import { useCartStore, useUIStore } from '@/stores';
 import { orderFirestoreService } from '@/services/orderFirestoreService';
 import { CreateOrderData, OrderItem } from '@/types/order';
+import { formatPrice, getLocalizedProductName } from '@/lib/common-utils';
 
 interface CheckoutFormData {
   tableNumber?: string;
@@ -27,16 +28,6 @@ interface CheckoutFormData {
   specialInstructions?: string;
 }
 
-// Helper function to get localized product name
-const getLocalizedProductName = (product: any, locale: string): string => {
-  if (typeof product.name === 'string') {
-    return product.name;
-  }
-  if (typeof product.name === 'object' && product.name) {
-    return product.name[locale] || product.name.vi || product.name.en || Object.values(product.name)[0] || 'Unknown Product';
-  }
-  return 'Unknown Product';
-};
 
 export function CheckoutPage() {
   const t = useTranslations();
@@ -93,9 +84,6 @@ export function CheckoutPage() {
     return null;
   }
 
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat('vi-VN').format(price);
-  };
 
   const handleFormDataChange = (updates: Partial<CheckoutFormData>) => {
     setFormData(prev => ({ ...prev, ...updates }));
@@ -196,7 +184,7 @@ export function CheckoutPage() {
         return (
           <div className="space-y-6">
             <div>
-              <h2 className="text-xl font-semibold text-gray-900 mb-4">
+              <h2 className="text-responsive-xl font-semibold text-gray-900 mb-4">
                 {orderType === 'table' 
                   ? t('checkout.steps.tableInfo.title')
                   : t('checkout.steps.deliveryInfo.title')
@@ -223,7 +211,7 @@ export function CheckoutPage() {
         return (
           <div className="space-y-6">
             <div>
-              <h2 className="text-xl font-semibold text-gray-900 mb-4">
+              <h2 className="text-responsive-xl font-semibold text-gray-900 mb-4">
                 {t('checkout.steps.payment.title')}
               </h2>
               
@@ -239,55 +227,55 @@ export function CheckoutPage() {
         return (
           <div className="space-y-6">
             <div>
-              <h2 className="text-xl font-semibold text-gray-900 mb-4">
+              <h2 className="text-responsive-xl font-semibold text-gray-900 mb-4">
                 {t('checkout.steps.review.title')}
               </h2>
               
               {/* Order Review */}
               <div className="space-y-4">
                 {/* Customer Info */}
-                <Card padding="md">
-                  <h3 className="font-semibold text-gray-900 mb-3">
+                <Card className="responsive-card">
+                  <h3 className="text-responsive-base font-semibold text-gray-900 mb-3">
                     {orderType === 'table' 
                       ? t('checkout.review.tableInfo')
                       : t('checkout.review.deliveryInfo')
                     }
                   </h3>
                   
-                  <div className="space-y-2 text-sm">
+                  <div className="form-group-responsive text-responsive-sm">
                     {orderType === 'table' ? (
                       <>
-                        <div className="flex justify-between">
+                        <div className="responsive-flex-center justify-between">
                           <span className="text-gray-600">{t('checkout.form.table')}:</span>
                           <span>{tableNumber}</span>
                         </div>
-                        <div className="flex justify-between">
+                        <div className="responsive-flex-center justify-between">
                           <span className="text-gray-600">{t('checkout.form.customerName')}:</span>
                           <span>{formData.customerName}</span>
                         </div>
                       </>
                     ) : (
                       <>
-                        <div className="flex justify-between">
+                        <div className="responsive-flex-center justify-between">
                           <span className="text-gray-600">{t('checkout.form.customerName')}:</span>
                           <span>{formData.customerName}</span>
                         </div>
-                        <div className="flex justify-between">
+                        <div className="responsive-flex-center justify-between">
                           <span className="text-gray-600">{t('checkout.form.phone')}:</span>
                           <span>{formData.phone}</span>
                         </div>
                         {formData.email && (
-                          <div className="flex justify-between">
+                          <div className="responsive-flex-center justify-between">
                             <span className="text-gray-600">{t('checkout.form.email')}:</span>
                             <span>{formData.email}</span>
                           </div>
                         )}
-                        <div className="flex justify-between">
+                        <div className="responsive-flex-center justify-between">
                           <span className="text-gray-600">{t('checkout.form.address')}:</span>
                           <span className="text-right">{formData.address}</span>
                         </div>
                         {formData.deliveryInstructions && (
-                          <div className="flex justify-between">
+                          <div className="responsive-flex-center justify-between">
                             <span className="text-gray-600">{t('checkout.form.deliveryInstructions')}:</span>
                             <span className="text-right">{formData.deliveryInstructions}</span>
                           </div>
@@ -298,35 +286,35 @@ export function CheckoutPage() {
                 </Card>
 
                 {/* Payment Method */}
-                <Card padding="md">
-                  <h3 className="font-semibold text-gray-900 mb-3">
+                <Card className="responsive-card">
+                  <h3 className="text-responsive-base font-semibold text-gray-900 mb-3">
                     {t('checkout.review.paymentMethod')}
                   </h3>
-                  <div className="flex items-center space-x-3">
+                  <div className="responsive-flex-center space-x-3">
                     <div className="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center">
                       {formData.paymentMethod === 'cash' && '💵'}
                       {formData.paymentMethod === 'card' && '💳'}
                       {formData.paymentMethod === 'momo' && '📱'}
                       {formData.paymentMethod === 'zalopay' && '💰'}
                     </div>
-                    <span className="font-medium">
+                    <span className="text-responsive-base font-medium">
                       {t(`checkout.payment.methods.${formData.paymentMethod}`)}
                     </span>
                   </div>
                 </Card>
 
                 {/* Order Summary */}
-                <Card padding="md">
-                  <h3 className="font-semibold text-gray-900 mb-3">
+                <Card className="responsive-card">
+                  <h3 className="text-responsive-base font-semibold text-gray-900 mb-3">
                     {t('checkout.review.orderSummary')}
                   </h3>
-                  <div className="space-y-2">
+                  <div className="form-group-responsive">
                     {items.map((item) => (
-                      <div key={item.id} className="flex justify-between text-sm">
+                      <div key={item.id} className="responsive-flex-center justify-between text-responsive-sm">
                         <span>
                           {item.quantity}x {getLocalizedProductName(item.product, locale)}
                         </span>
-                        <span>{formatPrice(item.totalPrice)}₫</span>
+                        <span>{formatPrice(item.totalPrice, locale)}</span>
                       </div>
                     ))}
                   </div>
@@ -361,78 +349,237 @@ export function CheckoutPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm sticky top-0 z-40">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Breadcrumb */}
-          <div className="py-2 border-b border-gray-100">
-            <Breadcrumb />
-          </div>
-          
-          <div className="flex items-center justify-between h-16">
-            {/* Left side - Back button and title */}
-            <div className="flex items-center space-x-4">
-              <Button 
-                variant="ghost" 
-                onClick={() => currentStep > 1 ? handlePreviousStep() : router.back()}
-                className="p-2"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                </svg>
-              </Button>
-              <div>
-                <h1 className="text-lg font-semibold text-gray-900">
-                  {t('checkout.title')}
-                </h1>
-                <p className="text-sm text-gray-600">
-                  {t('checkout.stepProgress', { current: currentStep, total: 3 })}
+    <CheckoutPageLayout className="pb-20 md:pb-0">
+      {/* Mobile/Responsive Single Page Layout */}
+      <div className="lg:hidden">
+        <div className="space-y-4">
+          {/* Order Info - Compact */}
+          <Card className="responsive-card">
+            <div className="responsive-flex-center justify-between">
+              <div className="flex-1">
+                <h3 className="text-responsive-sm font-semibold text-gray-900">
+                  {t('checkout.orderInfo.title')}
+                </h3>
+                <p className="text-responsive-xs text-gray-600">
+                  {orderType === 'table' 
+                    ? t('checkout.orderInfo.table', { number: tableNumber || '1' })
+                    : t('checkout.orderInfo.delivery')
+                  }
                 </p>
+              </div>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setShowOrderInfoModal(true)}
+                className="responsive-button text-xs px-2 py-1 h-7 touch-manipulation"
+              >
+                {t('checkout.orderInfo.change')}
+              </Button>
+            </div>
+          </Card>
+
+          {/* Customer Information */}
+          <Card className="responsive-card">
+            <div className="form-group-responsive">
+              <h3 className="text-responsive-sm font-semibold text-gray-900">
+                {t('checkout.customerInfo.title')}
+              </h3>
+                
+              {/* Customer Name */}
+              <Input
+                label={t('checkout.customerInfo.nameRequired')}
+                type="text"
+                inputMode="text"
+                autoComplete="name"
+                value={formData.customerName || ''}
+                onChange={(e) => handleFormDataChange({ customerName: e.target.value })}
+                placeholder={t('checkout.customerInfo.namePlaceholder')}
+                className="touch-manipulation"
+                required
+              />
+
+              {/* Phone Number */}
+              <Input
+                label={orderType === 'delivery' 
+                  ? t('checkout.customerInfo.phoneRequired')
+                  : t('checkout.customerInfo.phoneOptional')
+                }
+                type="tel"
+                inputMode="tel"
+                autoComplete="tel"
+                value={formData.phone || ''}
+                onChange={(e) => handleFormDataChange({ phone: e.target.value })}
+                placeholder={t('checkout.customerInfo.phonePlaceholder')}
+                className="touch-manipulation"
+                required={orderType === 'delivery'}
+              />
+
+              {/* Delivery-specific fields */}
+              {orderType === 'delivery' && (
+                <>
+                  <Input
+                    label={t('checkout.delivery.addressRequired')}
+                    as="textarea"
+                    autoComplete="street-address"
+                    value={formData.address || ''}
+                    onChange={(e) => handleFormDataChange({ address: e.target.value })}
+                    placeholder={t('checkout.delivery.addressPlaceholder')}
+                    rows={2}
+                    className="touch-manipulation"
+                    required
+                  />
+
+                  <Input
+                    label={t('checkout.delivery.notes')}
+                    type="text"
+                    value={formData.deliveryInstructions || ''}
+                    onChange={(e) => handleFormDataChange({ deliveryInstructions: e.target.value })}
+                    placeholder={t('checkout.delivery.notesPlaceholder')}
+                    className="touch-manipulation"
+                  />
+                </>
+              )}
+            </div>
+          </Card>
+
+          {/* Payment Method */}
+          <Card className="responsive-card">
+            <div className="form-group-responsive">
+              <h3 className="text-responsive-sm font-semibold text-gray-900">
+                {t('checkout.paymentMethod.title')}
+              </h3>
+              
+              <div className="space-y-2">
+                {['cash', 'card', 'momo', 'zalopay'].map((method) => (
+                  <label
+                    key={method}
+                    className={`responsive-flex-center space-x-3 responsive-card cursor-pointer touch-manipulation transition-colors ${
+                      formData.paymentMethod === method
+                        ? 'border-primary-500 bg-primary-50'
+                        : 'border-gray-200 hover:border-gray-300'
+                    }`}
+                  >
+                    <input
+                      type="radio"
+                      name="paymentMethod"
+                      value={method}
+                      checked={formData.paymentMethod === method}
+                      onChange={(e) => handleFormDataChange({ paymentMethod: e.target.value as CheckoutFormData['paymentMethod'] })}
+                      className="w-4 h-4 text-primary-600"
+                    />
+                    <div className="flex-1">
+                      <div className="text-responsive-sm font-medium">{t(`checkout.payment.methods.${method}`)}</div>
+                      {method === 'cash' && (
+                        <div className="text-responsive-xs text-gray-500">{t('checkout.paymentMethod.cashDescription')}</div>
+                      )}
+                    </div>
+                    {formData.paymentMethod === method && (
+                      <div className="text-primary-600">✓</div>
+                    )}
+                  </label>
+                ))}
+              </div>
+            </div>
+          </Card>
+
+          {/* Special Instructions */}
+          <Card className="responsive-card">
+            <Input
+              label={t('checkout.specialInstructions.title')}
+              as="textarea"
+              value={formData.specialInstructions || ''}
+              onChange={(e) => handleFormDataChange({ specialInstructions: e.target.value })}
+              placeholder={t('checkout.specialInstructions.placeholder')}
+              rows={2}
+              className="touch-manipulation"
+            />
+          </Card>
+        </div>
+
+        {/* Sticky Bottom Order Button - Mobile Only */}
+        <div className="sticky-bottom-mobile bg-white border-t border-gray-200 shadow-lg">
+          <div className="padding-responsive">
+            {/* Order Summary - Compact */}
+            <div className="responsive-flex-center justify-between mb-3">
+              <div className="flex-1">
+                <div className="responsive-flex-center space-x-2">
+                  <span className="text-responsive-lg font-bold text-gray-900">
+                    {formatPrice(summary.total, locale)}
+                  </span>
+                  <span className="text-responsive-xs text-gray-500">
+                    {itemCount} {t(itemCount === 1 ? 'common.item' : 'common.items')}
+                  </span>
+                </div>
+                {summary.deliveryFee > 0 && (
+                  <p className="text-responsive-xs text-gray-600">
+                    + {formatPrice(summary.deliveryFee, locale)} delivery
+                  </p>
+                )}
               </div>
             </div>
 
-            {/* Right side - Language selector */}
-            <LanguageSelector variant="dropdown" />
-          </div>
-
-          {/* Progress Bar */}
-          <div className="pb-4">
-            <div className="flex items-center justify-between text-sm text-gray-600 mb-2">
-              {[1, 2, 3].map((step) => (
-                <span 
-                  key={step}
-                  className={`${
-                    step <= currentStep ? 'text-primary-600 font-medium' : 'text-gray-400'
-                  }`}
-                >
-                  {getStepTitle(step)}
-                </span>
-              ))}
-            </div>
-            <div className="w-full bg-gray-200 rounded-full h-2">
-              <div 
-                className="bg-primary-600 h-2 rounded-full transition-all duration-300 ease-in-out"
-                style={{ width: `${(currentStep / 3) * 100}%` }}
-              ></div>
-            </div>
+            {/* Place Order Button */}
+            <Button
+              onClick={handleSubmitOrder}
+              disabled={
+                isSubmitting ||
+                !formData.customerName?.trim() ||
+                (orderType === 'delivery' && (!formData.phone?.trim() || !formData.address?.trim()))
+              }
+              className="responsive-button-lg w-full touch-manipulation"
+            >
+              {isSubmitting ? (
+                <div className="responsive-flex-center space-x-2">
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                  <span>{t('checkout.placingOrder')}</span>
+                </div>
+              ) : (
+                `${t('checkout.placeOrder')} • ${formatPrice(summary.total, locale)}`
+              )}
+            </Button>
+            
           </div>
         </div>
-      </header>
+      </div>
 
-      <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+      {/* Desktop Multi-step Layout */}
+      <div className="hidden lg:block">
+        {/* Progress Bar */}
+        <div className="padding-responsive-y border-b border-gray-200">
+          <div className="responsive-flex-center justify-between text-responsive-sm text-gray-600 mb-2">
+            {[1, 2, 3].map((step) => (
+              <span 
+                key={step}
+                className={`${
+                  step <= currentStep ? 'text-primary-600 font-medium' : 'text-gray-400'
+                }`}
+              >
+                {getStepTitle(step)}
+              </span>
+            ))}
+          </div>
+          <div className="w-full bg-gray-200 rounded-full h-2">
+            <div 
+              className="bg-primary-600 h-2 rounded-full transition-all duration-300 ease-in-out"
+              style={{ width: `${(currentStep / 3) * 100}%` }}
+            ></div>
+          </div>
+        </div>
+
+        <div className="responsive-grid-3 gap-responsive margin-responsive-y">
           {/* Form Content */}
           <div className="lg:col-span-2">
             {renderStepContent()}
             
             {/* Navigation Buttons */}
-            <div className="flex items-center justify-between pt-6 mt-6 border-t border-gray-200">
+            <div className="form-actions-responsive border-t border-gray-200 pt-6 mt-6">
               <div>
                 {currentStep > 1 && (
                   <Button
                     variant="outline"
                     onClick={handlePreviousStep}
+                    className="responsive-button"
                   >
                     {t('checkout.navigation.previous')}
                   </Button>
@@ -447,6 +594,7 @@ export function CheckoutPage() {
                       (currentStep === 1 && orderType === 'table' && !formData.customerName) ||
                       (currentStep === 1 && orderType === 'delivery' && (!formData.customerName || !formData.phone || !formData.address))
                     }
+                    className="responsive-button"
                   >
                     {t('checkout.navigation.next')}
                   </Button>
@@ -454,10 +602,10 @@ export function CheckoutPage() {
                   <Button
                     onClick={handleSubmitOrder}
                     disabled={isSubmitting}
-                    className="min-w-32"
+                    className="responsive-button min-w-32"
                   >
                     {isSubmitting ? (
-                      <div className="flex items-center space-x-2">
+                      <div className="responsive-flex-center space-x-2">
                         <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
                         <span>{t('checkout.navigation.submitting')}</span>
                       </div>
@@ -473,11 +621,11 @@ export function CheckoutPage() {
           {/* Order Summary Sidebar */}
           <div className="lg:col-span-1">
             <div className="sticky top-24">
-              <Card padding="md">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">
+              <Card className="responsive-card">
+                <h3 className="text-responsive-lg font-semibold text-gray-900 mb-4">
                   {t('cart.summary.title')}
                 </h3>
-                <div className="space-y-2 text-sm mb-4">
+                <div className="form-group-responsive text-responsive-sm mb-4">
                   <div className="text-gray-600">
                     {t('cart.itemCount', { count: itemCount })}
                   </div>
@@ -493,7 +641,13 @@ export function CheckoutPage() {
             </div>
           </div>
         </div>
-      </main>
-    </div>
+      </div>
+      
+      {/* Order Info Modal */}
+      <OrderInfoModal
+        isOpen={showOrderInfoModal}
+        onClose={() => setShowOrderInfoModal(false)}
+      />
+    </CheckoutPageLayout>
   );
 }

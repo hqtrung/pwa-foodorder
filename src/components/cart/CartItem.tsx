@@ -7,9 +7,11 @@ import { Card } from '@/components/ui/Card';
 import { Input } from '@/components/ui/Input';
 import { useCartStore, useUIStore } from '@/stores';
 import { CartItem as CartItemType } from '@/stores/cartStore';
+import { Product } from '@/types';
 
 interface CartItemProps {
   item: CartItemType;
+  onEdit?: (product: Product, cartItem: CartItemType) => void;
 }
 
 // Helper function to get localized text
@@ -23,16 +25,13 @@ const getLocalizedText = (text: any, locale: string): string => {
   return '';
 };
 
-export function CartItem({ item }: CartItemProps) {
+export function CartItem({ item, onEdit }: CartItemProps) {
   const t = useTranslations();
   const locale = useLocale();
-  const [isEditing, setIsEditing] = useState(false);
-  const [tempInstructions, setTempInstructions] = useState(item.specialInstructions || '');
   
   const {
     updateItemQuantity,
-    removeItem,
-    updateItemInstructions
+    removeItem
   } = useCartStore();
   
   const { showSuccessToast, openModal } = useUIStore();
@@ -58,19 +57,14 @@ export function CartItem({ item }: CartItemProps) {
   };
 
   const handleEditProduct = () => {
-    openModal('product-detail', { product: item.product });
+    if (onEdit) {
+      onEdit(item.product, item);
+    } else {
+      // Fallback to the old modal if onEdit is not provided
+      openModal('product-detail', { product: item.product, cartItem: item });
+    }
   };
 
-  const handleSaveInstructions = () => {
-    updateItemInstructions(item.id, tempInstructions);
-    setIsEditing(false);
-    showSuccessToast(t('cart.item.instructionsUpdated'));
-  };
-
-  const handleCancelEdit = () => {
-    setTempInstructions(item.specialInstructions || '');
-    setIsEditing(false);
-  };
 
   return (
     <Card padding="sm" hover>
@@ -116,42 +110,11 @@ export function CartItem({ item }: CartItemProps) {
               )}
 
               {/* Special Instructions - Simplified mobile */}
-              {item.specialInstructions && !isEditing && (
+              {item.specialInstructions && (
                 <div className="mt-2">
                   <p className="text-xs text-gray-700 bg-gray-50 rounded px-2 py-1">
                     📝 {item.specialInstructions}
                   </p>
-                </div>
-              )}
-              
-              {isEditing && (
-                <div className="mt-2 space-y-2">
-                  <Input
-                    as="textarea"
-                    value={tempInstructions}
-                    onChange={(e) => setTempInstructions(e.target.value)}
-                    placeholder={t('cart.item.instructionsPlaceholder')}
-                    rows={2}
-                    className="text-xs"
-                  />
-                  <div className="flex items-center space-x-2">
-                    <Button
-                      variant="primary"
-                      size="sm"
-                      onClick={handleSaveInstructions}
-                      className="text-xs px-2 py-1 h-6"
-                    >
-                      {t('common.actions.save')}
-                    </Button>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={handleCancelEdit}
-                      className="text-xs px-2 py-1 h-6"
-                    >
-                      {t('common.actions.cancel')}
-                    </Button>
-                  </div>
                 </div>
               )}
             </div>
@@ -197,17 +160,6 @@ export function CartItem({ item }: CartItemProps) {
 
             {/* Compact Actions */}
             <div className="flex items-center space-x-1">
-              {/* Add note button */}
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setIsEditing(true)}
-                className="text-gray-600 hover:text-gray-700 p-1"
-                title="Add note"
-              >
-                📝
-              </Button>
-              
               {/* Edit/Modify */}
               <Button
                 variant="ghost"

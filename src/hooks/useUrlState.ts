@@ -253,7 +253,8 @@ export function useProductModalUrl() {
 // Hook for menu filters with URL hash navigation
 export function useMenuHashState() {
   const [categoryId, setCategoryIdState] = useState<string | null>(null);
-  const [showAvailableOnly, setShowAvailableOnlyState] = useState(false);
+  const [orderType, setOrderTypeState] = useState<'table' | 'delivery' | null>(null);
+  const [tableNumber, setTableNumberState] = useState<string | null>(null);
 
   // Parse hash parameters
   const parseHashParams = useCallback((): URLSearchParams => {
@@ -263,7 +264,11 @@ export function useMenuHashState() {
   }, []);
 
   // Set hash parameters
-  const setHashParams = useCallback((params: { category?: string | null; available?: boolean | null }) => {
+  const setHashParams = useCallback((params: { 
+    category?: string | null; 
+    type?: string | null;
+    table?: string | null;
+  }) => {
     if (typeof window === 'undefined') return;
     
     const hashParams = parseHashParams();
@@ -277,11 +282,19 @@ export function useMenuHashState() {
       }
     }
     
-    if (params.available !== undefined) {
-      if (params.available) {
-        hashParams.set('available', 'true');
+    if (params.type !== undefined) {
+      if (params.type) {
+        hashParams.set('type', params.type);
       } else {
-        hashParams.delete('available');
+        hashParams.delete('type');
+      }
+    }
+    
+    if (params.table !== undefined) {
+      if (params.table) {
+        hashParams.set('table', params.table);
+      } else {
+        hashParams.delete('table');
       }
     }
     
@@ -296,10 +309,38 @@ export function useMenuHashState() {
     setCategoryIdState(id);
   }, [setHashParams]);
 
-  // Set show available only
-  const setShowAvailableOnly = useCallback((available: boolean) => {
-    setHashParams({ available });
-    setShowAvailableOnlyState(available);
+  // Set order type
+  const setOrderType = useCallback((type: 'table' | 'delivery' | null) => {
+    setHashParams({ type });
+    setOrderTypeState(type);
+    // Clear table number if switching away from table
+    if (type !== 'table') {
+      setHashParams({ type, table: null });
+      setTableNumberState(null);
+    }
+  }, [setHashParams]);
+
+  // Set table number
+  const setTableNumber = useCallback((table: string | null) => {
+    setHashParams({ table });
+    setTableNumberState(table);
+  }, [setHashParams]);
+
+  // Set order info (type and table together)
+  const setOrderInfo = useCallback((type: 'table' | 'delivery' | null, table?: string | null) => {
+    if (type === 'table' && table) {
+      setHashParams({ type, table });
+      setOrderTypeState(type);
+      setTableNumberState(table);
+    } else if (type === 'delivery') {
+      setHashParams({ type, table: null });
+      setOrderTypeState(type);
+      setTableNumberState(null);
+    } else {
+      setHashParams({ type: null, table: null });
+      setOrderTypeState(null);
+      setTableNumberState(null);
+    }
   }, [setHashParams]);
 
   // Clear all filters
@@ -308,7 +349,8 @@ export function useMenuHashState() {
       window.location.hash = '';
     }
     setCategoryIdState(null);
-    setShowAvailableOnlyState(false);
+    setOrderTypeState(null);
+    setTableNumberState(null);
   }, []);
 
   // Listen for hash changes
@@ -316,7 +358,11 @@ export function useMenuHashState() {
     const handleHashChange = () => {
       const params = parseHashParams();
       setCategoryIdState(params.get('category') || null);
-      setShowAvailableOnlyState(params.get('available') === 'true');
+      
+      const urlOrderType = params.get('type');
+      setOrderTypeState(urlOrderType === 'table' || urlOrderType === 'delivery' ? urlOrderType : null);
+      
+      setTableNumberState(params.get('table') || null);
     };
 
     // Set initial state
@@ -332,9 +378,12 @@ export function useMenuHashState() {
 
   return {
     categoryId,
-    showAvailableOnly,
+    orderType,
+    tableNumber,
     setCategoryId,
-    setShowAvailableOnly,
+    setOrderType,
+    setTableNumber,
+    setOrderInfo,
     clearFilters,
   };
 }

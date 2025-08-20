@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import QRCode from 'react-qr-code';
 import { Button } from '@/components/ui/Button';
 import { Order } from '@/stores/orderStore';
@@ -19,6 +19,7 @@ export function OrderQRCode({
   showOrderInfo = true, 
   className = '' 
 }: OrderQRCodeProps) {
+  const t = useTranslations();
   const locale = useLocale();
   const [orderUrl, setOrderUrl] = useState<string>('');
   const [copied, setCopied] = useState(false);
@@ -67,7 +68,7 @@ export function OrderQRCode({
       <div className={`text-center ${className}`}>
         <div className="animate-pulse bg-gray-200 rounded" style={{ width: size, height: size }}>
         </div>
-        <p className="text-xs text-gray-500 mt-2">Generating QR code...</p>
+        <p className="text-xs text-gray-500 mt-2">{t('order.share.generating')}</p>
       </div>
     );
   }
@@ -91,7 +92,7 @@ export function OrderQRCode({
             Order #{order.orderNumber}
           </p>
           <p className="text-xs text-gray-600">
-            Scan to track order
+            {t('order.share.scanToTrack')}
           </p>
         </div>
       )}
@@ -107,7 +108,7 @@ export function OrderQRCode({
           <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z" />
           </svg>
-          {copied ? 'Copied!' : 'Share Order'}
+          {copied ? t('order.share.copied') : t('order.share.shareOrder')}
         </Button>
 
         <div className="text-xs text-gray-500 break-all">
@@ -132,7 +133,7 @@ export function OrderQRModal({ order, isOpen, onClose }: OrderQRModalProps) {
       <div className="bg-white rounded-lg p-6 max-w-sm w-full">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-lg font-semibold text-gray-900">
-            Order QR Code
+            {t('order.share.qrCodeTitle')}
           </h3>
           <Button
             variant="ghost"
@@ -155,10 +156,10 @@ export function OrderQRModal({ order, isOpen, onClose }: OrderQRModalProps) {
 
         <div className="text-center">
           <p className="text-sm text-gray-600 mb-4">
-            Share this QR code to let others track your order
+            {t('order.share.qrCodeDescription')}
           </p>
           <Button onClick={onClose} className="w-full">
-            Close
+{t('common.close')}
           </Button>
         </div>
       </div>

@@ -1,8 +1,17 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
+import { useEffect } from 'react';
 import { Input } from '@/components/ui/Input';
 import { Card } from '@/components/ui/Card';
+import { useFormState, ValidationRule } from '@/hooks/useFormState';
+
+interface TableFormData {
+  customerName: string;
+  phone: string;
+  email: string;
+  specialInstructions: string;
+}
 
 interface TableCheckoutFormProps {
   data: {
@@ -17,6 +26,62 @@ interface TableCheckoutFormProps {
 
 export function TableCheckoutForm({ data, onChange, tableNumber }: TableCheckoutFormProps) {
   const t = useTranslations();
+
+  // Validation rules
+  const validation = {
+    customerName: [
+      {
+        validate: (value: string) => value.trim().length >= 2,
+        message: t('checkout.validation.customerName.minLength')
+      } as ValidationRule<string>
+    ],
+    phone: [
+      {
+        validate: (value: string) => !value || /^[0-9+\-\s()]{10,}$/.test(value),
+        message: t('checkout.validation.phone.invalid')
+      } as ValidationRule<string>
+    ],
+    email: [
+      {
+        validate: (value: string) => !value || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value),
+        message: t('checkout.validation.email.invalid')
+      } as ValidationRule<string>
+    ]
+  };
+
+  // Form state
+  const {
+    values,
+    errors,
+    touched,
+    setValue,
+    markAsTouched,
+    validateField
+  } = useFormState<TableFormData>({
+    initialValues: {
+      customerName: data.customerName || '',
+      phone: data.phone || '',
+      email: data.email || '',
+      specialInstructions: data.specialInstructions || ''
+    },
+    validation
+  });
+
+  // Sync form state with parent
+  useEffect(() => {
+    onChange(values);
+  }, [values, onChange]);
+
+  // Handle field changes with validation
+  const handleFieldChange = (field: keyof TableFormData, value: string) => {
+    setValue(field, value);
+  };
+
+  // Handle field blur for validation
+  const handleFieldBlur = (field: keyof TableFormData) => {
+    markAsTouched(field);
+    validateField(field);
+  };
 
   return (
     <div className="space-y-6">
@@ -56,67 +121,68 @@ export function TableCheckoutForm({ data, onChange, tableNumber }: TableCheckout
         
         <div className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              {t('checkout.form.customerName')} *
-            </label>
             <Input
+              label={`${t('checkout.form.customerName')} *`}
               type="text"
+              inputMode="text"
+              autoComplete="name"
               placeholder={t('checkout.form.customerNamePlaceholder')}
-              value={data.customerName || ''}
-              onChange={(e) => onChange({ customerName: e.target.value })}
+              value={values.customerName}
+              onChange={(e) => handleFieldChange('customerName', e.target.value)}
+              onBlur={() => handleFieldBlur('customerName')}
+              error={touched.customerName ? errors.customerName : undefined}
+              className="touch-manipulation"
               required
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              {t('checkout.form.phone')}
-            </label>
             <Input
+              label={t('checkout.form.phone')}
               type="tel"
+              inputMode="tel"
+              autoComplete="tel"
               placeholder={t('checkout.form.phonePlaceholder')}
-              value={data.phone || ''}
-              onChange={(e) => onChange({ phone: e.target.value })}
+              value={values.phone}
+              onChange={(e) => handleFieldChange('phone', e.target.value)}
+              onBlur={() => handleFieldBlur('phone')}
+              error={touched.phone ? errors.phone : undefined}
+              helperText={t('checkout.form.phoneHint')}
+              className="touch-manipulation"
             />
-            <p className="text-xs text-gray-500 mt-1">
-              {t('checkout.form.phoneHint')}
-            </p>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              {t('checkout.form.email')}
-            </label>
             <Input
+              label={t('checkout.form.email')}
               type="email"
+              inputMode="email"
+              autoComplete="email"
               placeholder={t('checkout.form.emailPlaceholder')}
-              value={data.email || ''}
-              onChange={(e) => onChange({ email: e.target.value })}
+              value={values.email}
+              onChange={(e) => handleFieldChange('email', e.target.value)}
+              onBlur={() => handleFieldBlur('email')}
+              error={touched.email ? errors.email : undefined}
+              helperText={t('checkout.form.emailHint')}
+              className="touch-manipulation"
             />
-            <p className="text-xs text-gray-500 mt-1">
-              {t('checkout.form.emailHint')}
-            </p>
           </div>
         </div>
       </Card>
 
       {/* Special Instructions */}
       <Card padding="md">
-        <h3 className="font-semibold text-gray-900 mb-4">
-          {t('checkout.specialInstructions.title')}
-        </h3>
-        
         <div>
           <Input
+            label={t('checkout.specialInstructions.title')}
             as="textarea"
             placeholder={t('checkout.specialInstructions.placeholder')}
-            value={data.specialInstructions || ''}
-            onChange={(e) => onChange({ specialInstructions: e.target.value })}
+            value={values.specialInstructions}
+            onChange={(e) => handleFieldChange('specialInstructions', e.target.value)}
+            helperText={t('checkout.specialInstructions.hint')}
             rows={3}
+            className="touch-manipulation"
           />
-          <p className="text-xs text-gray-500 mt-2">
-            {t('checkout.specialInstructions.hint')}
-          </p>
         </div>
       </Card>
     </div>

@@ -5,17 +5,16 @@ import { useState, useEffect } from 'react';
 import { useRouter } from '@/i18n/navigation';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
-import { LanguageSelector } from '@/components/ui/LanguageSelector';
-import { Breadcrumb } from '@/components/ui/Breadcrumb';
+import { OrderPageLayout } from '@/components/layout/PageLayout';
 import { OrderStatusTimeline } from '@/components/order/OrderStatusTimeline';
 import { OrderDetails } from '@/components/order/OrderDetails';
 import { OrderActions } from '@/components/order/OrderActions';
-import { OrderTrackingPageMobile } from '@/components/OrderTrackingPageMobile';
 import { useUIStore } from '@/stores';
 import { orderFirestoreService } from '@/services/orderFirestoreService';
 import { soundService } from '@/services/soundService';
-import { Order } from '@/stores/orderStore';
+import { Order, OrderStatus } from '@/stores/orderStore';
 import { Order as FirestoreOrder } from '@/types/order';
+import { formatPrice } from '@/lib/common-utils';
 
 interface OrderTrackingPageProps {
   orderId: string;
@@ -32,21 +31,10 @@ export function OrderTrackingPage({ orderId }: OrderTrackingPageProps) {
   const [error, setError] = useState<string | null>(null);
   const [autoRefresh, setAutoRefresh] = useState(true);
   const [previousStatus, setPreviousStatus] = useState<string | null>(null);
-  const [isMobile, setIsMobile] = useState(false);
   
   const { showErrorToast, showSuccessToast } = useUIStore();
 
-  // Check if mobile on client side
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
+
 
   // Load order data
   useEffect(() => {
@@ -59,12 +47,12 @@ export function OrderTrackingPage({ orderId }: OrderTrackingPageProps) {
         const firestoreOrder = await orderFirestoreService.getOrder(orderId);
         
         if (!firestoreOrder) {
-          setError(t('order.errors.notFound.description'));
+          setError(t('order.errors.notFound.title'));
           return;
         }
         
         // Helper function to safely convert timestamps
-        const safeTimestampToMillis = (timestamp: any): number => {
+        const safeTimestampToMillis = (timestamp: unknown): number => {
           if (!timestamp) return Date.now();
           
           // If it's already a number (milliseconds)
@@ -101,7 +89,7 @@ export function OrderTrackingPage({ orderId }: OrderTrackingPageProps) {
         const localOrder: Order = {
           id: firestoreOrder.id,
           orderNumber: firestoreOrder.orderNumber,
-          status: firestoreOrder.status as any,
+          status: firestoreOrder.status as OrderStatus,
           orderType: firestoreOrder.type as 'delivery' | 'table',
           items: firestoreOrder.items.map(item => ({
             id: item.id,
@@ -138,12 +126,12 @@ export function OrderTrackingPage({ orderId }: OrderTrackingPageProps) {
             ? safeTimestampToMillis(firestoreOrder.estimatedCompletionTime) + (20 * 60 * 1000)
             : safeTimestampToMillis(firestoreOrder.estimatedCompletionTime),
           statusHistory: [{
-            status: firestoreOrder.status as any,
+            status: firestoreOrder.status as OrderStatus,
             timestamp: safeTimestampToMillis(firestoreOrder.createdAt),
             message: 'Order placed'
           }],
-          paymentMethod: firestoreOrder.paymentMethod as any,
-          paymentStatus: 'paid' as any,
+          paymentMethod: firestoreOrder.paymentMethod as 'cash' | 'card' | 'momo' | 'zalopay',
+          paymentStatus: 'paid' as const,
           createdAt: safeTimestampToMillis(firestoreOrder.createdAt),
           updatedAt: safeTimestampToMillis(firestoreOrder.updatedAt)
         };
@@ -179,7 +167,7 @@ export function OrderTrackingPage({ orderId }: OrderTrackingPageProps) {
             const convertedOrder: Order = {
               id: updatedOrder.id,
               orderNumber: updatedOrder.orderNumber,
-              status: updatedOrder.status as any,
+              status: updatedOrder.status as OrderStatus,
               orderType: updatedOrder.type as 'delivery' | 'table',
               items: updatedOrder.items.map(item => ({
                 id: item.id,
@@ -213,12 +201,12 @@ export function OrderTrackingPage({ orderId }: OrderTrackingPageProps) {
                 ? new Date(updatedOrder.estimatedCompletionTime).getTime() + (20 * 60 * 1000)
                 : undefined,
               statusHistory: [{
-                status: updatedOrder.status as any,
+                status: updatedOrder.status as OrderStatus,
                 timestamp: new Date(updatedOrder.createdAt).getTime(),
                 message: 'Order updated'
               }],
-              paymentMethod: updatedOrder.paymentMethod as any,
-              paymentStatus: 'paid' as any,
+              paymentMethod: updatedOrder.paymentMethod as 'cash' | 'card' | 'momo' | 'zalopay',
+              paymentStatus: 'paid' as const,
               createdAt: new Date(updatedOrder.createdAt).getTime(),
               updatedAt: new Date(updatedOrder.updatedAt).getTime()
             };
@@ -246,11 +234,8 @@ export function OrderTrackingPage({ orderId }: OrderTrackingPageProps) {
         unsubscribe();
       }
     };
-  }, [autoRefresh, orderId, t, showSuccessToast]);
+  }, [autoRefresh, orderId, previousStatus, t, showSuccessToast]);
 
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat('vi-VN').format(price);
-  };
 
   const handleRefresh = () => {
     window.location.reload();
@@ -267,105 +252,98 @@ export function OrderTrackingPage({ orderId }: OrderTrackingPageProps) {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <OrderPageLayout 
+        variant="centered"
+        header={false}
+        className="min-h-screen bg-gray-50"
+      >
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">{t('order.loading')}</p>
+          <p className="text-responsive-base text-gray-600">{t('order.loading')}</p>
         </div>
-      </div>
+      </OrderPageLayout>
     );
   }
 
   if (error || !order) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
-        <Card className="max-w-md mx-auto p-6 text-center">
+      <OrderPageLayout 
+        variant="centered"
+        header={false}
+        className="min-h-screen bg-gray-50"
+      >
+        <Card className="responsive-card max-w-md mx-auto text-center">
           <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
             <svg className="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 15.5c-.77.833.192 2.5 1.732 2.5z" />
             </svg>
           </div>
-          <h2 className="text-xl font-semibold text-gray-900 mb-2">
+          <h2 className="text-responsive-xl font-semibold text-gray-900 mb-2">
             {t('order.errors.notFound.title')}
           </h2>
-          <p className="text-gray-600 mb-6">
+          <p className="text-responsive-base text-gray-600 mb-6">
             {error || t('order.errors.notFound.description')}
           </p>
-          <div className="space-y-3">
-            <Button onClick={() => router.push('/menu')} className="w-full">
+          <div className="form-group-responsive">
+            <Button onClick={() => router.push('/menu')} className="responsive-button w-full">
               {t('order.actions.backToMenu')}
             </Button>
-            <Button variant="ghost" onClick={() => router.push('/')}>
+            <Button variant="ghost" onClick={() => router.push('/')} className="responsive-button">
               {t('order.actions.backToHome')}
             </Button>
           </div>
         </Card>
-      </div>
+      </OrderPageLayout>
     );
   }
 
-  // Render mobile version on small screens
-  if (isMobile) {
-    return <OrderTrackingPageMobile orderId={orderId} />;
-  }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm sticky top-0 z-40">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Breadcrumb */}
-          <div className="py-2 border-b border-gray-100">
-            <Breadcrumb orderNumber={order?.orderNumber} />
-          </div>
-          
-          <div className="flex items-center justify-between h-16">
-            {/* Left side - Back button and title */}
-            <div className="flex items-center space-x-3">
-              <Button 
-                variant="ghost" 
-                onClick={() => router.back()}
-                className="p-2"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                </svg>
-              </Button>
-              <h1 className="text-xl font-semibold text-gray-900">
-                {t('order.tracking.title')}
-              </h1>
-            </div>
+    <OrderPageLayout 
+      orderNumber={order.orderNumber || orderId.slice(-8).toUpperCase()}
+      className="pb-20 md:pb-0"
+    >
+      {/* Mobile Layout */}
+      <div className="lg:hidden space-y-4">
+        {/* Status Timeline - Mobile */}
+        <OrderStatusTimeline 
+          order={order}
+          currentStatus={order.status}
+          className="mobile-only"
+        />
+        
+        {/* Order Details - Mobile */}
+        <OrderDetails 
+          order={order}
+          className="mobile-only"
+        />
 
-            {/* Right side - Language selector and actions */}
-            <div className="flex items-center space-x-4">
-              <LanguageSelector variant="dropdown" />
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={handleRefresh}
-                className="text-gray-600"
-              >
-                <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                </svg>
-                {t('order.actions.refresh')}
-              </Button>
-            </div>
+        {/* Mobile Actions - Floating */}
+        <div className="sticky-bottom-mobile bg-white border-t border-gray-200 shadow-lg">
+          <div className="padding-responsive">
+            <OrderActions 
+              order={order}
+              onRefresh={handleRefresh}
+              autoRefresh={autoRefresh}
+              onToggleAutoRefresh={handleToggleAutoRefresh}
+              variant="mobile"
+            />
           </div>
         </div>
-      </header>
+      </div>
 
-      <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      {/* Desktop Layout */}
+      <div className="hidden lg:block">
+        <div className="responsive-grid-3 gap-responsive margin-responsive-y">
           {/* Order Status and Timeline */}
           <div className="lg:col-span-2 space-y-6">
             {/* Current Status */}
-            <Card padding="md">
-              <div className="flex items-center justify-between mb-4">
-                <h2 className="text-xl font-semibold text-gray-900">
+            <Card className="responsive-card">
+              <div className="responsive-flex-center justify-between mb-4">
+                <h2 className="text-responsive-xl font-semibold text-gray-900">
                   {t('order.status.title')}
                 </h2>
-                <div className={`px-3 py-1 rounded-full text-sm font-medium ${
+                <div className={`px-3 py-1 rounded-full text-responsive-sm font-medium ${
                   order.status === 'completed' ? 'bg-green-100 text-green-800' :
                   order.status === 'cancelled' ? 'bg-red-100 text-red-800' :
                   order.status === 'ready' ? 'bg-blue-100 text-blue-800' :
@@ -389,60 +367,53 @@ export function OrderTrackingPage({ orderId }: OrderTrackingPageProps) {
           <div className="lg:col-span-1">
             <div className="sticky top-24 space-y-6">
               {/* Order Info */}
-              <Card padding="md">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">
+              <Card className="responsive-card">
+                <h3 className="text-responsive-lg font-semibold text-gray-900 mb-4">
                   {t('order.summary.title')}
                 </h3>
                 
-                <div className="space-y-3 text-sm">
-                  <div className="flex justify-between">
+                <div className="form-group-responsive text-responsive-sm">
+                  <div className="responsive-flex-center justify-between">
                     <span className="text-gray-600">{t('order.summary.orderTime')}</span>
                     <span>{new Date(order.createdAt).toLocaleString(locale)}</span>
                   </div>
                   
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">{t('order.summary.estimatedTime')}</span>
-                    <span>{new Date(order.estimatedReadyTime || order.estimatedDeliveryTime || Date.now()).toLocaleTimeString(locale, { 
-                      hour: '2-digit', 
-                      minute: '2-digit' 
-                    })}</span>
-                  </div>
                   
-                  <div className="flex justify-between">
+                  <div className="responsive-flex-center justify-between">
                     <span className="text-gray-600">{t('order.summary.orderType')}</span>
                     <span>{order.orderType ? t(`common.orderTypes.${order.orderType}`) : '-'}</span>
                   </div>
                   
                   {order.tableNumber && (
-                    <div className="flex justify-between">
+                    <div className="responsive-flex-center justify-between">
                       <span className="text-gray-600">{t('order.summary.table')}</span>
                       <span>{order.tableNumber}</span>
                     </div>
                   )}
                   
-                  <div className="flex justify-between">
+                  <div className="responsive-flex-center justify-between">
                     <span className="text-gray-600">{t('order.summary.paymentMethod')}</span>
                     <span>{t(`checkout.payment.methods.${order.paymentMethod}`)}</span>
                   </div>
                   
                   <div className="border-t border-gray-200 pt-3">
-                    <div className="flex justify-between font-semibold">
+                    <div className="responsive-flex-center justify-between font-semibold">
                       <span>{t('order.summary.total')}</span>
-                      <span className="text-primary-600">{formatPrice(order.summary.total)}₫</span>
+                      <span className="text-primary-600">{formatPrice(order.summary.total, locale)}</span>
                     </div>
                   </div>
                 </div>
               </Card>
 
               {/* Auto Refresh Toggle */}
-              <Card padding="sm">
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-600">
+              <Card className="responsive-card">
+                <div className="responsive-flex-center justify-between">
+                  <span className="text-responsive-sm text-gray-600">
                     {t('order.settings.autoRefresh')}
                   </span>
                   <button
                     onClick={handleToggleAutoRefresh}
-                    className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                    className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors touch-manipulation ${
                       autoRefresh ? 'bg-primary-600' : 'bg-gray-200'
                     }`}
                   >
@@ -456,11 +427,16 @@ export function OrderTrackingPage({ orderId }: OrderTrackingPageProps) {
               </Card>
 
               {/* Quick Actions */}
-              <OrderActions order={order} />
+              <OrderActions 
+                order={order}
+                onRefresh={handleRefresh}
+                autoRefresh={autoRefresh}
+                onToggleAutoRefresh={handleToggleAutoRefresh}
+              />
             </div>
           </div>
         </div>
-      </main>
-    </div>
+      </div>
+    </OrderPageLayout>
   );
 }

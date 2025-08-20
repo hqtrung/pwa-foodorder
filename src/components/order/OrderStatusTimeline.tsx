@@ -164,37 +164,6 @@ export function OrderStatusTimeline({ order, currentStatus }: OrderStatusTimelin
         })}
       </div>
 
-      {/* Estimated completion time */}
-      {currentStatus !== 'completed' && currentStatus !== 'cancelled' && (
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-          <div className="flex items-center space-x-3">
-            <svg className="w-5 h-5 text-blue-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
-            </svg>
-            <div>
-              <h4 className="text-sm font-medium text-blue-800">
-                {t('order.estimatedCompletion.title')}
-              </h4>
-              <p className="text-sm text-blue-700">
-                {order.orderType === 'delivery' 
-                  ? t('order.estimatedCompletion.delivery', {
-                      time: new Date(order.estimatedReadyTime || order.estimatedDeliveryTime || Date.now()).toLocaleTimeString('vi-VN', {
-                        hour: '2-digit',
-                        minute: '2-digit'
-                      })
-                    })
-                  : t('order.estimatedCompletion.table', {
-                      time: new Date(order.estimatedReadyTime || Date.now()).toLocaleTimeString('vi-VN', {
-                        hour: '2-digit',
-                        minute: '2-digit'
-                      })
-                    })
-                }
-              </p>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

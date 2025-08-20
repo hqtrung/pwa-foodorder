@@ -171,15 +171,6 @@ export function FloatingOrderStatus() {
     }
   };
 
-  const getEstimatedTime = () => {
-    if (!order.estimatedReadyTime) return '';
-    const now = Date.now();
-    const estimatedTime = order.estimatedReadyTime;
-    const diffMinutes = Math.ceil((estimatedTime - now) / (1000 * 60));
-    
-    if (diffMinutes <= 0) return t('order.ready');
-    return `${diffMinutes} ${t('common.minutes')}`;
-  };
 
   const handleClick = () => {
     if (isExpanded) {
@@ -232,16 +223,6 @@ export function FloatingOrderStatus() {
               <p className="text-sm font-medium opacity-95">
                 {t('order.number')} #{order.orderNumber}
               </p>
-              {getEstimatedTime() && (
-                <div className="flex items-center space-x-2 bg-white/10 rounded-lg px-3 py-2">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <span className="text-sm font-medium">
-                    {getEstimatedTime()}
-                  </span>
-                </div>
-              )}
             </div>
 
             {/* Action button */}

@@ -232,7 +232,7 @@ export function OrderDetailsMobile({ order }: OrderDetailsMobileProps) {
           className="w-full px-4 py-3 flex items-center justify-between"
         >
           <h3 className="text-sm font-semibold text-gray-900">
-            Share Order
+            {t('order.share.title')}
           </h3>
           <svg 
             className={`w-4 h-4 text-gray-500 transition-transform ${

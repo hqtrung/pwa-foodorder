@@ -209,13 +209,25 @@ export class FirestoreService {
 
       console.log(`Found ${productsData.length} products in document`);
       
+      // Filter out products with invalid category (pos_categ_id === false)
+      // These are typically service items, customization options, or internal products
+      const validProducts = productsData.filter((product: any) => {
+        const categoryId = Array.isArray(product.pos_categ_id) 
+          ? product.pos_categ_id[0] 
+          : product.pos_categ_id;
+        
+        // Exclude products with false, null, or undefined category
+        return categoryId !== false && categoryId !== null && categoryId !== undefined;
+      });
+      
       // Filter by category if requested
-      let filteredProducts = productsData;
+      let filteredProducts = validProducts;
       if (categoryId) {
-        filteredProducts = productsData.filter((product: any) => {
+        filteredProducts = validProducts.filter((product: any) => {
           const productCategoryId = Array.isArray(product.pos_categ_id) 
             ? product.pos_categ_id[0] 
             : product.pos_categ_id;
+          
           return productCategoryId === categoryId;
         });
         console.log(`Filtered to ${filteredProducts.length} products for category ${categoryId}`);
