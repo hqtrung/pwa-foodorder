@@ -1,298 +1,227 @@
 {
-  "common": {
-    "navigation": {
-      "home": "ホーム",
-      "menu": "メニュー",
-      "cart": "カート",
-      "orders": "注文",
-      "staff": "スタッフ"
-    },
-    "orderTypes": {
-      "table": "店内サービス",
-      "delivery": "宅配サービス"
-    },
-    "actions": {
-      "addToCart": "カートに追加",
-      "checkout": "注文する",
-      "placeOrder": "注文する",
-      "viewOrder": "注文を見る",
-      "goBack": "戻る",
-      "close": "閉じる",
-      "edit": "編集",
-      "remove": "削除",
-      "confirm": "確認",
-      "cancel": "キャンセル",
-      "save": "保存"
-    },
-    "currency": "₫",
-    "loading": "読み込み中...",
-    "error": "エラーが発生しました",
-    "success": "成功",
-    "minutes": "分",
-    "cancel": "キャンセル",
-    "item": "アイテム",
-    "items": "アイテム"
-  },
-  "landing": {
-    "welcome": {
-      "title": "Bánh Mì PateDeli",
-      "subtitle": "本格的なベトナム料理をお楽しみください",
-      "description": "伝統的なバインミー、おもち、麺、牛肉の煤込み料理とさまざまなコーヒー、飲み物。"
-    },
-    "status": {
-      "open": "営業中",
-      "closed": "閉店",
-      "until": "まで"
-    },
-    "info": {
-      "address": "住所",
-      "phone": "電話",
-      "hours": "営業時間",
-      "dailyHours": "毎日 06:00 - 19:00"
-    },
-    "orderType": {
-      "title": "注文タイプを選択",
-      "table": {
-        "title": "店内サービス",
-        "description": "レストランで心のこもったサービスとともにお食事をお楽しみください",
-        "benefit1": "新鮮で温かい",
-        "benefit2": "プレミアム体験"
-      },
-      "delivery": {
-        "title": "宅配サービス",
-        "description": "ご自宅まで迅速配送",
-        "benefit1": "便利",
-        "fee": "配送料 {fee}₫"
-      }
-    },
-    "tableNumber": {
-      "title": "テーブル番号を入力",
-      "placeholder": "テーブル番号",
-      "hint": "1-50のテーブル番号を入力してください",
-      "confirm": "テーブル番号を確認"
-    },
-    "delivery": {
-      "title": "配送確認",
-      "radius": "配送エリア",
-      "minimum": "最小注文金額",
-      "confirm": "注文を続ける"
-    },
-    "actions": {
-      "browseMenu": "メニューを見る"
-    },
-    "errors": {
-      "tableNumberRequired": "テーブル番号を入力してください",
-      "invalidTableNumber": "無効なテーブル番号です（1-50）"
-    },
-    "success": {
-      "tableSet": "テーブル{number}を選択しました",
-      "deliverySelected": "宅配サービスを選択しました"
-    },
-    "footer": {
-      "copyright": "© 2025 Bánh Mì PateDeli. 全著作権所有。",
-      "poweredBy": "FoodOrder PWAによって動作"
-    }
-  },
-  "menu": {
-    "title": "メニュー",
-    "orderTypeRequired": {
-      "title": "注文タイプを選択",
-      "description": "メニューを見る前に、ホームページに戻って注文タイプを選択してください",
-      "backToHome": "ホームに戻る"
-    },
-    "orderInfo": {
-      "table": "テーブル{number}",
-      "delivery": "宅配サービス"
-    },
-    "search": {
-      "placeholder": "料理を検索...",
-      "results": {
-        "title": "検索結果",
-        "searching": "\"{query}\"を検索中...",
-        "found": "\"{query}\"の{count}件の結果",
-        "clear": "検索をクリア"
-      },
-      "noResults": {
-        "title": "料理が見つかりません",
-        "description": "\"{query}\"の結果はありません",
-        "browseAll": "すべての料理を見る"
-      }
-    },
-    "categories": {
-      "title": "カテゴリー",
-      "viewAll": "すべて見る"
-    },
-    "products": {
-      "featured": "おすすめ商品",
-      "all": "すべての商品",
-      "viewAll": "すべての{count}件を見る",
-      "showFeatured": "おすすめのみ表示",
-      "noFeatured": "現在おすすめ商品はありません"
-    },
-    "filters": {
-      "sortBy": "並び替え",
-      "sort": {
-        "popularity": "人気順",
-        "name": "名前順",
-        "price": "価格順",
-        "newest": "新着順"
-      },
-      "ascending": "昇順",
-      "descending": "降順",
-      "availableOnly": "在庫ありのみ表示",
-      "reset": "リセット",
-      "showing": "表示中",
-      "includingUnavailable": "在庫なしを含む"
-    },
-    "badges": {
-      "promotion": "プロモーション",
-      "bestSeller": "ベストセラー",
-      "new": "新商品"
-    },
-    "product": {
-      "outOfStock": "在庫切れ",
-      "minutes": "分",
-      "customizable": "カスタマイズ可能",
-      "viewDetails": "詳細を見る",
-      "addedToCart": "{name}をカートに追加しました",
-      "addToCart": "カートに追加"
-    },
-    "empty": {
-      "title": "料理がありません",
-      "description": "現在、フィルターに一致する料理はありません"
-    },
-    "errors": {
-      "loadFailed": "メニューの読み込みに失敗しました"
-    }
-  },
-  "product": {
-    "toppings": {
-      "title": "トッピング"
-    },
-    "instructions": {
-      "title": "特別な要望",
-      "placeholder": "この料理への特別な要望..."
-    },
-    "quantity": {
-      "label": "数量"
-    },
-    "addToCart": {
-      "button": "カートに追加 - {price}₫"
-    },
-    "allergens": {
-      "title": "アレルゲン情報",
-      "gluten": "グルテン",
-      "dairy": "乳製品",
-      "eggs": "卵",
-      "fish": "魚",
-      "soy": "大豆",
-      "nuts": "ナッツ"
-    },
-    "nutrition": {
-      "title": "栄養情報",
-      "calories": "カロリー",
-      "protein": "タンパク質",
-      "carbs": "炭水化物",
-      "fat": "脂質"
-    },
-    "success": {
-      "addedToCart": "{quantity}個の{name}をカートに追加しました"
-    },
-    "errors": {
-      "toppingsLoadFailed": "トッピングの読み込みに失敗しました",
-      "addToCartFailed": "カートに追加できませんでした"
-    }
-  },
   "cart": {
-    "title": "カート",
-    "viewCart": "カートを見る",
-    "itemCount": "カートに{count}個の商品",
-    "empty": {
-      "title": "カートは空です",
-      "description": "続行するには商品をカートに追加してください",
-      "browseMenu": "メニューを見る",
-      "backToHome": "ホームに戻る",
-      "suggestions": {
-        "title": "おすすめ商品",
-        "promotions": "プロモーション",
-        "promotionsDesc": "お得な商品",
-        "banhMi": "バインミー",
-        "banhMiDesc": "新鮮なサンドイッチ",
-        "bestsellers": "ベストセラー",
-        "bestsellersDesc": "人気商品"
-      }
-    },
-    "item": {
-      "removed": "{name}をカートから削除しました",
-      "instructionsUpdated": "指示を更新しました",
-      "toppings": "トッピング",
-      "specialInstructions": "特別な要望",
-      "edit": "編集",
-      "instructionsPlaceholder": "この商品へのメモ...",
-      "each": "各",
-      "quantity": "数量",
-      "modify": "変更",
-      "remove": "削除"
-    },
-    "summary": {
-      "title": "注文概要",
-      "items": "個",
-      "view": "見る",
-      "subtotal": "小計",
-      "delivery": "配送料",
-      "deliveryFee": "配送料",
-      "tax": "税金",
-      "discount": "割引",
-      "total": "合計",
-      "checkout": "注文する"
-    },
-    "orderInfo": {
-      "title": "注文情報",
-      "table": "テーブル{number}",
-      "delivery": "配送",
-      "edit": "注文情報を編集"
-    },
     "actions": {
-      "clear": "すべてクリア",
       "change": "変更",
+      "clear": "すべてクリア",
       "continueShopping": "買い物を続ける"
-    },
-    "items": {
-      "title": "選択した商品"
-    },
-    "specialInstructions": {
-      "title": "特別な要望",
-      "placeholder": "ご注文への特別な要望...",
-      "hint": "指示はキッチンに送られます"
-    },
-    "warnings": {
-      "minimumOrder": {
-        "title": "最小注文金額に達していません",
-        "description": "配送最小注文金額{minimum}₫、あと{needed}₫必要です"
-      }
     },
     "checkout": {
       "button": "注文する {total}₫"
     },
-    "estimatedTime": {
-      "delivery": "30-45分で配達予定",
-      "pickup": "15-20分で準備完了予定"
+    "empty": {
+      "backToHome": "ホームに戻る",
+      "browseMenu": "メニューを見る",
+      "description": "続行するには商品をカートに追加してください",
+      "suggestions": {
+        "banhMi": "バインミー",
+        "banhMiDesc": "新鮮なサンドイッチ",
+        "bestsellers": "ベストセラー",
+        "bestsellersDesc": "人気商品",
+        "promotions": "プロモーション",
+        "promotionsDesc": "お得な商品",
+        "title": "おすすめ商品"
+      },
+      "title": "カートは空です"
     },
     "errors": {
       "minimumOrder": "配送最小注文金額{minimum}₫",
       "noOrderType": "注文タイプを選択してください"
     },
+    "estimatedTime": {
+      "delivery": "30-45分で配達予定",
+      "pickup": "15-20分で準備完了予定"
+    },
+    "hideDetails": "詳細を非表示",
+    "item": {
+      "each": "各",
+      "edit": "編集",
+      "instructionsPlaceholder": "この商品へのメモ...",
+      "instructionsUpdated": "指示を更新しました",
+      "modify": "変更",
+      "quantity": "数量",
+      "remove": "削除",
+      "removed": "{name}をカートから削除しました",
+      "specialInstructions": "特別な要望",
+      "toppings": "トッピング",
+      "updateFailed": "アイテムの更新に失敗しました",
+      "updated": "{name}を正常に更新しました"
+    },
+    "itemCount": "カートに{count}個の商品",
+    "items": {
+      "title": "選択した商品"
+    },
+    "orderInfo": {
+      "delivery": "配送",
+      "edit": "注文情報を編集",
+      "orderTypeSelection": {
+        "delivery": {
+          "description": "ご自宅まで迅速配送",
+          "title": "宅配サービス"
+        },
+        "deliveryAddress": {
+          "hint": "時間通りの配送のため正確な住所をご提供ください",
+          "label": "配送先住所",
+          "placeholder": "配送先住所を完全に入力してください",
+          "required": "配送先住所は必須です"
+        },
+        "tableNumber": {
+          "hint": "テーブル番号は1-50で入力してください",
+          "label": "テーブル番号",
+          "placeholder": "テーブル番号を入力"
+        },
+        "tableService": {
+          "description": "レストランで心のこもったサービスとともにお食事をお楽しみください",
+          "title": "店内サービス"
+        },
+        "title": "注文タイプを選択"
+      },
+      "table": "テーブル{number}",
+      "title": "注文情報"
+    },
+    "reviewItems": "アイテムをレビュー",
+    "showDetails": "詳細を表示",
+    "specialInstructions": {
+      "hint": "指示はキッチンに送られます",
+      "placeholder": "ご注文への特別な要望...",
+      "title": "特別な要望"
+    },
     "success": {
       "cleared": "カートをクリアしました"
+    },
+    "summary": {
+      "checkout": "注文する",
+      "delivery": "配送料",
+      "deliveryFee": "配送料",
+      "discount": "割引",
+      "items": "個",
+      "subtotal": "小計",
+      "tax": "税金",
+      "title": "注文概要",
+      "total": "合計",
+      "view": "見る"
+    },
+    "title": "カート",
+    "viewCart": "カートを見る",
+    "warnings": {
+      "minimumOrder": {
+        "description": "配送最小注文金額{minimum}₫、あと{needed}₫必要です",
+        "title": "最小注文金額に達していません"
+      }
     }
   },
   "checkout": {
-    "title": "注文する",
-    "stepProgress": "ステップ{current} / {total}",
-    "steps": {
-      "tableInfo": {
-        "title": "テーブル情報"
+    "button": "チェックアウト",
+    "customerInfo": {
+      "title": "お客様情報"
+    },
+    "deliveryAddress": {
+      "title": "配送先住所"
+    },
+    "deliveryInfo": {
+      "badge": "配送",
+      "notice": {
+        "description": "ご注文は30-45分以内にお届けいたします。変更がある場合はご連絡いたします。",
+        "title": "配送時間"
       },
+      "title": "配送情報"
+    },
+    "errors": {
+      "customerNameRequired": "お客様名を入力してください",
+      "deliveryInfoRequired": "配送情報をすべて入力してください",
+      "paymentMethodRequired": "支払い方法を選択してください",
+      "submitFailed": "注文できませんでした。もう一度お試しください。",
+      "validation": {
+        "addressRequired": "配送先住所が必要です",
+        "customerNameRequired": "お客様名は必須です",
+        "maxRetriesExceeded": "最大再試行回数を超えました",
+        "phoneRequired": "配送には電話番号が必要です",
+        "unknownError": "予期しないエラーが発生しました"
+      }
+    },
+    "form": {
+      "address": "配送先住所",
+      "addressHint": "時間通りの配送のため正確な住所をご提供ください",
+      "addressPlaceholder": "番地、通り、町、区、市",
+      "customerName": "お客様名",
+      "customerNamePlaceholder": "お名前を入力",
+      "deliveryInstructions": "配送指示",
+      "deliveryInstructionsHint": "配送員が住所を見つけやすくするため",
+      "deliveryInstructionsPlaceholder": "例：3階、301号室、青いベル",
+      "email": "メール",
+      "emailHint": "注文通知を受け取るため（任意）",
+      "emailPlaceholder": "email@example.com",
+      "phone": "電話番号",
+      "phoneHint": "必要に応じてレストランからご連絡するため",
+      "phonePlaceholder": "0xxx xxx xxx",
+      "table": "テーブル"
+    },
+    "navigation": {
+      "next": "次へ",
+      "placeOrder": "注文する",
+      "previous": "前へ",
+      "submitting": "処理中..."
+    },
+    "orderInfo": {
+      "change": "変更",
+      "table": "テーブル {number}",
+      "title": "注文情報"
+    },
+    "payment": {
+      "cardInfo": {
+        "description": "配送時にPOS端末でカードを処理します。",
+        "title": "カード支払い"
+      },
+      "cashInfo": {
+        "description": "おつりをご用意ください。配送時にスタッフがレシートをお持ちします。",
+        "title": "現金支払い"
+      },
+      "comingSoon": "近日公開",
+      "descriptions": {
+        "card": "Visa、Mastercardで支払い",
+        "cash": "配送時に現金で支払い",
+        "momo": "MoMoデジタルウォレットで支払い",
+        "zalopay": "ZaloPayデジタルウォレットで支払い"
+      },
+      "digitalWalletInfo": {
+        "description": "{method}のQRコードをスキャンして迅速で安全な支払いを。",
+        "title": "デジタルウォレット"
+      },
+      "methods": {
+        "card": "クレジットカード",
+        "cash": "現金",
+        "momo": "MoMoウォレット",
+        "zalopay": "ZaloPay"
+      },
+      "securityNotice": "取引は安全で暗号化されています",
+      "selectMethod": "支払い方法を選択"
+    },
+    "paymentMethod": {
+      "title": "支払い方法"
+    },
+    "placeOrder": "注文する",
+    "placingOrder": "注文中...",
+    "progress": {
+      "complete": "完了",
+      "customer": "お客様情報",
+      "delivery": "配送詳細",
+      "instructions": "特別な要望",
+      "payment": "支払い方法",
+      "sectionsComplete": "セクション完了",
+      "title": "注文の進行状況"
+    },
+    "review": {
+      "deliveryInfo": "配送情報",
+      "orderSummary": "注文概要",
+      "paymentMethod": "支払い方法",
+      "tableInfo": "テーブル情報"
+    },
+    "specialInstructions": {
+      "hint": "特別な要望はキッチンに伝えられます",
+      "placeholder": "ご注文へのメモを追加（例：辛くしない、砂糖少なめ...）",
+      "title": "特別な要望"
+    },
+    "stepProgress": "ステップ {current}/{total}",
+    "steps": {
       "deliveryInfo": {
         "title": "配送情報"
       },
@@ -301,447 +230,536 @@
       },
       "review": {
         "title": "注文確認"
+      },
+      "tableInfo": {
+        "title": "テーブル情報"
       }
-    },
-    "tableInfo": {
-      "title": "テーブル情報",
-      "number": "テーブル{number}",
-      "instructions": {
-        "title": "重要なお知らせ",
-        "description": "ご注文をお受け取りいただくため、テーブルでお待ちください。スタッフが直接お料理をお持ちします。"
-      }
-    },
-    "deliveryInfo": {
-      "title": "配送情報",
-      "badge": "配送",
-      "notice": {
-        "title": "配送時間",
-        "description": "ご注文は30-45分以内に配送されます。変更がある場合はご連絡いたします。"
-      }
-    },
-    "customerInfo": {
-      "title": "お客様情報"
-    },
-    "deliveryAddress": {
-      "title": "配送先住所"
-    },
-    "specialInstructions": {
-      "title": "特別な要望",
-      "placeholder": "ご注文へのメモを追加（例：辛くしない、砂糖少なめ...）",
-      "hint": "特別な要望はキッチンに伝えられます"
-    },
-    "form": {
-      "customerName": "お客様名",
-      "customerNamePlaceholder": "お名前を入力",
-      "phone": "電話番号",
-      "phonePlaceholder": "0xxx xxx xxx",
-      "phoneHint": "必要に応じてレストランからご連絡するため",
-      "email": "メール",
-      "emailPlaceholder": "email@example.com",
-      "emailHint": "注文通知を受け取るため（任意）",
-      "address": "配送先住所",
-      "addressPlaceholder": "番地、通り、町、区、市",
-      "addressHint": "時間通りの配送のため正確な住所をご提供ください",
-      "deliveryInstructions": "配送指示",
-      "deliveryInstructionsPlaceholder": "例：3階、301号室、青いベル",
-      "deliveryInstructionsHint": "配送員が住所を見つけやすくするため",
-      "table": "テーブル"
-    },
-    "payment": {
-      "selectMethod": "支払い方法を選択",
-      "methods": {
-        "cash": "現金",
-        "card": "クレジットカード",
-        "momo": "MoMoウォレット",
-        "zalopay": "ZaloPay"
-      },
-      "descriptions": {
-        "cash": "配送時に現金で支払い",
-        "card": "Visa、Mastercardで支払い",
-        "momo": "MoMoデジタルウォレットで支払い",
-        "zalopay": "ZaloPayデジタルウォレットで支払い"
-      },
-      "comingSoon": "近日公開",
-      "cashInfo": {
-        "title": "現金支払い",
-        "description": "おつりをご用意ください。配送時にスタッフがレシートをお持ちします。"
-      },
-      "cardInfo": {
-        "title": "カード支払い",
-        "description": "配送時にPOS端末でカードを処理します。"
-      },
-      "digitalWalletInfo": {
-        "title": "デジタルウォレット",
-        "description": "{method}のQRコードをスキャンして迅速で安全な支払いを。"
-      },
-      "securityNotice": "取引は安全で暗号化されています"
-    },
-    "review": {
-      "tableInfo": "テーブル情報",
-      "deliveryInfo": "配送情報",
-      "paymentMethod": "支払い方法",
-      "orderSummary": "注文概要"
-    },
-    "navigation": {
-      "previous": "前へ",
-      "next": "次へ",
-      "placeOrder": "注文する",
-      "submitting": "処理中..."
-    },
-    "errors": {
-      "customerNameRequired": "お客様名を入力してください",
-      "deliveryInfoRequired": "配送情報をすべて入力してください",
-      "submitFailed": "注文できませんでした。もう一度お試しください。"
     },
     "success": {
-      "orderPlaced": "注文が完了しました！注文ID：{orderId}"
+      "orderPlaced": "ご注文が完了しました！注文ID: {orderId}"
+    },
+    "tableInfo": {
+      "instructions": {
+        "description": "ご注文をお受け取りいただくため、テーブルでお待ちください。スタッフが直接お料理をお持ちします。",
+        "title": "重要なお知らせ"
+      },
+      "number": "テーブル {number}",
+      "title": "テーブル情報"
+    },
+    "title": "チェックアウト",
+    "validation": {
+      "customerName": {
+        "minLength": "名前は2文字以上で入力してください"
+      },
+      "email": {
+        "invalid": "有効なメールアドレスを入力してください"
+      },
+      "phone": {
+        "invalid": "有効な電話番号を入力してください"
+      }
     }
   },
-  "order": {
-    "loading": "注文情報を読み込み中...",
-    "tracking": {
-      "title": "注文追跡",
-      "orderId": "注文ID：{orderId}"
+  "common": {
+    "actions": {
+      "addToCart": "カートに追加",
+      "cancel": "キャンセル",
+      "checkout": "注文する",
+      "close": "閉じる",
+      "confirm": "確認",
+      "continue": "続行",
+      "edit": "編集",
+      "goBack": "戻る",
+      "placeOrder": "注文する",
+      "remove": "削除",
+      "save": "保存",
+      "viewOrder": "注文を見る"
+    },
+    "cancel": "キャンセル",
+    "currency": "₫",
+    "delivery": "配送",
+    "error": "エラーが発生しました",
+    "fallbacks": {
+      "unknownCategory": "不明",
+      "unknownItem": "不明なアイテム",
+      "unknownProduct": "不明な商品",
+      "unknownTopping": "不明なトッピング"
+    },
+    "item": "アイテム",
+    "items": "アイテム",
+    "loading": "読み込み中...",
+    "minutes": "分",
+    "navigation": {
+      "cart": "カート",
+      "home": "ホーム",
+      "menu": "メニュー",
+      "orders": "注文",
+      "staff": "スタッフ"
+    },
+    "orderTypes": {
+      "delivery": "宅配サービス",
+      "table": "店内サービス"
+    },
+    "success": "成功"
+  },
+  "errors": {
+    "invalidPhone": "無効な電話番号です",
+    "maxLength": "最大{max}文字",
+    "minLength": "最低{min}文字",
+    "required": "このフィールドは必須です"
+  },
+  "landing": {
+    "actions": {
+      "browseMenu": "メニューを見る"
+    },
+    "delivery": {
+      "confirm": "注文を続ける",
+      "minimum": "最小注文金額",
+      "radius": "配送エリア",
+      "title": "配送確認"
+    },
+    "errors": {
+      "invalidTableNumber": "無効なテーブル番号です（1-50）",
+      "tableNumberRequired": "テーブル番号を入力してください"
+    },
+    "footer": {
+      "copyright": "© 2025 Bánh Mì PateDeli. 全著作権所有。",
+      "poweredBy": "FoodOrder PWAによって動作"
+    },
+    "info": {
+      "address": "住所",
+      "dailyHours": "毎日 06:00 - 19:00",
+      "hours": "営業時間",
+      "phone": "電話"
+    },
+    "orderType": {
+      "delivery": {
+        "benefit1": "便利",
+        "description": "ご自宅まで迅速配送",
+        "fee": "配送料 {fee}₫",
+        "title": "宅配サービス"
+      },
+      "table": {
+        "benefit1": "新鮮で温かい",
+        "benefit2": "プレミアム体験",
+        "description": "レストランで心のこもったサービスとともにお食事をお楽しみください",
+        "title": "店内サービス"
+      },
+      "title": "注文タイプを選択"
     },
     "status": {
-      "title": "注文ステータス",
-      "pending": "確認待ち",
-      "confirmed": "確認済み",
-      "preparing": "調理中",
-      "ready": "完成",
-      "delivering": "配送中",
-      "completed": "完了",
-      "cancelled": "キャンセル済み",
-      "preparingActive": "キッチンがお料理を調理中です",
-      "readyTableActive": "カウンターでお受け取りください",
-      "deliveringActive": "配送員が向かっています"
+      "closed": "閉店",
+      "open": "営業中",
+      "until": "まで"
     },
-    "statusDescriptions": {
-      "pending": "注文を受け付け、確認をお待ちしています",
-      "confirmed": "レストランがご注文を確認し、調理を開始しました",
-      "preparing": "キッチンがご要望に応じてお料理を調理中です",
-      "ready": "お料理が{type, select, delivery {配送} table {お受け取り} other {サービス}}の準備完了です",
-      "delivering": "配送員がお客様の住所に向かっています",
-      "completed": "注文が正常に配送されました",
-      "cancelled": "注文がキャンセルされました"
+    "success": {
+      "deliverySelected": "宅配サービスを選択しました",
+      "tableSet": "テーブル{number}を選択しました"
     },
-    "estimatedCompletion": {
-      "title": "予定時刻",
-      "delivery": "注文は{time}に配送されます",
-      "table": "お料理は{time}に準備完了です"
+    "tableNumber": {
+      "confirm": "テーブル番号を確認",
+      "hint": "1-50のテーブル番号を入力してください",
+      "placeholder": "テーブル番号",
+      "title": "テーブル番号を入力"
     },
-    "summary": {
-      "title": "注文情報",
-      "orderTime": "注文時刻",
-      "estimatedTime": "完了予定時刻",
-      "orderType": "注文タイプ",
-      "table": "テーブル",
-      "paymentMethod": "支払い方法",
-      "total": "合計"
+    "welcome": {
+      "description": "伝統的なバインミー、おもち、麺、牛肉の煤込み料理とさまざまなコーヒー、飲み物。",
+      "subtitle": "本格的なベトナム料理をお楽しみください",
+      "title": "Bánh Mì PateDeli"
+    }
+  },
+  "menu": {
+    "badges": {
+      "bestSeller": "ベストセラー",
+      "new": "新商品",
+      "promotion": "プロモーション"
     },
-    "details": {
-      "customerInfo": "お客様情報",
-      "name": "お客様名",
-      "phone": "電話番号",
-      "email": "メール",
-      "table": "テーブル番号",
-      "tableNumber": "テーブル{number}",
-      "deliveryAddress": "配送先住所",
-      "items": "注文商品",
-      "toppings": "トッピング",
-      "specialInstructions": "特別な要望",
-      "each": "各",
-      "summary": "注文概要",
-      "subtotal": "小計",
-      "deliveryFee": "配送料",
-      "tax": "税金",
-      "discount": "割引",
-      "total": "合計",
-      "orderInstructions": "注文メモ"
+    "categories": {
+      "all": "全カテゴリー",
+      "title": "カテゴリー",
+      "viewAll": "すべて見る"
     },
+    "empty": {
+      "description": "現在、フィルターに一致する料理はありません",
+      "title": "料理がありません"
+    },
+    "errors": {
+      "loadFailed": "メニューの読み込みに失敗しました"
+    },
+    "filters": {
+      "ascending": "昇順",
+      "availableOnly": "在庫ありのみ表示",
+      "descending": "降順",
+      "includingUnavailable": "在庫なしを含む",
+      "reset": "リセット",
+      "showing": "表示中",
+      "sort": {
+        "name": "名前順",
+        "newest": "新着順",
+        "popularity": "人気順",
+        "price": "価格順"
+      },
+      "sortBy": "並び替え"
+    },
+    "orderInfo": {
+      "delivery": "宅配サービス",
+      "table": "テーブル{number}"
+    },
+    "orderTypeRequired": {
+      "backToHome": "ホームに戻る",
+      "description": "メニューを見る前に、ホームページに戻って注文タイプを選択してください",
+      "title": "注文タイプを選択"
+    },
+    "product": {
+      "addToCart": "カートに追加",
+      "addedToCart": "{name}をカートに追加しました",
+      "customizable": "カスタマイズ可能",
+      "minutes": "分",
+      "outOfStock": "在庫切れ",
+      "viewDetails": "詳細を見る"
+    },
+    "products": {
+      "all": "すべての商品",
+      "featured": "おすすめ商品",
+      "noFeatured": "現在おすすめ商品はありません",
+      "showFeatured": "おすすめのみ表示",
+      "viewAll": "すべての{count}件を見る"
+    },
+    "search": {
+      "noResults": {
+        "browseAll": "すべての料理を見る",
+        "description": "\"{query}\"の結果はありません",
+        "title": "料理が見つかりません"
+      },
+      "placeholder": "料理を検索...",
+      "results": {
+        "clear": "検索をクリア",
+        "found": "\"{query}\"の{count}件の結果",
+        "searching": "\"{query}\"を検索中...",
+        "title": "検索結果"
+      }
+    },
+    "title": "メニュー"
+  },
+  "order": {
     "actions": {
-      "title": "アクション",
-      "refresh": "更新",
+      "backToHome": "ホームに戻る",
+      "backToMenu": "メニューに戻る",
+      "callInitiated": "電話を発信中...",
       "callRestaurant": "レストランに電話",
       "cancelOrder": "注文をキャンセル",
-      "reorder": "この商品を再注文",
-      "orderAgain": "再度注文",
-      "contactSupport": "サポートに連絡",
-      "backToMenu": "メニューに戻る",
-      "backToHome": "ホームに戻る",
-      "callInitiated": "電話を発信中...",
-      "itemsAddedToCart": "商品をカートに追加しました",
-      "orderCancelled": "注文がキャンセルされました",
       "cannotCancel": "この段階では注文をキャンセルできません",
-      "supportContacted": "サポートチームに連絡しました"
-    },
-    "settings": {
-      "autoRefresh": "自動更新"
-    },
-    "notifications": {
-      "statusUpdated": "注文ステータスが更新されました",
-      "autoRefreshEnabled": "自動更新を有効にしました",
-      "autoRefreshDisabled": "自動更新を無効にしました"
-    },
-    "help": {
-      "title": "ヘルプが必要ですか？",
-      "deliveryInstructions": "配送に問題がある場合は、レストランに直接お電話ください。",
-      "tableInstructions": "テーブルでお待ちいただき、スタッフがご注文をお持ちするまでお待ちください。"
-    },
-    "summary": {
-      "title": "注文情報",
-      "orderTime": "注文時刻",
-      "estimatedTime": "完了予定時刻",
-      "orderType": "注文タイプ",
-      "table": "テーブル",
-      "paymentMethod": "支払い方法",
-      "total": "合計"
-    },
-    "details": {
-      "customerInfo": "お客様情報",
-      "name": "お客様名",
-      "phone": "電話番号",
-      "email": "メール",
-      "table": "テーブル番号",
-      "tableNumber": "テーブル{number}",
-      "deliveryAddress": "配送先住所",
-      "items": "注文商品",
-      "toppings": "トッピング",
-      "specialInstructions": "特別な要望",
-      "each": "各",
-      "summary": "注文概要",
-      "subtotal": "小計",
-      "deliveryFee": "配送料",
-      "tax": "税金",
-      "discount": "割引",
-      "total": "合計",
-      "orderInstructions": "注文メモ"
-    },
-    "actions": {
-      "title": "アクション",
+      "contactSupport": "サポートに連絡",
+      "itemsAddedToCart": "商品をカートに追加しました",
+      "orderAgain": "再度注文",
+      "orderCancelled": "注文がキャンセルされました",
       "refresh": "更新",
-      "callRestaurant": "レストランに電話",
-      "cancelOrder": "注文をキャンセル",
       "reorder": "この商品を再注文",
-      "orderAgain": "再度注文",
-      "contactSupport": "サポートに連絡",
-      "backToMenu": "メニューに戻る",
-      "backToHome": "ホームに戻る",
-      "callInitiated": "電話を発信中...",
-      "itemsAddedToCart": "商品をカートに追加しました",
-      "orderCancelled": "注文がキャンセルされました",
-      "cannotCancel": "この段階では注文をキャンセルできません",
-      "supportContacted": "サポートチームに連絡しました"
-    },
-    "settings": {
-      "autoRefresh": "自動更新"
-    },
-    "notifications": {
-      "statusUpdated": "注文ステータスが更新されました",
-      "autoRefreshEnabled": "自動更新を有効にしました",
-      "autoRefreshDisabled": "自動更新を無効にしました"
+      "showQRCode": "QRコードを表示",
+      "supportContacted": "サポートチームに連絡しました",
+      "title": "アクション",
+      "trackOrder": "注文追跡",
+      "viewDetails": "詳細を表示"
     },
     "completed": {
-      "title": "注文完了",
-      "message": "ご注文ありがとうございました！レビューをお書きください。"
+      "message": "ご注文ありがとうございました！レビューをお書きください。",
+      "title": "注文完了"
     },
     "customer": {
       "info": "お客様情報"
     },
-    "table": "テーブル",
-    "items": {
-      "title": "注文商品"
+    "details": {
+      "customerInfo": "お客様情報",
+      "deliveryAddress": "配送先住所",
+      "deliveryFee": "配送料",
+      "discount": "割引",
+      "each": "各",
+      "email": "メール",
+      "items": "注文商品",
+      "name": "お客様名",
+      "orderInstructions": "注文メモ",
+      "phone": "電話番号",
+      "specialInstructions": "特別な要望",
+      "subtotal": "小計",
+      "summary": "注文概要",
+      "table": "テーブル番号",
+      "tableNumber": "テーブル{number}",
+      "tax": "税金",
+      "title": "注文詳細",
+      "toppings": "トッピング",
+      "total": "合計"
     },
-    "ready": "準備完了",
-    "estimatedTime": "{minutes}分",
-    "number": "注文",
-    "title": "注文 #{number}",
     "errors": {
       "loadFailed": "注文情報の読み込みに失敗しました",
       "notFound": {
-        "title": "注文が見つかりません",
-        "description": "注文が存在しないか削除されました"
+        "description": "注文が存在しないか削除されました",
+        "title": "注文が見つかりません"
       }
+    },
+    "estimatedCompletion": {
+      "delivery": "注文は{time}に配送されます",
+      "table": "お料理は{time}に準備完了です",
+      "title": "予定時刻"
+    },
+    "estimatedTime": "{minutes}分",
+    "help": {
+      "deliveryInstructions": "配送に問題がある場合は、レストランに直接お電話ください。",
+      "tableInstructions": "テーブルでお待ちいただき、スタッフがご注文をお持ちするまでお待ちください。",
+      "title": "ヘルプが必要ですか？"
+    },
+    "items": {
+      "title": "注文商品"
+    },
+    "loading": "注文情報を読み込み中...",
+    "notifications": {
+      "autoRefreshDisabled": "自動更新を無効にしました",
+      "autoRefreshEnabled": "自動更新を有効にしました",
+      "liveUpdates": "リアルタイム更新",
+      "manualRefresh": "手動更新",
+      "statusUpdated": "注文ステータスが更新されました"
+    },
+    "number": "注文",
+    "ready": "準備完了",
+    "settings": {
+      "autoRefresh": "自動更新"
+    },
+    "status": {
+      "cancelled": "キャンセル済み",
+      "completed": "完了",
+      "confirmed": "確認済み",
+      "delivering": "配送中",
+      "deliveringActive": "配送員が向かっています",
+      "pending": "確認待ち",
+      "preparing": "調理中",
+      "preparingActive": "キッチンがお料理を調理中です",
+      "ready": "完成",
+      "readyTableActive": "カウンターでお受け取りください",
+      "title": "注文ステータス"
+    },
+    "statusDescriptions": {
+      "cancelled": "注文がキャンセルされました",
+      "completed": "注文が正常に配送されました",
+      "confirmed": "レストランがご注文を確認し、調理を開始しました",
+      "delivering": "配送員がお客様の住所に向かっています",
+      "pending": "注文を受け付け、確認をお待ちしています",
+      "preparing": "キッチンがご要望に応じてお料理を調理中です",
+      "ready": "お料理が{type, select, delivery {配送} table {お受け取り} other {サービス}}の準備完了です"
+    },
+    "summary": {
+      "estimatedTime": "完了予定時刻",
+      "orderTime": "注文時刻",
+      "orderType": "注文タイプ",
+      "paymentMethod": "支払い方法",
+      "table": "テーブル",
+      "title": "注文情報",
+      "total": "合計"
+    },
+    "table": "テーブル",
+    "title": "注文 #{number}",
+    "tracking": {
+      "orderId": "注文ID：{orderId}",
+      "title": "注文追跡"
+    }
+  },
+  "product": {
+    "addToCart": {
+      "button": "カートに追加 - {price}₫"
+    },
+    "allergens": {
+      "dairy": "乳製品",
+      "eggs": "卵",
+      "fish": "魚",
+      "gluten": "グルテン",
+      "nuts": "ナッツ",
+      "soy": "大豆",
+      "title": "アレルゲン情報"
+    },
+    "errors": {
+      "addToCartFailed": "カートに追加できませんでした",
+      "toppingsLoadFailed": "トッピングの読み込みに失敗しました"
+    },
+    "instructions": {
+      "placeholder": "この料理への特別な要望...",
+      "title": "特別な要望"
+    },
+    "nutrition": {
+      "calories": "カロリー",
+      "carbs": "炭水化物",
+      "fat": "脂質",
+      "protein": "タンパク質",
+      "title": "栄養情報"
+    },
+    "quantity": {
+      "label": "数量"
+    },
+    "success": {
+      "addedToCart": "{quantity}個の{name}をカートに追加しました"
+    },
+    "toppings": {
+      "title": "トッピング"
     }
   },
   "staff": {
-    "loading": "ダッシュボードを読み込み中...",
+    "actions": {
+      "bulkMarkReady": "緊急注文を更新しました",
+      "markUrgentReady": "完成（緊急）",
+      "refresh": "更新",
+      "sound": "音声",
+      "testSound": "音声テスト"
+    },
+    "autoRefreshDisabled": "自動更新を無効にしました",
+    "autoRefreshEnabled": "自動更新を有効にしました",
     "dashboard": {
       "title": "スタッフダッシュボード"
     },
-    "status": {
-      "live": "ライブ",
-      "paused": "一時停止"
+    "errors": {
+      "loadFailed": "ダッシュボードデータの読み込みに失敗しました",
+      "refreshFailed": "データの更新に失敗しました",
+      "updateFailed": "注文の更新に失敗しました"
     },
-    "stats": {
-      "title": "総合統計",
-      "activeOrders": "アクティブ注文",
-      "activeOrdersDesc": "処理中の注文",
-      "pendingConfirmation": "確認待ち",
-      "pendingConfirmationDesc": "確認が必要な新規注文",
-      "inPreparation": "調理中",
-      "inPreparationDesc": "キッチンでの注文",
-      "readyForDelivery": "完成",
-      "readyForDeliveryDesc": "完了した注文",
-      "averageTime": "平均時間",
-      "averageTimeDesc": "調理時間",
-      "todayOrders": "今日の注文",
-      "todayOrdersDesc": "注文総数",
-      "revenue": "売上",
-      "revenueDesc": "今日の売上"
+    "filters": {
+      "all": "すべて",
+      "allStatus": "すべてのステータス",
+      "confirmed": "確認済み",
+      "delivering": "配送中",
+      "delivery": "配送",
+      "orderType": "注文タイプ",
+      "pending": "確認待ち",
+      "preparing": "調理中",
+      "quickActions": "クイックアクション",
+      "ready": "完成",
+      "showPreparing": "調理中",
+      "showReady": "完成",
+      "showUrgent": "緊急注文",
+      "status": "ステータス",
+      "table": "テーブル",
+      "urgent": "緊急"
     },
     "insights": {
       "performance": "パフォーマンス",
       "performanceGood": "調理時間良好",
       "performanceNeedsImprovement": "速度改善が必要",
-      "workload": "作業負荷",
-      "workloadLight": "軽い",
-      "workloadModerate": "普通",
-      "workloadHigh": "ピーク高、集中が必要",
       "revenue": "売上",
-      "revenueToday": "今日：{amount}¥"
+      "revenueToday": "今日：{amount}¥",
+      "workload": "作業負荷",
+      "workloadHigh": "ピーク高、集中が必要",
+      "workloadLight": "軽い",
+      "workloadModerate": "普通"
     },
-    "filters": {
-      "orderType": "注文タイプ",
-      "status": "ステータス",
-      "all": "すべて",
-      "table": "テーブル",
-      "delivery": "配送",
-      "urgent": "緊急",
-      "allStatus": "すべてのステータス",
-      "pending": "確認待ち",
-      "confirmed": "確認済み",
-      "preparing": "調理中",
-      "ready": "完成",
-      "delivering": "配送中",
-      "quickActions": "クイックアクション",
-      "showUrgent": "緊急注文",
-      "showPreparing": "調理中",
-      "showReady": "完成"
-    },
-    "orders": {
-      "title": "注文",
-      "empty": {
-        "title": "注文なし",
-        "description": "現在のフィルターに一致する注文はありません"
-      }
-    },
-    "orderStatus": {
-      "pending": "確認待ち",
-      "confirmed": "確認済み",
-      "preparing": "調理中",
-      "ready": "完成",
-      "delivering": "配送中",
-      "completed": "完了"
-    },
-    "priority": {
-      "normal": "通常",
-      "high": "高",
-      "urgent": "緊急"
-    },
-    "orderCard": {
-      "table": "テーブル",
-      "items": "商品",
-      "overdue": "遅延",
-      "updating": "更新中...",
-      "completed": "完了",
-      "call": "電話",
-      "view": "表示",
-      "rush": "急ぎ",
-      "markAs": {
-        "confirmed": "注文確認",
-        "preparing": "調理開始",
-        "ready": "完成マーク",
-        "delivering": "配送開始",
-        "completed": "完了"
-      }
-    },
-    "actions": {
-      "refresh": "更新",
-      "sound": "音声",
-      "testSound": "音声テスト",
-      "markUrgentReady": "完成（緊急）",
-      "bulkMarkReady": "緊急注文を更新しました"
-    },
-    "refreshed": "データを正常に更新しました",
-    "orderUpdated": "注文ステータスを更新しました",
-    "autoRefreshEnabled": "自動更新を有効にしました",
-    "autoRefreshDisabled": "自動更新を無効にしました",
-    "soundTest": {
-      "success": "音声が正常に動作しています",
-      "failed": "音声を再生できませんでした",
-      "error": "音声テストでエラーが発生しました"
-    },
-    "soundControls": {
-      "title": "音声コントロール",
-      "status": {
-        "ready": "準備完了",
-        "suspended": "一時停止",
-        "notReady": "準備未完了"
-      },
-      "initRequired": {
-        "title": "音声初期化が必要",
-        "description": "クリックして音声通知を有効にする",
-        "button": "音声を初期化"
-      },
-      "suspended": {
-        "title": "音声一時停止",
-        "description": "音声コンテキストが一時停止されています",
-        "button": "音声を再開"
-      },
-      "masterEnable": {
-        "label": "音声を有効化",
-        "description": "すべての音声通知のマスタースイッチ"
-      },
-      "volume": {
-        "label": "音量"
-      },
-      "notifications": {
-        "title": "通知",
-        "newOrder": "新しい注文",
-        "statusChange": "ステータス変更",
-        "urgentOrder": "緊急注文"
-      },
-      "test": "テスト",
-      "reset": "リセット",
-      "info": "音声設定はローカルに保存されます"
-    },
+    "loading": "ダッシュボードを読み込み中...",
+    "minutes": "分",
     "notifications": {
       "newOrder": "{customer}からの新しい注文#{orderNumber}",
       "statusChanged": "注文#{orderNumber}のステータスが更新されました",
       "urgentOrder": "緊急注文#{orderNumber}が即座の対応が必要です"
     },
-    "sidebar": {
-      "quickActions": "クイックアクション",
-      "settings": "設定",
-      "filters": "フィルター"
+    "orderCard": {
+      "call": "電話",
+      "completed": "完了",
+      "items": "商品",
+      "markAs": {
+        "completed": "完了",
+        "confirmed": "注文確認",
+        "delivering": "配送開始",
+        "preparing": "調理開始",
+        "ready": "完成マーク"
+      },
+      "overdue": "遅延",
+      "rush": "急ぎ",
+      "table": "テーブル",
+      "updating": "更新中...",
+      "view": "表示"
     },
+    "orderStatus": {
+      "completed": "完了",
+      "confirmed": "確認済み",
+      "delivering": "配送中",
+      "pending": "確認待ち",
+      "preparing": "調理中",
+      "ready": "完成"
+    },
+    "orderUpdated": "注文ステータスを更新しました",
+    "orders": {
+      "empty": {
+        "description": "現在のフィルターに一致する注文はありません",
+        "title": "注文なし"
+      },
+      "title": "注文"
+    },
+    "priority": {
+      "high": "高",
+      "normal": "通常",
+      "urgent": "緊急"
+    },
+    "refreshed": "データを正常に更新しました",
     "settings": {
       "autoRefresh": "自動更新",
       "autoRefreshDesc": "注文データを自動的に更新",
       "language": "言語"
     },
-    "minutes": "分",
-    "errors": {
-      "loadFailed": "ダッシュボードデータの読み込みに失敗しました",
-      "updateFailed": "注文の更新に失敗しました",
-      "refreshFailed": "データの更新に失敗しました"
+    "sidebar": {
+      "filters": "フィルター",
+      "quickActions": "クイックアクション",
+      "settings": "設定"
+    },
+    "soundControls": {
+      "info": "音声設定はローカルに保存されます",
+      "initRequired": {
+        "button": "音声を初期化",
+        "description": "クリックして音声通知を有効にする",
+        "title": "音声初期化が必要"
+      },
+      "masterEnable": {
+        "description": "すべての音声通知のマスタースイッチ",
+        "label": "音声を有効化"
+      },
+      "notifications": {
+        "newOrder": "新しい注文",
+        "statusChange": "ステータス変更",
+        "title": "通知",
+        "urgentOrder": "緊急注文"
+      },
+      "reset": "リセット",
+      "status": {
+        "notReady": "準備未完了",
+        "ready": "準備完了",
+        "suspended": "一時停止"
+      },
+      "suspended": {
+        "button": "音声を再開",
+        "description": "音声コンテキストが一時停止されています",
+        "title": "音声一時停止"
+      },
+      "test": "テスト",
+      "title": "音声コントロール",
+      "volume": {
+        "label": "音量"
+      }
+    },
+    "soundTest": {
+      "error": "音声テストでエラーが発生しました",
+      "failed": "音声を再生できませんでした",
+      "success": "音声が正常に動作しています"
+    },
+    "stats": {
+      "activeOrders": "アクティブ注文",
+      "activeOrdersDesc": "処理中の注文",
+      "averageTime": "平均時間",
+      "averageTimeDesc": "調理時間",
+      "inPreparation": "調理中",
+      "inPreparationDesc": "キッチンでの注文",
+      "pendingConfirmation": "確認待ち",
+      "pendingConfirmationDesc": "確認が必要な新規注文",
+      "readyForDelivery": "完成",
+      "readyForDeliveryDesc": "完了した注文",
+      "revenue": "売上",
+      "revenueDesc": "今日の売上",
+      "title": "総合統計",
+      "todayOrders": "今日の注文",
+      "todayOrdersDesc": "注文総数"
+    },
+    "status": {
+      "live": "ライブ",
+      "paused": "一時停止"
     }
-  },
-  "checkout": {
-    "title": "チェックアウト",
-    "button": "チェックアウト",
-    "placeOrder": "注文する",
-    "placingOrder": "注文中...",
-    "estimatedTime": {
-      "delivery": "30-45分で配達準備完了",
-      "pickup": "15-20分で受け取り準備完了"
-    }
-  },
-  "errors": {
-    "required": "このフィールドは必須です",
-    "invalidPhone": "無効な電話番号です",
-    "minLength": "最低{min}文字",
-    "maxLength": "最大{max}文字"
   }
 }
