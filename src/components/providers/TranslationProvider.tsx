@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useLocale } from 'next-intl';
 import { firestoreService } from '@/services/firestoreService';
 
 interface TranslationProviderProps {
@@ -15,6 +16,7 @@ interface TranslationStatus {
 }
 
 export function TranslationProvider({ children }: TranslationProviderProps) {
+  const locale = useLocale();
   const [status, setStatus] = useState<TranslationStatus>({
     isLoading: true,
     isReady: false,
@@ -23,28 +25,27 @@ export function TranslationProvider({ children }: TranslationProviderProps) {
   });
 
   useEffect(() => {
-    // Initialize translation service on app startup
+    // Initialize translation service on app startup or locale change
     const initializeTranslations = async () => {
       try {
-        console.log('🚀 Translation provider: Starting initialization...');
+        console.log(`🚀 Translation provider: Starting initialization for locale: ${locale}...`);
         setStatus(prev => ({ ...prev, isLoading: true, error: null }));
 
-        await firestoreService.initializeTranslations();
+        await firestoreService.initializeTranslations(locale);
         
-        // Get translation count for status using the new locale-based system
+        // Get translation count for status using the current locale
         const translationService = firestoreService.getTranslationService();
         
-        // For status purposes, check a primary locale (English) to get an idea of available translations
         let translationCount = 0;
         try {
-          const englishTranslations = await translationService.getProductTranslationsByLocale('en');
-          translationCount = englishTranslations.length;
+          const translations = await translationService.getProductTranslationsByLocale(locale);
+          translationCount = translations.length;
         } catch (error) {
           console.warn('Could not get translation count, proceeding anyway:', error);
         }
         
         console.log('✅ Translation provider: Initialization complete');
-        console.log(`📊 Translation provider: Ready with locale-based translation system (${translationCount} English translations available)`);
+        console.log(`📊 Translation provider: Ready with locale-based translation system (${translationCount} translations available for ${locale})`);
         
         setStatus({
           isLoading: false,
@@ -81,7 +82,7 @@ export function TranslationProvider({ children }: TranslationProviderProps) {
     };
 
     initializeTranslations();
-  }, []);
+  }, [locale]);
 
   // Show loading state during initialization
   if (status.isLoading) {

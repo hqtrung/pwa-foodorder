@@ -44,6 +44,17 @@ export class FirestoreTranslationService {
   private lastFetchTimeByLocale: Map<string, number> = new Map();
 
   /**
+   * Map app locale codes to Firestore collection locale codes
+   */
+  private mapLocaleToFirestoreLocale(locale: string): string {
+    // Map 'zh' (Chinese in app) to 'cn' (Chinese in Firestore)
+    if (locale === 'zh') {
+      return 'cn';
+    }
+    return locale;
+  }
+
+  /**
    * Get all product translations for a specific locale from Firestore
    */
   async getProductTranslationsByLocale(locale: string = 'en'): Promise<ApiProduct[]> {
@@ -63,7 +74,8 @@ export class FirestoreTranslationService {
       }
 
       console.log(`Fetching product translations for locale: ${locale}`);
-      const collectionPath = `${this.COLLECTION_BASE}/${locale}/products`;
+      const firestoreLocale = this.mapLocaleToFirestoreLocale(locale);
+      const collectionPath = `${this.COLLECTION_BASE}/${firestoreLocale}/products`;
       const querySnapshot = await getDocs(collection(db, collectionPath));
       const products: ApiProduct[] = [];
 
@@ -115,7 +127,8 @@ export class FirestoreTranslationService {
 
     try {
       console.log(`Fetching product ${productId} translation for locale: ${locale}`);
-      const docPath = `${this.COLLECTION_BASE}/${locale}/products/${productId}`;
+      const firestoreLocale = this.mapLocaleToFirestoreLocale(locale);
+      const docPath = `${this.COLLECTION_BASE}/${firestoreLocale}/products/${productId}`;
       const docRef = doc(db, docPath);
       const docSnap = await getDoc(docRef);
 
@@ -175,7 +188,8 @@ export class FirestoreTranslationService {
     }
 
     try {
-      const collectionPath = `${this.COLLECTION_BASE}/${locale}/products`;
+      const firestoreLocale = this.mapLocaleToFirestoreLocale(locale);
+      const collectionPath = `${this.COLLECTION_BASE}/${firestoreLocale}/products`;
       const unsubscribe = onSnapshot(
         collection(db, collectionPath),
         (querySnapshot: QuerySnapshot<DocumentData>) => {
