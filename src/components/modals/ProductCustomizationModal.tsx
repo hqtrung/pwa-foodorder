@@ -7,6 +7,7 @@ import { useCartStore, useUIStore } from '@/stores';
 import { formatPrice } from '@/lib/common-utils';
 import { Product, Topping } from '@/types';
 import { CartItem } from '@/stores/cartStore';
+import { ExpandableText } from '@/components/ui/ExpandableText';
 
 interface ProductCustomizationModalProps {
   isOpen: boolean;
@@ -168,7 +169,7 @@ export function ProductCustomizationModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50">
-      <div className="bg-white rounded-lg max-w-md w-full max-h-[90vh] flex flex-col relative shadow-xl">
+      <div className="bg-white rounded-lg max-w-lg w-full max-h-[90vh] flex flex-col relative shadow-xl">
         {/* Sticky Close Button */}
         <button
           onClick={onClose}
@@ -182,10 +183,10 @@ export function ProductCustomizationModal({
         {/* Scrollable Content */}
         <div className="flex-1 overflow-y-auto smooth-scroll p-6">
           {/* Product Name */}
-          <h2 className="text-responsive-lg font-bold text-gray-900 mb-4 pr-8">{product.name}</h2>
+          <h2 className="text-xl font-bold text-gray-900 mb-4 pr-8">{product.name}</h2>
 
           {/* Product Image - Square */}
-          <div className="image-responsive aspect-square w-full max-w-xs mx-auto rounded-lg mb-4">
+          <div className="aspect-square w-full max-w-xs mx-auto rounded-lg mb-6 relative overflow-hidden">
             <img
               src={product.image}
               alt={product.name}
@@ -209,13 +210,43 @@ export function ProductCustomizationModal({
             )}
           </div>
 
+          {/* Product Price */}
+          <div className="flex items-baseline justify-between mb-4">
+            <span className="text-2xl font-bold text-primary-600">
+              {formatPrice(product.price, locale)}
+            </span>
+            {product.originalPrice && product.originalPrice > product.price && (
+              <span className="text-sm text-gray-500 line-through">
+                {formatPrice(product.originalPrice, locale)}
+              </span>
+            )}
+          </div>
+
+          {/* Product Description */}
+          {product.description && product.description.trim() !== '' && (
+            <div className="mb-6">
+              <ExpandableText
+                text={product.description}
+                maxLength={150}
+                className="text-sm text-gray-600 leading-relaxed"
+                expandLabel="Read more"
+                collapseLabel="Show less"
+              />
+            </div>
+          )}
+
+          {/* Divider before customization options */}
+          {product.description && product.description.trim() !== '' && product.hasToppings && product.attributeLines && product.attributeLines.length > 0 && (
+            <hr className="my-6 border-gray-200" />
+          )}
+
           {/* Toppings/Attributes Section */}
           {product.hasToppings && product.attributeLines && product.attributeLines.length > 0 && (
             <div className="mb-20">
-              <h3 className="text-responsive-base font-semibold text-gray-900 mb-4">Customize Your Order</h3>
+              <h3 className="text-base font-semibold text-gray-900 mb-4">Customize Your Order</h3>
               {product.attributeLines.map(attributeLine => (
                 <div key={attributeLine.attribute_id} className="mb-6">
-                  <h4 className="text-responsive-sm font-semibold text-gray-800 mb-3">{attributeLine.attribute_name}</h4>
+                  <h4 className="text-sm font-semibold text-gray-800 mb-3">{attributeLine.attribute_name}</h4>
                   <div className="grid grid-cols-1 gap-2">
                     {attributeLine.values.map(value => {
                       const isSelected = selectedToppings[attributeLine.attribute_id]?.includes(value.id.toString()) || false;
@@ -253,14 +284,14 @@ export function ProductCustomizationModal({
                               onChange={() => handleToppingSelect(attributeLine.attribute_id, value.id.toString(), attributeLine.display_type)}
                               className="sr-only"
                             />
-                            <span className={`text-responsive-sm ${
+                            <span className={`text-sm ${
                               isSelected ? 'font-medium text-gray-900' : 'text-gray-700'
                             }`}>
                               {value.name}
                             </span>
                           </div>
                           {value.price_extra > 0 && (
-                            <span className={`text-responsive-sm font-semibold ml-2 ${
+                            <span className={`text-sm font-semibold ml-2 ${
                               isSelected ? 'text-primary-600' : 'text-gray-600'
                             }`}>
                               +{formatPrice(value.price_extra, locale)}
@@ -289,7 +320,7 @@ export function ProductCustomizationModal({
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
                 </svg>
               </button>
-              <span className="text-responsive-lg font-semibold w-6 text-center">{quantity}</span>
+              <span className="text-lg font-semibold w-6 text-center">{quantity}</span>
               <button
                 onClick={() => setQuantity(Math.min(10, quantity + 1))}
                 className="w-8 h-8 flex items-center justify-center border border-gray-300 rounded-full hover:bg-gray-50 touch-manipulation"

@@ -31,24 +31,32 @@ export function TranslationProvider({ children }: TranslationProviderProps) {
 
         await firestoreService.initializeTranslations();
         
-        // Get translation count for status
+        // Get translation count for status using the new locale-based system
         const translationService = firestoreService.getTranslationService();
-        const translations = await translationService.getAllProductTranslations();
+        
+        // For status purposes, check a primary locale (English) to get an idea of available translations
+        let translationCount = 0;
+        try {
+          const englishTranslations = await translationService.getProductTranslationsByLocale('en');
+          translationCount = englishTranslations.length;
+        } catch (error) {
+          console.warn('Could not get translation count, proceeding anyway:', error);
+        }
         
         console.log('✅ Translation provider: Initialization complete');
-        console.log(`📊 Translation provider: Loaded ${translations.length} translation documents`);
+        console.log(`📊 Translation provider: Ready with locale-based translation system (${translationCount} English translations available)`);
         
         setStatus({
           isLoading: false,
           isReady: true,
           error: null,
-          translationCount: translations.length
+          translationCount
         });
         
         // Global status for debugging
         (window as any).translationStatus = {
           ready: true,
-          count: translations.length,
+          count: translationCount,
           service: translationService
         };
         
@@ -100,25 +108,5 @@ export function TranslationProvider({ children }: TranslationProviderProps) {
     console.warn('⚠️  Translation provider: Rendering with error state, translations may not work');
   }
 
-  return (
-    <>
-      {/* Debug indicator */}
-      {process.env.NODE_ENV === 'development' && (
-        <div style={{ 
-          position: 'fixed', 
-          bottom: '10px', 
-          right: '10px', 
-          background: status.isReady ? 'green' : 'orange', 
-          color: 'white', 
-          padding: '5px 10px', 
-          borderRadius: '5px',
-          fontSize: '12px',
-          zIndex: 9998
-        }}>
-          🌐 Translations: {status.isReady ? `Ready (${status.translationCount})` : status.error ? 'Error' : 'Loading'}
-        </div>
-      )}
-      {children}
-    </>
-  );
+  return <>{children}</>;
 }

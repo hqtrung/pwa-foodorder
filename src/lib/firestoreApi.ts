@@ -57,10 +57,12 @@ export class FirestoreAPI {
   async getProducts(categoryId?: number, locale?: string): Promise<ApiProduct[]> {
     if (this.options.useFirestore && firestoreService.isAvailable()) {
       try {
-        // Use translation-aware method if locale is provided
+        // Always use translation-aware method if locale is provided
         if (locale) {
+          console.log(`Fetching products for locale: ${locale}`);
           return await firestoreService.getProductsWithTranslations(categoryId, locale);
         }
+        // Fallback to base products if no locale specified
         return await firestoreService.getProducts(categoryId);
       } catch (error) {
         console.error('Failed to fetch products from Firestore:', error);
@@ -80,9 +82,18 @@ export class FirestoreAPI {
   /**
    * Get single product - preferably from Firestore, fallback to API
    */
-  async getProduct(id: number): Promise<ApiProduct> {
+  async getProduct(id: number, locale?: string): Promise<ApiProduct> {
     if (this.options.useFirestore && firestoreService.isAvailable()) {
       try {
+        // Try to get translated product if locale is provided
+        if (locale) {
+          const translatedProduct = await firestoreService.getTranslationService().getProductTranslationByLocale(id, locale);
+          if (translatedProduct) {
+            return translatedProduct;
+          }
+        }
+        
+        // Fallback to base product
         const product = await firestoreService.getProduct(id);
         if (product) {
           return product;
@@ -127,9 +138,32 @@ export class FirestoreAPI {
    */
   subscribeToProducts(
     callback: (products: ApiProduct[]) => void,
-    categoryId?: number
+    categoryId?: number,
+    locale?: string
   ): () => void {
     if (this.options.useFirestore && firestoreService.isAvailable()) {
+      // If locale is provided, subscribe to translated products
+      if (locale) {
+        return firestoreService.getTranslationService().subscribeToProductTranslationsByLocale(
+          locale,
+          (products) => {
+            // Filter by category if specified
+            if (categoryId) {
+              const filteredProducts = products.filter(product => {
+                const productCategoryId = Array.isArray(product.pos_categ_id) 
+                  ? product.pos_categ_id[0] 
+                  : product.pos_categ_id;
+                return productCategoryId === categoryId;
+              });
+              callback(filteredProducts);
+            } else {
+              callback(products);
+            }
+          }
+        );
+      }
+      
+      // Fallback to base products subscription
       return firestoreService.subscribeToProducts(callback, categoryId);
     }
     
@@ -138,10 +172,11 @@ export class FirestoreAPI {
   }
 
   /**
-   * Clear Firestore cache
+   * Clear Firestore cache for a specific locale or all locales
    */
-  clearFirestoreCache(): void {
+  clearFirestoreCache(locale?: string): void {
     firestoreService.clearCache();
+    firestoreService.getTranslationService().clearCache(locale);
   }
 
   /**
@@ -154,8 +189,16 @@ export class FirestoreAPI {
   /**
    * Get Firestore cache statistics
    */
-  getFirestoreCacheStats() {
-    return firestoreService.getCacheStats();
+  getFirestoreCacheStats(locale?: string) {
+    const baseStats = firestoreService.getCacheStats();
+    if (locale) {
+      const translationStats = firestoreService.getTranslationService().getCacheStats(locale);
+      return {
+        ...baseStats,
+        translations: translationStats
+      };
+    }
+    return baseStats;
   }
 
   /**

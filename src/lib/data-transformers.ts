@@ -195,7 +195,7 @@ export function transformProduct(apiProduct: ApiProduct, locale?: string): Produ
   return {
     id: apiProduct.id.toString(),
     name: apiProduct.name || 'Unnamed Product',
-    description: typeof apiProduct.description_sale === 'string' ? apiProduct.description_sale : getProductDescription(apiProduct.name || ''),
+    description: apiProduct.description || apiProduct.long_description || apiProduct.description_sale || getProductDescription(apiProduct.name || ''),
     price: basePrice,
     originalPrice: basePrice,
     priceRange: priceRange,
@@ -230,7 +230,7 @@ function getProductDescription(productName: string): string {
   if (productName.includes('Sáng')) {
     return 'Fresh breakfast combination to start your day';
   }
-  return 'Authentic Vietnamese dish prepared with care';
+  return ''; // Return empty string if no specific description available
 }
 
 // Helper function to estimate preparation time based on product name

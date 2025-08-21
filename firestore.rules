@@ -18,6 +18,12 @@ service cloud.firestore {
       allow write: if false; // Only backend can write - translations managed by backend
     }
 
+    // New locale-based translation collections
+    match /product_translations_v2/{locale}/products/{productId} {
+      allow read: if true;
+      allow write: if false; // Only backend can write - translations managed by backend
+    }
+
     // Orders collection - Allow read/write for order management system
     // In production, you would want to implement proper authentication
     match /foodorder_orders/{orderId} {

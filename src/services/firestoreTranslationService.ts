@@ -2,6 +2,8 @@
 
 import { 
   collection, 
+  doc,
+  getDoc,
   getDocs, 
   onSnapshot,
   QuerySnapshot,
@@ -10,6 +12,7 @@ import {
 } from 'firebase/firestore';
 import { db } from '@/config/firebase';
 import { simpleCache } from './simpleCache';
+import { ApiProduct } from '@/lib/api';
 
 export interface ProductTranslation {
   product_id: number;
@@ -32,226 +35,219 @@ export interface ProductTranslationCache {
 }
 
 export class FirestoreTranslationService {
-  private readonly COLLECTION_NAME = 'foodorder_translations_products';
-  private readonly CACHE_KEY = 'product_translations';
+  private readonly COLLECTION_BASE = 'product_translations_v2';
+  private readonly CACHE_KEY_PREFIX = 'product_translations_v2';
   private readonly TTL = 60 * 60 * 1000; // 1 hour cache TTL
   
   private isClient = typeof window !== 'undefined';
-  private unsubscribe: Unsubscribe | null = null;
-  private memoryCache: ProductTranslationCache = {};
-  private lastFetchTime: number = 0;
+  private unsubscribes: Map<string, Unsubscribe> = new Map();
+  private lastFetchTimeByLocale: Map<string, number> = new Map();
 
   /**
-   * Get all product translations from Firestore
+   * Get all product translations for a specific locale from Firestore
    */
-  async getAllProductTranslations(): Promise<ProductTranslation[]> {
+  async getProductTranslationsByLocale(locale: string = 'en'): Promise<ApiProduct[]> {
     if (!this.isClient || !db) {
       console.warn('Firestore not available on server side');
       return [];
     }
 
     try {
-      // Check memory cache first
-      const cachedData = this.getCachedTranslations();
-      if (cachedData && cachedData.length > 0) {
-        console.log('Product translations loaded from memory cache', cachedData.length);
-        return cachedData;
-      }
-
-      // Check simple cache
-      const simpleCached = simpleCache.get(this.CACHE_KEY);
+      const cacheKey = this.getLocaleCacheKey(locale);
+      
+      // Check simple cache first
+      const simpleCached = simpleCache.get(cacheKey);
       if (simpleCached) {
-        console.log('Product translations loaded from simple cache', simpleCached.length);
-        this.updateMemoryCache(simpleCached);
+        console.log(`Product translations for ${locale} loaded from cache`, simpleCached.length);
         return simpleCached;
       }
 
-      console.log('Fetching product translations from Firestore...');
-      const querySnapshot = await getDocs(collection(db, this.COLLECTION_NAME));
-      const allProducts: ProductTranslation[] = [];
+      console.log(`Fetching product translations for locale: ${locale}`);
+      const collectionPath = `${this.COLLECTION_BASE}/${locale}/products`;
+      const querySnapshot = await getDocs(collection(db, collectionPath));
+      const products: ApiProduct[] = [];
 
       querySnapshot.forEach((doc) => {
         const data = doc.data();
-        allProducts.push({
-          product_id: data.product_id,
-          base_name: data.base_name || '',
-          base_description: data.base_description || '',
-          category_id: data.category_id || 1,
-          category_name: data.category_name || '',
-          translations: data.translations || {},
-          last_updated: data.last_updated || '',
-          version: data.version || '1.0'
+        products.push({
+          id: parseInt(doc.id), // Document ID is the product ID
+          name: data.name || '',
+          description_sale: data.short_description || data.description || '',
+          description: data.long_description || '', // Add long description field
+          pos_categ_id: data.pos_categ_id || data.category_id,
+          list_price: data.list_price || 0,
+          barcode: data.barcode || '',
+          image_url: data.image_url || '',
+          is_available: data.is_available ?? true,
+          attribute_lines: data.attribute_lines || [],
+          has_attributes: data.has_attributes || false,
+          has_toppings: data.has_toppings || false,
+          price_range: data.price_range || null,
+          tags: data.tags || []
         });
       });
 
-      console.log(`✅ Loaded ${allProducts.length} product translations from Firestore`);
+      console.log(`✅ Loaded ${products.length} product translations for locale: ${locale}`);
       
-      if (allProducts.length > 0) {
-        const sample = allProducts[0];
-        const locales = Object.keys(sample.translations || {});
-        console.log(`Available locales: ${locales.join(', ')}`);
-      } else {
-        console.warn('⚠️ No translation documents found in Firestore collection');
-      }
-      
-      // Update caches
-      this.updateMemoryCache(allProducts);
-      simpleCache.set(this.CACHE_KEY, allProducts, this.TTL);
-      this.lastFetchTime = Date.now();
+      // Cache the results
+      simpleCache.set(cacheKey, products, this.TTL);
+      this.lastFetchTimeByLocale.set(locale, Date.now());
 
-      return allProducts;
+      return products;
     } catch (error) {
       if (error.code === 'permission-denied') {
-        console.error('Permission denied accessing product translations. Please check Firestore security rules.', error);
+        console.error(`Permission denied accessing product translations for ${locale}. Please check Firestore security rules.`, error);
       } else {
-        console.error('Error fetching product translations:', error);
+        console.error(`Error fetching product translations for ${locale}:`, error);
       }
       return [];
     }
   }
 
   /**
-   * Get translation for a specific product and locale
+   * Get a single product translation for a specific locale
    */
-  getProductTranslation(productId: number | string, locale: string): { name: string; description: string } | null {
-    const translations = this.getCachedTranslations();
-    const productIdStr = productId.toString();
-    
-    const productTranslation = translations.find(t => t.product_id.toString() === productIdStr);
-    
-    if (!productTranslation) {
-      console.log(`⚠️ No translation found for product ID: ${productIdStr} (${translations.length} translations available)`);
+  async getProductTranslationByLocale(productId: number, locale: string = 'en'): Promise<ApiProduct | null> {
+    if (!this.isClient || !db) {
+      console.warn('Firestore not available on server side');
       return null;
     }
 
-    // Try to get translation for the specific locale
-    const localeTranslation = productTranslation.translations[locale];
-    if (localeTranslation) {
-      console.log(`✅ Applied ${locale} translation for product ${productIdStr}: "${localeTranslation.name}"`);
-      return {
-        name: localeTranslation.name || productTranslation.base_name,
-        description: localeTranslation.description || productTranslation.base_description
-      };
+    try {
+      console.log(`Fetching product ${productId} translation for locale: ${locale}`);
+      const docPath = `${this.COLLECTION_BASE}/${locale}/products/${productId}`;
+      const docRef = doc(db, docPath);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        return {
+          id: productId,
+          name: data.name || '',
+          description_sale: data.description || '',
+          pos_categ_id: data.pos_categ_id || data.category_id,
+          list_price: data.list_price || 0,
+          barcode: data.barcode || '',
+          image_url: data.image_url || '',
+          is_available: data.is_available ?? true,
+          attribute_lines: data.attribute_lines || [],
+          has_attributes: data.has_attributes || false,
+          has_toppings: data.has_toppings || false,
+          price_range: data.price_range || null,
+          tags: data.tags || []
+        };
+      } else {
+        console.log(`Product ${productId} translation not found for locale: ${locale}`);
+        return null;
+      }
+    } catch (error) {
+      console.error(`Error fetching product ${productId} translation for ${locale}:`, error);
+      return null;
     }
-
-    console.log(`⚠️ No ${locale} translation found for product ${productIdStr}, using base: "${productTranslation.base_name}"`);
-    
-    // Fallback to base name and description
-    return {
-      name: productTranslation.base_name,
-      description: productTranslation.base_description
-    };
   }
 
   /**
-   * Get translated name for a specific product and locale
+   * Get cached translations for a specific locale
    */
-  getProductName(productId: number | string, locale: string = 'en'): string {
-    const translation = this.getProductTranslation(productId, locale);
-    return translation?.name || '';
+  getCachedTranslationsByLocale(locale: string): ApiProduct[] {
+    const cacheKey = this.getLocaleCacheKey(locale);
+    return simpleCache.get(cacheKey) || [];
   }
 
   /**
-   * Get translated description for a specific product and locale
+   * Get cache key for a specific locale
    */
-  getProductDescription(productId: number | string, locale: string = 'en'): string {
-    const translation = this.getProductTranslation(productId, locale);
-    return translation?.description || '';
+  private getLocaleCacheKey(locale: string): string {
+    return `${this.CACHE_KEY_PREFIX}_${locale}`;
   }
 
-  /**
-   * Get products filtered by language with translations applied
-   */
-  getProductsForLanguage(allProducts: ProductTranslation[], languageCode: string): Array<{
-    product_id: number;
-    name: string;
-    description: string;
-    category_id: number;
-    category_name: string;
-  }> {
-    return allProducts.map(product => ({
-      product_id: product.product_id,
-      name: product.translations?.[languageCode]?.name || product.base_name,
-      description: product.translations?.[languageCode]?.description || product.base_description,
-      category_id: product.category_id,
-      category_name: product.category_name
-    }));
-  }
 
   /**
-   * Subscribe to real-time updates for product translations
+   * Subscribe to real-time updates for product translations for a specific locale
    */
-  subscribeToProductTranslations(callback: (translations: ProductTranslation[]) => void): Unsubscribe {
+  subscribeToProductTranslationsByLocale(
+    locale: string,
+    callback: (products: ApiProduct[]) => void
+  ): Unsubscribe {
     if (!this.isClient || !db) {
       console.warn('Firestore not available for subscriptions');
       return () => {};
     }
 
     try {
+      const collectionPath = `${this.COLLECTION_BASE}/${locale}/products`;
       const unsubscribe = onSnapshot(
-        collection(db, this.COLLECTION_NAME),
+        collection(db, collectionPath),
         (querySnapshot: QuerySnapshot<DocumentData>) => {
-          const products: ProductTranslation[] = [];
+          const products: ApiProduct[] = [];
           querySnapshot.forEach((doc) => {
             const data = doc.data();
             products.push({
-              product_id: data.product_id,
-              base_name: data.base_name || '',
-              base_description: data.base_description || '',
-              category_id: data.category_id || 1,
-              category_name: data.category_name || '',
-              translations: data.translations || {},
-              last_updated: data.last_updated || '',
-              version: data.version || '1.0'
+              id: parseInt(doc.id),
+              name: data.name || '',
+              description_sale: data.description || '',
+              pos_categ_id: data.pos_categ_id || data.category_id,
+              list_price: data.list_price || 0,
+              barcode: data.barcode || '',
+              image_url: data.image_url || '',
+              is_available: data.is_available ?? true,
+              attribute_lines: data.attribute_lines || [],
+              has_attributes: data.has_attributes || false,
+              has_toppings: data.has_toppings || false,
+              price_range: data.price_range || null,
+              tags: data.tags || []
             });
           });
           
-          // Update caches
-          this.updateMemoryCache(products);
-          simpleCache.set(this.CACHE_KEY, products, this.TTL);
-          this.lastFetchTime = Date.now();
+          // Update cache
+          const cacheKey = this.getLocaleCacheKey(locale);
+          simpleCache.set(cacheKey, products, this.TTL);
+          this.lastFetchTimeByLocale.set(locale, Date.now());
 
-          console.log(`Real-time update: ${products.length} product translations`);
+          console.log(`Real-time update: ${products.length} product translations for ${locale}`);
           callback(products);
         },
         (error) => {
-          console.error('Error listening to product translations:', error);
+          console.error(`Error in product translations real-time listener for ${locale}:`, error);
         }
       );
 
-      this.unsubscribe = unsubscribe;
+      // Store unsubscribe function by locale
+      this.unsubscribes.set(locale, unsubscribe);
+      console.log(`Subscribed to real-time product translation updates for ${locale}`);
       return unsubscribe;
     } catch (error) {
-      console.error('Error setting up product translations subscription:', error);
+      console.error(`Error setting up product translations subscription for ${locale}:`, error);
       return () => {};
     }
   }
 
   /**
-   * Stop listening to real-time updates
+   * Clear cache for a specific locale or all locales
    */
-  unsubscribeFromProductTranslations(): void {
-    if (this.unsubscribe) {
-      this.unsubscribe();
-      this.unsubscribe = null;
+  clearCache(locale?: string): void {
+    if (locale) {
+      const cacheKey = this.getLocaleCacheKey(locale);
+      simpleCache.remove(cacheKey);
+      this.lastFetchTimeByLocale.delete(locale);
+      console.log(`Product translation cache cleared for ${locale}`);
+    } else {
+      // Clear all locale caches
+      this.lastFetchTimeByLocale.forEach((_, loc) => {
+        const cacheKey = this.getLocaleCacheKey(loc);
+        simpleCache.remove(cacheKey);
+      });
+      this.lastFetchTimeByLocale.clear();
+      console.log('All product translation caches cleared');
     }
   }
 
   /**
-   * Clear all cached translations
+   * Force refresh translations for a specific locale by clearing cache
    */
-  clearCache(): void {
-    this.memoryCache = {};
-    this.lastFetchTime = 0;
-    simpleCache.remove(this.CACHE_KEY);
-  }
-
-  /**
-   * Force refresh translations from Firestore bypassing cache
-   */
-  async forceRefresh(): Promise<ProductTranslation[]> {
-    this.clearCache();
-    return await this.getAllProductTranslations();
+  async forceRefresh(locale: string = 'en'): Promise<ApiProduct[]> {
+    this.clearCache(locale);
+    return await this.getProductTranslationsByLocale(locale);
   }
 
   /**
@@ -262,41 +258,45 @@ export class FirestoreTranslationService {
   }
 
   /**
-   * Get cache status and statistics
+   * Get cache statistics for a specific locale
    */
-  getCacheInfo() {
-    const memoryCount = Object.keys(this.memoryCache).length;
-    const hasSimpleCache = simpleCache.has(this.CACHE_KEY);
-    const cacheAge = this.lastFetchTime ? Date.now() - this.lastFetchTime : null;
-
+  getCacheStats(locale: string): {
+    hasCachedData: boolean;
+    translationsCount: number;
+    lastFetchTime: number | null;
+    cacheAge: number | null;
+  } {
+    const cacheKey = this.getLocaleCacheKey(locale);
+    const hasCache = simpleCache.has(cacheKey);
+    const lastFetch = this.lastFetchTimeByLocale.get(locale) || 0;
+    const cacheAge = lastFetch > 0 ? Date.now() - lastFetch : null;
+    const cachedData = simpleCache.get(cacheKey) || [];
+    
     return {
-      memoryCache: {
-        count: memoryCount,
-        age: cacheAge
-      },
-      simpleCache: {
-        exists: hasSimpleCache,
-        age: cacheAge
-      },
-      isSubscribed: !!this.unsubscribe
+      hasCachedData: hasCache,
+      translationsCount: cachedData.length,
+      lastFetchTime: lastFetch > 0 ? lastFetch : null,
+      cacheAge
     };
   }
 
   /**
-   * Private helper to get cached translations from memory
+   * Cleanup subscriptions for a specific locale or all locales
    */
-  private getCachedTranslations(): ProductTranslation[] {
-    return Object.values(this.memoryCache);
-  }
-
-  /**
-   * Private helper to update memory cache
-   */
-  private updateMemoryCache(translations: ProductTranslation[]): void {
-    this.memoryCache = {};
-    translations.forEach(translation => {
-      this.memoryCache[translation.product_id.toString()] = translation;
-    });
+  cleanup(locale?: string): void {
+    if (locale) {
+      const unsubscribe = this.unsubscribes.get(locale);
+      if (unsubscribe) {
+        unsubscribe();
+        this.unsubscribes.delete(locale);
+      }
+      this.clearCache(locale);
+    } else {
+      // Cleanup all subscriptions
+      this.unsubscribes.forEach((unsubscribe) => unsubscribe());
+      this.unsubscribes.clear();
+      this.clearCache();
+    }
   }
 }
 

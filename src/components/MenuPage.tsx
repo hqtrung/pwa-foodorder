@@ -13,14 +13,13 @@ import { StickyMenuFilter } from '@/components/menu/StickyMenuFilter';
 import { ProductCustomizationModal } from '@/components/modals/ProductCustomizationModal';
 import { OrderInfoModal } from '@/components/modals/OrderInfoModal';
 import { useCartStore, useUIStore } from '@/stores';
-import { useCategories, useProducts } from '@/hooks/useApi';
+import { useCategories, useProducts, useLocaleCache } from '@/hooks/useApi';
 import { useMenuHashState, useProductModalUrl } from '@/hooks/useUrlState';
 import { filterExcludedCategories, filterExcludedProducts } from '@/lib/exclusions';
 import { vietnameseIncludes } from '@/lib/vietnamese-utils';
 import { formatPrice, getLocalizedProductName, calculateProductTotal } from '@/lib/common-utils';
 import { filterAndSortProducts } from '@/lib/product-utils';
 import { Category, Product, Topping } from '@/types';
-import { TranslationDebugWrapper } from '@/components/ui/TranslationDebug';
 
 export function MenuPage() {
   const t = useTranslations();
@@ -52,6 +51,9 @@ export function MenuPage() {
   // API hooks
   const { data: rawCategories, loading: categoriesLoading, error: categoriesError } = useCategories(locale);
   const { data: allRawProducts, loading: productsLoading, error: productsError } = useProducts(undefined, locale);
+  
+  // Handle locale changes and cache management
+  useLocaleCache(locale);
   
   // Apply exclusion filters (memoized to prevent infinite re-renders)
   const categories = useMemo(() => {
@@ -173,7 +175,6 @@ export function MenuPage() {
 
   return (
     <MenuPageLayout>
-      <TranslationDebugWrapper />
       {/* Sticky Filter Section */}
       <StickyMenuFilter 
         searchQuery={searchQuery}

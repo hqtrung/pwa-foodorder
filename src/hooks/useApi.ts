@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { apiClient, ApiCategory, ApiProduct, ApiCacheStatus } from '@/lib/api';
 import { cachedAPI } from '@/lib/cachedApi';
 import { firestoreAPI } from '@/lib/firestoreApi';
@@ -55,7 +55,7 @@ export function useCategories(locale?: string) {
         
         try {
           const products = useFirestore
-            ? await firestoreAPI.getProducts(apiCategory.id)
+            ? await firestoreAPI.getProducts(apiCategory.id, locale)
             : await cachedAPI.getProductsWithFallback(apiCategory.id);
           
           category.productCount = products.length;
@@ -105,7 +105,7 @@ export function useProduct(productId: number, locale?: string) {
     
     // Use Firestore if enabled, otherwise fall back to direct API
     const apiProduct = useFirestore
-      ? await firestoreAPI.getProduct(productId)
+      ? await firestoreAPI.getProduct(productId, locale)
       : await apiClient.getProduct(productId);
     
     const product = transformProduct(apiProduct, locale);
@@ -316,6 +316,40 @@ export function useDataSourceStatus() {
     config: {
       useFirestore,
       firestoreConfig: firestoreAPI.getConfig()
+    }
+  };
+}
+
+// Hook to handle locale changes and cache management
+export function useLocaleCache(locale?: string) {
+  const previousLocale = useRef<string | undefined>(locale);
+
+  useEffect(() => {
+    // Clear cache when locale changes
+    if (previousLocale.current && previousLocale.current !== locale && useFirestore) {
+      console.log(`Locale changed from ${previousLocale.current} to ${locale}, clearing Firestore cache`);
+      
+      // Clear cache for the previous locale to free up memory
+      firestoreAPI.clearFirestoreCache(previousLocale.current);
+      
+      // Update the ref
+      previousLocale.current = locale;
+    } else if (!previousLocale.current) {
+      // Initialize the ref on first render
+      previousLocale.current = locale;
+    }
+  }, [locale]);
+
+  return {
+    clearCurrentLocaleCache: () => {
+      if (locale && useFirestore) {
+        firestoreAPI.clearFirestoreCache(locale);
+      }
+    },
+    clearAllCache: () => {
+      if (useFirestore) {
+        firestoreAPI.clearFirestoreCache();
+      }
     }
   };
 }

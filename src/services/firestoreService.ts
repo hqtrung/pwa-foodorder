@@ -457,60 +457,112 @@ export class FirestoreService {
    */
   async getProductsWithTranslations(categoryId?: number, locale: string = 'en'): Promise<ApiProduct[]> {
     try {
-      // Get base products from Firestore
+      // Always get base products first (contains all data: images, prices, tags, etc.)
       const baseProducts = await this.getProducts(categoryId);
       
-      // Get all translations (cached)
-      const translations = await firestoreTranslationService.getAllProductTranslations();
-      
-      // Apply translations to products
-      const translatedProducts = baseProducts.map(product => {
-        const translation = firestoreTranslationService.getProductTranslation(product.id, locale);
-        
-        if (translation) {
-          return {
-            ...product,
-            name: translation.name || product.name,
-            description_sale: translation.description || product.description_sale
-          };
-        }
-        
-        return product;
-      });
-
-      console.log(`Applied ${locale} translations to ${translatedProducts.length} products`);
-      
-      // Debug: Show sample of translated products
-      if (translatedProducts.length > 0) {
-        const sample = translatedProducts[0];
-        console.log(`🔍 Sample translated product:`, {
-          id: sample.id,
-          originalName: baseProducts.find(p => p.id === sample.id)?.name,
-          translatedName: sample.name,
-          locale
-        });
+      if (baseProducts.length === 0) {
+        return [];
       }
       
-      return translatedProducts;
+      // Continue to load translations for all locales, including English
+      
+      try {
+        // Try to get translations for the requested locale
+        const translations = await firestoreTranslationService.getProductTranslationsByLocale(locale);
+        
+        if (translations.length === 0) {
+          return baseProducts;
+        }
+        
+        // Create a map of translations by product ID for efficient lookup
+        const translationMap = new Map<number, any>();
+        translations.forEach(translation => {
+          // Handle both id and product_id fields
+          const productId = translation.id || translation.product_id;
+          if (productId) {
+            translationMap.set(productId, translation);
+          }
+        });
+        
+        // Merge translations with base products
+        const mergedProducts = baseProducts.map(baseProduct => {
+          const translation = translationMap.get(baseProduct.id);
+          
+          if (translation) {
+            // Merge attribute lines if translation has them, otherwise keep base
+            let mergedAttributeLines = baseProduct.attribute_lines;
+            
+            if (translation.attribute_lines && translation.attribute_lines.length > 0) {
+              // Merge translated attribute lines with base structure
+              mergedAttributeLines = baseProduct.attribute_lines?.map(baseLine => {
+                // Find corresponding translation
+                const translatedLine = translation.attribute_lines.find(
+                  (tLine: any) => tLine.attribute_id === baseLine.attribute_id
+                );
+                
+                if (translatedLine) {
+                  return {
+                    ...baseLine, // Keep all base data (IDs, structure, etc.)
+                    attribute_name: translatedLine.attribute_name || baseLine.attribute_name,
+                    values: baseLine.values?.map(baseValue => {
+                      // Find corresponding translated value
+                      const translatedValue = translatedLine.values?.find(
+                        (tValue: any) => tValue.id === baseValue.id
+                      );
+                      
+                      return translatedValue ? {
+                        ...baseValue, // Keep all base data (IDs, prices, etc.)
+                        name: translatedValue.name || baseValue.name
+                      } : baseValue;
+                    }) || baseLine.values
+                  };
+                }
+                
+                return baseLine; // No translation found, keep base
+              }) || baseProduct.attribute_lines;
+            }
+            
+            // Merge translation fields with base product data
+            return {
+              ...baseProduct, // Keep all base data (images, prices, tags, etc.)
+              name: translation.name || baseProduct.name,
+              description_sale: translation.short_description || translation.description_sale || baseProduct.description_sale,
+              description: translation.long_description || translation.description || baseProduct.description,
+              attribute_lines: mergedAttributeLines,
+            };
+          }
+          
+          // No translation found, return base product as-is
+          return baseProduct;
+        });
+        
+        return mergedProducts;
+        
+      } catch (translationError) {
+        console.warn(`Failed to get translations for ${locale}:`, translationError);
+        return baseProducts;
+      }
+      
     } catch (error) {
       console.error(`Failed to get products with translations for locale ${locale}:`, error);
-      // Fallback to base products without translations
+      
+      // Final fallback to base products without translations
       return await this.getProducts(categoryId);
     }
   }
 
   /**
-   * Initialize translation service and setup real-time updates
+   * Initialize translation service for a specific locale
    */
-  async initializeTranslations(): Promise<void> {
+  async initializeTranslations(locale: string = 'en'): Promise<void> {
     try {
       if (firestoreTranslationService.isAvailable()) {
-        // Load initial translations
-        await firestoreTranslationService.getAllProductTranslations();
-        console.log('Translation service initialized successfully');
+        // Load initial translations for the specified locale
+        await firestoreTranslationService.getProductTranslationsByLocale(locale);
+        console.log(`Translation service initialized successfully for ${locale}`);
       }
     } catch (error) {
-      console.error('Failed to initialize translation service:', error);
+      console.error(`Failed to initialize translation service for ${locale}:`, error);
     }
   }
 
